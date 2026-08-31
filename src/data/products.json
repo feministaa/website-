@@ -1,0 +1,179 @@
+[
+  {
+    "id": "locken",
+    "slug": "locken",
+    "sku": "FEM-LOCKEN-100",
+    "name": "Locken",
+    "expression": "The Magnetic",
+    "family": "magnetic",
+    "tagline": "Warm. Addictive. Commanding.",
+    "shortDescription": "Warm, magnetic and unapologetically expressive. Opens with almond, coffee, bergamot and lemon before unfolding into a luminous floral heart.",
+    "price": 8000,
+    "compareAtPrice": null,
+    "accent": "#b8792f",
+    "accentSoft": "#f1d9ab",
+    "sizes": [
+      { "label": "50 ml", "price": 5200 },
+      { "label": "100 ml", "price": 8000 }
+    ],
+    "stock": 24,
+    "featured": true,
+    "rating": 4.9,
+    "reviews": 128,
+    "notes": {
+      "top": ["Almond", "Coffee", "Bergamot", "Lemon"],
+      "heart": ["Tuberose", "Jasmine Sambac", "Orange Blossom", "Bulgarian Rose"],
+      "base": ["Tonka Bean", "Cacao", "Vanilla", "Praline", "Sandalwood", "Musk", "Amber", "Cashmere Wood", "Patchouli", "Cinnamon", "Cedar"]
+    },
+    "overview": [
+      {
+        "title": "A Presence That Lingers",
+        "body": "Locken is warm, magnetic and unapologetically expressive. It opens with the addictive contrast of almond, coffee, bergamot and lemon, before unfolding into a luminous floral heart of tuberose, jasmine sambac, orange blossom and Bulgarian rose."
+      },
+      {
+        "title": "Composed Without Haste",
+        "body": "Every detail of Locken is shaped with intention. The composition is given nearly 180 days to mature, allowing its notes to deepen, soften and come together with greater balance."
+      },
+      {
+        "title": "Made to Be Remembered",
+        "body": "Locken is created for evenings, celebrations and moments that call for presence. Bold without becoming overwhelming, it is designed for the woman who never needs to announce her arrival. She enters. The room remembers."
+      }
+    ],
+    "howToWear": "Apply to pulse points — wrists, neck and behind the ears — just after showering, when skin is warm and hydrated. For a longer trail, layer one spray on clothing. Reapply after 6–8 hours for evenings that run late.",
+    "ingredients": "Alcohol Denat., Parfum (Fragrance), Aqua (Water), Limonene, Linalool, Citral, Geraniol, Benzyl Benzoate, Coumarin. Ingredient information may occasionally be updated — please refer to the list printed on the product packaging, particularly if you have known sensitivities or allergies.",
+    "moodLabel": "Magnetic",
+    "moodDescription": "Warm, addictive, commanding.",
+    "createdAt": "2024-01-14T10:00:00.000Z"
+  },
+  {
+    "id": "vers",
+    "slug": "vers",
+    "sku": "FEM-VERS-100",
+    "name": "Vers",
+    "expression": "The Intimate",
+    "family": "intimate",
+    "tagline": "Soft. Graceful. Whispered.",
+    "shortDescription": "Soft, graceful and quietly expressive. Opens with delicate floral freshness before unfolding into a smooth, romantic heart that feels refined and intimate.",
+    "price": 8000,
+    "compareAtPrice": null,
+    "accent": "#c98a93",
+    "accentSoft": "#f3d9dc",
+    "sizes": [
+      { "label": "50 ml", "price": 5200 },
+      { "label": "100 ml", "price": 8000 }
+    ],
+    "stock": 31,
+    "featured": true,
+    "rating": 4.8,
+    "reviews": 96,
+    "notes": {
+      "top": ["Pink Pepper", "Bergamot", "Mandarin", "Neroli"],
+      "heart": ["Peony", "Rose de Mai", "Lily of the Valley", "Iris"],
+      "base": ["White Musk", "Cashmere Wood", "Ambrette", "Vanilla", "Soft Suede"]
+    },
+    "overview": [
+      {
+        "title": "A Quiet Kind of Power",
+        "body": "Vers is soft, graceful and quietly expressive. It opens with delicate floral freshness before unfolding into a smooth, romantic heart that feels refined and intimate."
+      },
+      {
+        "title": "Composed Without Haste",
+        "body": "Every element of Vers is shaped with patience. The composition is given nearly 180 days to mature, allowing its freshness, florals and warmer notes to soften and find their natural balance."
+      },
+      {
+        "title": "Made to Stay Close",
+        "body": "Vers is created for everyday rituals, intimate occasions and moments of quiet confidence. It does not demand attention; it draws people closer. Softness becomes its strength."
+      }
+    ],
+    "howToWear": "Mist lightly onto skin from a short distance, focusing on the collarbone and wrists so the scent stays close and personal. Ideal for daytime wear — refresh once in the early evening to keep its trail alive.",
+    "ingredients": "Alcohol Denat., Parfum (Fragrance), Aqua (Water), Linalool, Citral, Geraniol, Benzyl Salicylate, Alpha-Isomethyl Ionone. Ingredient information may occasionally be updated — please refer to the list printed on the product packaging, particularly if you have known sensitivities or allergies.",
+    "moodLabel": "Intimate",
+    "moodDescription": "Soft, graceful, whispered.",
+    "createdAt": "2024-01-14T10:05:00.000Z"
+  },
+  {
+    "id": "fresca",
+    "slug": "fresca",
+    "sku": "FEM-FRESCA-100",
+    "name": "Fresca",
+    "expression": "The Luminous",
+    "family": "luminous",
+    "tagline": "Fresh. Radiant. Effortless.",
+    "shortDescription": "Fresh, radiant and confidently expressive. Opens with refined fruity and floral notes before unfolding into a rich, sensual heart filled with warmth and character.",
+    "price": 8000,
+    "compareAtPrice": null,
+    "accent": "#8fa66a",
+    "accentSoft": "#e2ecc9",
+    "sizes": [
+      { "label": "50 ml", "price": 5200 },
+      { "label": "100 ml", "price": 8000 }
+    ],
+    "stock": 19,
+    "featured": true,
+    "rating": 4.9,
+    "reviews": 74,
+    "notes": {
+      "top": ["Green Pear", "Yuzu", "Freesia", "Blackcurrant"],
+      "heart": ["Magnolia", "Orange Blossom", "Jasmine", "Water Lily"],
+      "base": ["Amber", "Musk", "Vetiver", "Sandalwood", "Soft Woods"]
+    },
+    "overview": [
+      {
+        "title": "A Light That Lingers",
+        "body": "Fresca is fresh, radiant and confidently expressive. It opens with refined fruity and floral notes before unfolding into a rich, sensual heart filled with warmth and character."
+      },
+      {
+        "title": "Perfected Through Time",
+        "body": "Fresca is given nearly 180 days to mature, allowing its brighter notes and deeper elements to settle into balance — becoming softer, fuller and more complete."
+      },
+      {
+        "title": "Made to Be Remembered",
+        "body": "Fresca is created for spontaneous days, special occasions and moments that call for effortless confidence. She does not follow the moment. She transforms it."
+      }
+    ],
+    "howToWear": "Spray onto pulse points and hair ends for a diffused trail that moves with you through the day. Layer with the matching body lotion, when available, for a longer-lasting effect.",
+    "ingredients": "Alcohol Denat., Parfum (Fragrance), Aqua (Water), Limonene, Citral, Linalool, Hexyl Cinnamal, Benzyl Alcohol. Ingredient information may occasionally be updated — please refer to the list printed on the product packaging, particularly if you have known sensitivities or allergies.",
+    "moodLabel": "Luminous",
+    "moodDescription": "Fresh, radiant, effortless.",
+    "createdAt": "2024-01-14T10:10:00.000Z"
+  },
+  {
+    "id": "discovery-set",
+    "slug": "discovery-set",
+    "sku": "FEM-DISCOVERY-SET",
+    "name": "The Discovery Set",
+    "expression": "Meet All Three",
+    "family": "set",
+    "tagline": "Three scents. One unforgettable you.",
+    "shortDescription": "A curated set of Locken, Vers and Fresca in 10ml travel formats — the complete house of Feminista, in miniature.",
+    "price": 2500,
+    "compareAtPrice": 3600,
+    "accent": "#a87f3f",
+    "accentSoft": "#e7d6ad",
+    "sizes": [{ "label": "3 x 10 ml", "price": 2500 }],
+    "stock": 42,
+    "featured": true,
+    "rating": 5,
+    "reviews": 51,
+    "notes": {
+      "top": ["A taste of Locken, Vers and Fresca"],
+      "heart": ["Three complete compositions"],
+      "base": ["Travel-ready 10ml formats"]
+    },
+    "overview": [
+      {
+        "title": "Meet All Three",
+        "body": "For the woman who cannot choose just one. The Discovery Set brings together Locken, Vers and Fresca in considered 10ml formats — travel-ready, gift-ready, and the easiest way to find your signature."
+      },
+      {
+        "title": "Own the Full Story",
+        "body": "Each bottle is finished with the same craftsmanship as its full-size counterpart, so nothing about the experience feels reduced — only distilled."
+      }
+    ],
+    "howToWear": "Wear each scent on a different day to let it develop fully on your skin before deciding on your signature.",
+    "ingredients": "See individual fragrance listings for Locken, Vers and Fresca.",
+    "moodLabel": "Discovery",
+    "moodDescription": "Meet all three.",
+    "createdAt": "2024-01-14T10:15:00.000Z"
+  }
+]

@@ -1,0 +1,95 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import Link from "next/link";
+import styles from "./page.module.css";
+import ProductCard from "@/components/ui/ProductCard";
+import ScentBottle from "@/components/ui/ScentBottle";
+import AnimateIn from "@/components/ui/AnimateIn";
+
+const FILTERS = [
+  { key: "all", label: "All Fragrances" },
+  { key: "magnetic", label: "Magnetic" },
+  { key: "intimate", label: "Intimate" },
+  { key: "luminous", label: "Luminous" },
+  { key: "set", label: "Discovery Set" },
+];
+
+export default function FragrancesClient({ products }) {
+  const [filter, setFilter] = useState("all");
+  const [sort, setSort] = useState("featured");
+
+  const visible = useMemo(() => {
+    let list = filter === "all" ? products : products.filter((p) => p.family === filter);
+    list = [...list];
+    if (sort === "price-asc") list.sort((a, b) => a.price - b.price);
+    if (sort === "price-desc") list.sort((a, b) => b.price - a.price);
+    if (sort === "name") list.sort((a, b) => a.name.localeCompare(b.name));
+    return list;
+  }, [products, filter, sort]);
+
+  return (
+    <main>
+      <section className={styles.hero}>
+        <AnimateIn>
+          <span className="eyebrow">The Collection</span>
+          <h1 className={styles.heroTitle}>Her, in Three Acts</h1>
+          <p style={{ color: "var(--ink-soft)", maxWidth: 420, marginBottom: 26 }}>
+            A dedicated space for Locken, Vers, Fresca and the Discovery Set — three compositions, three expressions of her.
+          </p>
+          <button className="btn btn-primary" onClick={() => setFilter("all")}>
+            Explore All
+          </button>
+        </AnimateIn>
+        <AnimateIn delay={0.15} className={styles.heroVisual}>
+          <ScentBottle accent="#b8792f" accentSoft="#f1d9ab" size={110} />
+          <ScentBottle accent="#c98a93" accentSoft="#f3d9dc" size={110} />
+          <ScentBottle accent="#8fa66a" accentSoft="#e2ecc9" size={110} />
+        </AnimateIn>
+      </section>
+
+      <div className={styles.toolbar}>
+        <div className={styles.filters}>
+          {FILTERS.map((f) => (
+            <button
+              key={f.key}
+              className={`${styles.filterBtn} ${filter === f.key ? styles.filterActive : ""}`}
+              onClick={() => setFilter(f.key)}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+        <select className={styles.sortSelect} value={sort} onChange={(e) => setSort(e.target.value)}>
+          <option value="featured">Sort: Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="name">Name: A–Z</option>
+        </select>
+      </div>
+
+      {visible.length === 0 ? (
+        <p className={styles.empty}>No fragrances match this filter yet.</p>
+      ) : (
+        <div className={styles.grid}>
+          {visible.map((product, i) => (
+            <AnimateIn key={product.id} delay={(i % 4) * 0.08}>
+              <ProductCard product={product} />
+            </AnimateIn>
+          ))}
+        </div>
+      )}
+
+      <div className={styles.banner}>
+        <AnimateIn>
+          <span className="eyebrow">Still deciding?</span>
+          <h2 className={styles.bannerTitle}>Discover your signature.</h2>
+          <p className={styles.bannerSub}>Answer a few questions and find the scent that feels unmistakably you.</p>
+          <Link href="/the-art-of-180" className="btn btn-primary">
+            Find My Scent
+          </Link>
+        </AnimateIn>
+      </div>
+    </main>
+  );
+}

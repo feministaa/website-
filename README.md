@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Feminista
+
+A premium, storytelling-led D2C e-commerce site for **Feminista**, a house of fragrance with three signature perfumes — Locken (The Magnetic), Vers (The Intimate) and Fresca (The Luminous) — plus a Discovery Set.
+
+Built with Next.js (App Router, JavaScript, `src/` directory), no Tailwind — hand-written CSS with CSS Modules and a shared design-token system in `globals.css`. Animations via Framer Motion.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
+cp .env.local.example .env.local   # optional: set your own admin password
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) for the storefront, and [http://localhost:3000/admin](http://localhost:3000/admin) for the admin dashboard (default password: `feminista180`, override via `ADMIN_PASSWORD` in `.env.local`).
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Storefront** — home, fragrance collection with filter/sort, individual product pages, The Art of 180 (craftsmanship story), Our Story (Maison/about)
+- **Commerce** — add to cart, cart drawer, wishlist, quick checkout, full cart page — all persisted to `localStorage`
+- **Admin dashboard** (`/admin`) — password-gated, with revenue/order insights, product CRUD, and customer management
+- **SEO** — per-page and per-product metadata, Open Graph tags, `sitemap.xml`, `robots.txt`
 
-## Learn More
+## Data
 
-To learn more about Next.js, take a look at the following resources:
+Products, users and orders are stored as JSON files in `src/data/` and read/written through API routes (`src/app/api/**`) backed by `src/lib/dataStore.js`. This is intentionally simple for a 3–4 SKU catalogue and can be swapped for a real database later without changing the API contract.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Payments
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Razorpay integration is planned but not yet wired in — checkout currently records the order and confirms manually. See `src/app/(site)/checkout/CheckoutClient.js` and `src/app/api/orders/route.js` as the integration points.
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+  app/
+    (site)/        storefront pages (share the Header/Footer layout)
+    admin/          admin login + password-gated dashboard
+    api/            REST-ish API routes for products, users, orders, admin auth
+    sitemap.js, robots.js
+  components/       layout, home, ui and admin components
+  context/          Cart, Wishlist and Toast providers (client-side state)
+  data/             products.json, users.json, orders.json
+  lib/              dataStore (fs-backed JSON persistence), auth, formatting
+```

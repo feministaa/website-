@@ -1,0 +1,57 @@
+[
+  {
+    "id": "u1001",
+    "name": "Ananya Rao",
+    "email": "ananya.rao@example.com",
+    "phone": "+91 98765 43210",
+    "city": "Mumbai",
+    "orders": 4,
+    "totalSpent": 27600,
+    "status": "active",
+    "joined": "2024-03-12T09:00:00.000Z"
+  },
+  {
+    "id": "u1002",
+    "name": "Meera Sinha",
+    "email": "meera.sinha@example.com",
+    "phone": "+91 91234 56780",
+    "city": "Delhi",
+    "orders": 2,
+    "totalSpent": 13200,
+    "status": "active",
+    "joined": "2024-05-02T09:00:00.000Z"
+  },
+  {
+    "id": "u1003",
+    "name": "Kavya Nair",
+    "email": "kavya.nair@example.com",
+    "phone": "+91 99887 76655",
+    "city": "Bengaluru",
+    "orders": 1,
+    "totalSpent": 8000,
+    "status": "active",
+    "joined": "2024-06-19T09:00:00.000Z"
+  },
+  {
+    "id": "u1004",
+    "name": "Priya Malhotra",
+    "email": "priya.malhotra@example.com",
+    "phone": "+91 90000 11122",
+    "city": "Pune",
+    "orders": 3,
+    "totalSpent": 21500,
+    "status": "inactive",
+    "joined": "2023-11-27T09:00:00.000Z"
+  },
+  {
+    "id": "u1005",
+    "name": "Sanya Kapoor",
+    "email": "sanya.kapoor@example.com",
+    "phone": "+91 98111 22334",
+    "city": "Hyderabad",
+    "orders": 6,
+    "totalSpent": 41800,
+    "status": "active",
+    "joined": "2023-09-08T09:00:00.000Z"
+  }
+]

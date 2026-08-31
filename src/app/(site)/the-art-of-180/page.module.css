@@ -1,0 +1,240 @@
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 50px;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 64px 24px 40px;
+}
+
+.heroTitle {
+  font-size: clamp(32px, 4.6vw, 52px);
+  margin: 12px 0 18px;
+}
+
+.heroSub {
+  color: var(--ink-soft);
+  max-width: 420px;
+  margin-bottom: 30px;
+  line-height: 1.75;
+}
+
+.heroVisual {
+  aspect-ratio: 4/3;
+  border-radius: 6px;
+  background: linear-gradient(150deg, var(--gold-pale)55, var(--bg-alt));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 20px 24px 70px;
+}
+
+.introTitle {
+  font-size: clamp(26px, 3.4vw, 36px);
+  margin: 10px 0 16px;
+}
+
+.timeline {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px 90px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+  position: relative;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 27px;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: var(--line);
+  z-index: 0;
+}
+
+.step {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.stepNum {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--gold-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  margin: 0 auto 18px;
+}
+
+.stepTitle {
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.stepSub {
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin-bottom: 8px;
+}
+
+.stepBody {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.daysSection {
+  background: var(--bg-alt);
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.daysTitle {
+  font-size: clamp(28px, 3.8vw, 42px);
+  margin: 10px 0 10px;
+}
+
+.daysSub {
+  color: var(--ink-soft);
+  max-width: 480px;
+  margin: 0 auto 50px;
+}
+
+.slider {
+  max-width: 640px;
+  margin: 0 auto;
+  position: relative;
+  height: 4px;
+  background: var(--line);
+  border-radius: 4px;
+}
+
+.sliderFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--gold);
+  border-radius: 4px;
+}
+
+.sliderMarks {
+  display: flex;
+  justify-content: space-between;
+  max-width: 640px;
+  margin: 14px auto 0;
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
+.features {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 90px 24px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.featureCard {
+  text-align: center;
+}
+
+.featureIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.featureTitle {
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.featureBody {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+.philosophy {
+  background: var(--black);
+  color: var(--cream);
+  padding: 90px 24px;
+  text-align: center;
+}
+
+.philosophyTitle {
+  font-size: clamp(26px, 3.4vw, 38px);
+  margin: 10px 0 40px;
+}
+
+.philosophyGrid {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  text-align: left;
+}
+
+.philosophyItem h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: var(--gold-light);
+}
+
+.philosophyItem p {
+  font-size: 13.5px;
+  color: rgba(251, 248, 242, 0.72);
+}
+
+.closing {
+  text-align: center;
+  padding: 90px 24px;
+}
+
+.closingTitle {
+  font-size: clamp(26px, 3.4vw, 38px);
+  margin: 10px 0 16px;
+}
+
+.actList {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 30px 0 36px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .timeline,
+  .features,
+  .philosophyGrid {
+    grid-template-columns: 1fr;
+  }
+  .timeline::before {
+    display: none;
+  }
+}

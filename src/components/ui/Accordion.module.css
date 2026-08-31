@@ -1,0 +1,38 @@
+.item {
+  border-bottom: 1px solid var(--line);
+}
+
+.trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 2px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.icon {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  line-height: 1;
+  transition: transform 0.3s var(--ease);
+  color: var(--gold-deep);
+}
+
+.iconOpen {
+  transform: rotate(45deg);
+}
+
+.panel {
+  overflow: hidden;
+}
+
+.panelInner {
+  padding: 0 2px 22px;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}

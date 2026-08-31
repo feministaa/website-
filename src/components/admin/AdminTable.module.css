@@ -1,0 +1,73 @@
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.table th {
+  text-align: left;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-alt);
+}
+
+.table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--line-soft);
+  vertical-align: middle;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+}
+
+.badgeDelivered {
+  background: #e3ede4;
+  color: var(--success);
+}
+
+.badgeProcessing,
+.badgePending {
+  background: var(--gold-pale);
+  color: var(--gold-deep);
+}
+
+.badgeShipped {
+  background: #e2e8f0;
+  color: #3a4a63;
+}
+
+.badgeCancelled {
+  background: #f3dedb;
+  color: var(--danger);
+}
+
+.badgeActive {
+  background: #e3ede4;
+  color: var(--success);
+}
+
+.badgeInactive {
+  background: #eee9dd;
+  color: var(--ink-faint);
+}

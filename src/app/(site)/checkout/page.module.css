@@ -1,0 +1,143 @@
+.wrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 56px 24px 100px;
+}
+
+.title {
+  font-size: clamp(28px, 3.6vw, 40px);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: var(--ink-soft);
+  margin-bottom: 44px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 56px;
+  align-items: flex-start;
+}
+
+.sectionLabel {
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin: 30px 0 16px;
+}
+
+.sectionLabel:first-child {
+  margin-top: 0;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.field {
+  margin-bottom: 14px;
+}
+
+.field label {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  font-size: 14px;
+  background: var(--surface);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--gold-deep);
+}
+
+.summary {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 28px;
+  position: sticky;
+  top: 110px;
+}
+
+.line {
+  display: flex;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 13.5px;
+}
+
+.lineImg {
+  width: 46px;
+  height: 54px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin: 14px 0;
+  color: var(--ink-soft);
+}
+
+.grandTotal {
+  display: flex;
+  justify-content: space-between;
+  font-size: 17px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  margin-bottom: 20px;
+}
+
+.noteBox {
+  background: var(--bg-alt);
+  border: 1px dashed var(--gold-pale);
+  border-radius: 4px;
+  padding: 14px 16px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.confirmWrap {
+  text-align: center;
+  padding: 100px 24px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.confirmTitle {
+  font-size: clamp(28px, 3.6vw, 38px);
+  margin: 20px 0 14px;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+  .summary {
+    position: static;
+  }
+}

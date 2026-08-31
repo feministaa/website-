@@ -1,0 +1,140 @@
+.announce {
+  background: var(--black);
+  color: var(--cream);
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 9px 12px;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  transition: box-shadow 0.3s var(--ease);
+}
+
+.headerScrolled {
+  box-shadow: 0 8px 24px rgba(13, 12, 10, 0.06);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  max-width: var(--container);
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.logo {
+  font-family: var(--font-serif);
+  font-size: 25px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.nav {
+  display: flex;
+  gap: 36px;
+  align-items: center;
+}
+
+.navLink {
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  position: relative;
+  padding: 4px 0;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--gold-deep);
+  transition: width 0.3s var(--ease);
+}
+
+.navLink:hover::after,
+.navLinkActive::after {
+  width: 100%;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.iconBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background: var(--gold-deep);
+  color: var(--cream);
+  font-size: 10px;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+}
+
+.menuBtn {
+  display: none;
+}
+
+.searchBar {
+  border-top: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.searchInner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 18px 24px;
+  display: flex;
+  gap: 12px;
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  padding: 8px 2px;
+  font-size: 15px;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--gold-deep);
+}
+
+@media (max-width: 900px) {
+  .nav {
+    display: none;
+  }
+  .menuBtn {
+    display: flex;
+  }
+}
