@@ -7,6 +7,9 @@ import { useSearchParams, useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import ProductCard from "@/components/ui/ProductCard";
 import AnimateIn from "@/components/ui/AnimateIn";
+import RotatingBanner from "@/components/ui/RotatingBanner";
+
+const BANNER_IMAGES = ["/images/banner-hero-campaign.jpg", "/images/banner-fresca-campaign.jpg"];
 
 const FILTERS = [
   { key: "all", label: "All Fragrances" },
@@ -18,7 +21,6 @@ const FILTERS = [
 
 export default function FragrancesClient({ products }) {
   const [filter, setFilter] = useState("all");
-  const [sort, setSort] = useState("featured");
   const searchParams = useSearchParams();
   const router = useRouter();
   const query = searchParams.get("q") || "";
@@ -35,12 +37,8 @@ export default function FragrancesClient({ products }) {
           p.shortDescription.toLowerCase().includes(q)
       );
     }
-    list = [...list];
-    if (sort === "price-asc") list.sort((a, b) => a.price - b.price);
-    if (sort === "price-desc") list.sort((a, b) => b.price - a.price);
-    if (sort === "name") list.sort((a, b) => a.name.localeCompare(b.name));
     return list;
-  }, [products, filter, sort, query]);
+  }, [products, filter, query]);
 
   return (
     <main>
@@ -86,12 +84,6 @@ export default function FragrancesClient({ products }) {
             </button>
           ))}
         </div>
-        <select className={styles.sortSelect} value={sort} onChange={(e) => setSort(e.target.value)}>
-          <option value="featured">Sort: Featured</option>
-          <option value="price-asc">Price: Low to High</option>
-          <option value="price-desc">Price: High to Low</option>
-          <option value="name">Name: A–Z</option>
-        </select>
       </div>
 
       {visible.length === 0 ? (
@@ -107,7 +99,8 @@ export default function FragrancesClient({ products }) {
       )}
 
       <div className={styles.banner}>
-        <AnimateIn>
+        <RotatingBanner images={BANNER_IMAGES} />
+        <AnimateIn className={styles.bannerContent}>
           <span className="eyebrow">Still deciding?</span>
           <h2 className={styles.bannerTitle}>Discover your signature.</h2>
           <p className={styles.bannerSub}>Answer a few questions and find the scent that feels unmistakably you.</p>

@@ -69,13 +69,9 @@ const SOCIALS = [
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.brandBand}>
-        <span className={styles.brandBandText}>Feminista</span>
-      </div>
-
-      <div className={styles.top}>
+      <div className={styles.upper}>
         <div className={styles.brandCol}>
-          <Image src="/feminista-logo.png" alt="Feminista" width={110} height={59} className={styles.logo} />
+          <Image src="/feminista-logo.png" alt="Feminista" width={120} height={64} className={styles.logo} />
           <p>Created for her. Never adapted to her. Celebrating the many expressions of modern femininity through fragrance.</p>
           <div className={styles.socials}>
             {SOCIALS.map((s) => (
@@ -86,31 +82,38 @@ export default function Footer() {
           </div>
         </div>
 
-        {COLUMNS.map((col) => (
-          <div key={col.title} className={styles.linkCol}>
-            <div className={styles.colTitle}>{col.title}</div>
-            <div className={styles.colLinks}>
-              {col.links.map((link) => (
-                <Link key={link.href} href={link.href}>
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        ))}
-
-        <div className={styles.linkCol}>
-          <div className={styles.colTitle}>Newsletter</div>
-          <p className={styles.newsletterText}>Private access to new compositions and early releases.</p>
+        <div className={styles.newsletterPanel}>
+          <span className={styles.cornerTL} />
+          <span className={styles.cornerBR} />
+          <span className="eyebrow" style={{ color: "var(--gold-light)" }}>
+            Join the Circle
+          </span>
+          <h3 className={styles.newsletterTitle}>Private access, always.</h3>
+          <p className={styles.newsletterText}>New compositions, exclusive offers and stories from the house — before anyone else.</p>
           <form className={styles.newsletterForm} onSubmit={(e) => e.preventDefault()}>
-            <input type="email" placeholder="Your email" aria-label="Email address" required />
-            <button type="submit" aria-label="Subscribe">
-              <svg width="14" height="10" viewBox="0 0 15 10" fill="none">
-                <path d="M0 5H14M14 5L9.5 0.5M14 5L9.5 9.5" stroke="currentColor" strokeWidth="1.3" />
-              </svg>
+            <input type="email" placeholder="Your email address" aria-label="Email address" required />
+            <button type="submit" className="btn btn-gold btn-block">
+              Join the Circle
             </button>
           </form>
         </div>
+      </div>
+
+      <nav className={styles.navRow}>
+        {COLUMNS.map((col) => (
+          <div key={col.title} className={styles.navGroup}>
+            <span className={styles.navGroupTitle}>{col.title}</span>
+            {col.links.map((link) => (
+              <Link key={link.href} href={link.href}>
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        ))}
+      </nav>
+
+      <div className={styles.brandBand}>
+        <Image src="/feminista-logo.png" alt="Feminista" width={220} height={118} className={styles.brandBandLogo} />
       </div>
 
       <div className={styles.bottom}>

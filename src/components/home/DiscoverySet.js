@@ -26,7 +26,7 @@ export default function DiscoverySet({ product }) {
           {product.compareAtPrice && <span className={styles.compareAt}>{formatINR(product.compareAtPrice)}</span>}
           <span>{formatINR(product.price)}</span>
         </div>
-        <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+        <div className={styles.actions}>
           <button className="btn btn-primary" onClick={() => addToCart(product, product.sizes[0], 1)}>
             Add to Cart
           </button>

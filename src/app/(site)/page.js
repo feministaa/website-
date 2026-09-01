@@ -3,6 +3,7 @@ import SignatureCollection from "@/components/home/SignatureCollection";
 import AboutTeaser from "@/components/home/AboutTeaser";
 import DiscoverySet from "@/components/home/DiscoverySet";
 import ServicesStrip from "@/components/home/ServicesStrip";
+import HomeReels from "@/components/home/HomeReels";
 import Testimonials from "@/components/home/Testimonials";
 import Newsletter from "@/components/home/Newsletter";
 import products from "@/data/products.json";
@@ -32,6 +33,7 @@ export default function Home() {
       <SignatureCollection products={collection} />
       <DiscoverySet product={discoverySet} />
       <ServicesStrip />
+      <HomeReels />
       <Testimonials />
       <Newsletter />
     </main>

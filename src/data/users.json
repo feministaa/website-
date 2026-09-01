@@ -53,5 +53,17 @@
     "totalSpent": 41800,
     "status": "active",
     "joined": "2023-09-08T09:00:00.000Z"
+  },
+  {
+    "id": "u1788249435934",
+    "name": "Feminista AD",
+    "email": "feministaad@gmail.com",
+    "phone": "1234567898",
+    "city": "ghaziabad",
+    "orders": 1,
+    "totalSpent": 8000,
+    "status": "active",
+    "joined": "2026-09-01T07:57:15.934Z",
+    "passwordHash": "$2b$10$aDQ4eVGYqSDAHODHDZt0wu3CabaptMNndE/XMZt8Ulvg5hlCDrFuO"
   }
 ]
