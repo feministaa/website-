@@ -82,7 +82,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className={styles.newsletterPanel}>
+        <div
+          className={styles.newsletterPanel}
+          style={{
+            backgroundImage: `linear-gradient(160deg, rgba(9,9,9,0.82), rgba(9,9,9,0.55)), url(/images/banner-circle-cat.jpg)`,
+          }}
+        >
           <span className={styles.cornerTL} />
           <span className={styles.cornerBR} />
           <span className="eyebrow" style={{ color: "var(--gold-light)" }}>

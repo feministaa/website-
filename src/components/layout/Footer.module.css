@@ -72,7 +72,8 @@
   border: 1px solid rgba(251, 248, 242, 0.14);
   border-radius: 2px;
   padding: 44px 42px;
-  background: linear-gradient(160deg, rgba(235, 157, 27, 0.08), transparent 65%);
+  background-size: cover;
+  background-position: center;
 }
 
 .cornerTL,
