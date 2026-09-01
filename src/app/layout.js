@@ -1,4 +1,4 @@
-import { Playfair_Display, Jost } from "next/font/google";
+import { Playfair_Display, Raleway } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishlistContext";
@@ -11,10 +11,10 @@ const playfair = Playfair_Display({
   weight: ["400", "500", "600", "700"],
 });
 
-const jost = Jost({
-  variable: "--font-jost",
+const raleway = Raleway({
+  variable: "--font-raleway",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
@@ -43,7 +43,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${jost.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${raleway.variable}`}>
       <body>
         <ToastProvider>
           <WishlistProvider>

@@ -98,7 +98,7 @@ export default function ArtOf180Page() {
         {FEATURES.map((f, i) => (
           <AnimateIn key={f.title} delay={i * 0.1} className={styles.featureCard}>
             <div className={styles.featureIcon}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a87f3f" strokeWidth="1.4">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#eb9d1b" strokeWidth="1.4">
                 <circle cx="12" cy="12" r="9" />
                 <path d="M12 7v5l3.5 2" />
               </svg>

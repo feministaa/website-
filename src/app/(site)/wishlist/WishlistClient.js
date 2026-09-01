@@ -23,7 +23,7 @@ export default function WishlistClient() {
 
       {items.length === 0 ? (
         <div style={{ textAlign: "center", padding: "60px 0" }}>
-          <ScentBottle accent="#a87f3f" accentSoft="#e7d6ad" size={140} />
+          <ScentBottle accent="#eb9d1b" accentSoft="#f6d9a4" size={140} />
           <p style={{ margin: "20px 0 26px", color: "var(--ink-soft)" }}>
             Tap the heart on any fragrance to save it here.
           </p>

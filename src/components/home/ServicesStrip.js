@@ -6,7 +6,7 @@ const SERVICES = [
     label: "Complimentary Delivery",
     sub: "Across India",
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a87f3f" strokeWidth="1.3">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#eb9d1b" strokeWidth="1.3">
         <rect x="1.5" y="7" width="13" height="10" rx="1" />
         <path d="M14.5 10h4l3.5 3.5V17h-7.5" />
         <circle cx="6" cy="19" r="1.6" />
@@ -18,7 +18,7 @@ const SERVICES = [
     label: "Gift Presentation",
     sub: "Complimentary wrapping",
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a87f3f" strokeWidth="1.3">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#eb9d1b" strokeWidth="1.3">
         <rect x="3" y="9" width="18" height="12" rx="1" />
         <path d="M3 13h18" />
         <path d="M12 9v12" />
@@ -30,7 +30,7 @@ const SERVICES = [
     label: "Authenticity Guaranteed",
     sub: "Certified craftsmanship",
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a87f3f" strokeWidth="1.3">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#eb9d1b" strokeWidth="1.3">
         <path d="M12 2l7 3v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V5l7-3z" />
         <path d="M9 12l2 2 4-4" />
       </svg>
@@ -40,7 +40,7 @@ const SERVICES = [
     label: "Personal Assistance",
     sub: "Client care, always on",
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a87f3f" strokeWidth="1.3">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#eb9d1b" strokeWidth="1.3">
         <path d="M4 18v-1a5 5 0 015-5h6a5 5 0 015 5v1" />
         <circle cx="12" cy="7" r="4" />
       </svg>

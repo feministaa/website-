@@ -17,7 +17,7 @@ export default function CartClient() {
       <main className={styles.wrap}>
         <div className={styles.empty}>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <ScentBottle accent="#a87f3f" accentSoft="#e7d6ad" size={140} />
+            <ScentBottle accent="#eb9d1b" accentSoft="#f6d9a4" size={140} />
           </div>
           <h1 className={styles.emptyTitle}>Your bag is empty.</h1>
           <Link href="/fragrances" className="btn btn-primary">

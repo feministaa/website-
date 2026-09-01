@@ -1,24 +1,30 @@
 :root {
-  --bg: #ffffff;
-  --bg-alt: #f1ead9;
-  --bg-deep: #ece2cb;
+  --wine: #6d1f3a;
+  --gold: #eb9d1b;
+  --noir: #090909;
+  --sand: #e2b795;
+  --ivory: #f1e9e6;
+
+  --bg: #f1e9e6;
+  --bg-alt: #ecdcd0;
+  --bg-deep: #e2b795;
   --surface: #ffffff;
-  --ink: #1d1a15;
-  --ink-soft: #5c5648;
-  --ink-faint: #948972;
-  --line: #e5dbc4;
-  --line-soft: #efe8d8;
-  --gold: #a87f3f;
-  --gold-light: #cba86a;
-  --gold-pale: #e7d6ad;
-  --gold-deep: #7c5c2c;
-  --black: #0d0c0a;
-  --cream: #fbf8f2;
-  --danger: #a3453b;
+  --ink: #090909;
+  --ink-soft: #4a3b38;
+  --ink-faint: #8a7570;
+  --line: #e3d4c8;
+  --line-soft: #ece1d8;
+  --gold: #eb9d1b;
+  --gold-light: #f2b64a;
+  --gold-pale: #f6d9a4;
+  --gold-deep: #b97812;
+  --black: #090909;
+  --cream: #f1e9e6;
+  --danger: #6d1f3a;
   --success: #4c6b4f;
 
   --font-serif: var(--font-playfair), "Playfair Display", Georgia, serif;
-  --font-sans: var(--font-jost), "Jost", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-raleway), "Raleway", "Helvetica Neue", Arial, sans-serif;
 
   --container: 1240px;
   --radius-sm: 2px;

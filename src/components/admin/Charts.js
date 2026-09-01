@@ -39,15 +39,15 @@ export function RevenueChart({ title, points }) {
       <svg viewBox={`0 0 ${width} ${height}`} width="100%" height={height} role="img" aria-label="Revenue trend">
         <defs>
           <linearGradient id="revenueFill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#a87f3f" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="#a87f3f" stopOpacity="0" />
+            <stop offset="0%" stopColor="#eb9d1b" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="#eb9d1b" stopOpacity="0" />
           </linearGradient>
         </defs>
-        <line x1={padding} y1={height - padding} x2={width - padding} y2={height - padding} stroke="#e5dbc4" strokeWidth="1" />
+        <line x1={padding} y1={height - padding} x2={width - padding} y2={height - padding} stroke="#e3d4c8" strokeWidth="1" />
         <path d={areaPath} fill="url(#revenueFill)" />
-        <path d={linePath} fill="none" stroke="#a87f3f" strokeWidth="2.2" />
+        <path d={linePath} fill="none" stroke="#eb9d1b" strokeWidth="2.2" />
         {coords.map((c) => (
-          <circle key={c.label} cx={c.x} cy={c.y} r="3.5" fill="#7c5c2c" />
+          <circle key={c.label} cx={c.x} cy={c.y} r="3.5" fill="#b97812" />
         ))}
       </svg>
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: "var(--ink-faint)" }}>

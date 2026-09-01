@@ -14,7 +14,7 @@ function shade(hex, amt) {
   return `#${(r << 16 | g << 8 | b).toString(16).padStart(6, "0")}`;
 }
 
-export default function ScentBottle({ accent = "#a87f3f", accentSoft = "#e7d6ad", size = 220, isSet = false, className, showLabel = true }) {
+export default function ScentBottle({ accent = "#eb9d1b", accentSoft = "#f6d9a4", size = 220, isSet = false, className, showLabel = true }) {
   const uid = useId().replace(/[:]/g, "");
   const deep = shade(accent, -50);
   const deeper = shade(accent, -70);
@@ -29,8 +29,8 @@ export default function ScentBottle({ accent = "#a87f3f", accentSoft = "#e7d6ad"
       <svg width={size} height={size} viewBox="0 0 240 240" className={className} role="img" aria-label="Discovery set of three bottles">
         <defs>
           <radialGradient id={`setShadow-${uid}`} cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#0d0c0a" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#0d0c0a" stopOpacity="0" />
+            <stop offset="0%" stopColor="#090909" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#090909" stopOpacity="0" />
           </radialGradient>
         </defs>
         <ellipse cx="120" cy="200" rx="98" ry="12" fill={`url(#setShadow-${uid})`} />
@@ -146,13 +146,13 @@ export default function ScentBottle({ accent = "#a87f3f", accentSoft = "#e7d6ad"
         <polygon points="0,-17 15,-6 0,2" fill="#ffffff" opacity="0.6" />
         <polygon points="0,-17 -15,-6 0,2" fill="#c9a153" opacity="0.4" />
         <polygon points="15,-6 10,13 0,2" fill="#8c6d3f" opacity="0.45" />
-        <polygon points="-15,-6 -10,13 0,2" fill="#e7d6ad" opacity="0.55" />
+        <polygon points="-15,-6 -10,13 0,2" fill="#f6d9a4" opacity="0.55" />
         <polygon points="0,-17 6,-9 -6,-9" fill="#ffffff" opacity="0.75" />
       </g>
 
       {showLabel && (
         <g>
-          <rect x="64" y="168" width="72" height="46" rx="2" fill="#fbf8f2" stroke={accent} strokeWidth="0.7" />
+          <rect x="64" y="168" width="72" height="46" rx="2" fill="#f1e9e6" stroke={accent} strokeWidth="0.7" />
           <rect x="64" y="168" width="72" height="46" rx="2" fill="#ffffff" opacity="0.4" />
           <image
             href="/feminista-logo-black.png"

@@ -155,7 +155,7 @@ export default function PDPClient({ product, related }) {
                 aria-label={wished ? "Remove from wishlist" : "Add to wishlist"}
                 aria-pressed={wished}
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill={wished ? "#a3453b" : "none"} stroke={wished ? "#a3453b" : "currentColor"} strokeWidth="1.5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill={wished ? "#6d1f3a" : "none"} stroke={wished ? "#6d1f3a" : "currentColor"} strokeWidth="1.5">
                   <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
               </button>

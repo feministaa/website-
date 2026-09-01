@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import styles from "./Hero.module.css";
 
-const SLIDES = ["/images/banner-hero-campaign.jpg", "/images/banner-fresca-campaign.jpg"];
+const SLIDES = ["/images/banner-hero-campaign.jpg", "/images/fresca-banner.png"];
 
 export default function Hero() {
   const [active, setActive] = useState(0);
@@ -28,6 +28,16 @@ export default function Hero() {
       ))}
 
       <div className={styles.copy}>
+        <div className={styles.dots}>
+          {SLIDES.map((src, i) => (
+            <button
+              key={src}
+              className={`${styles.dot} ${i === active ? styles.dotActive : ""}`}
+              onClick={() => setActive(i)}
+              aria-label={`Show slide ${i + 1}`}
+            />
+          ))}
+        </div>
         <motion.div
           className={styles.ctaRow}
           initial={{ opacity: 0, y: 18 }}
@@ -41,17 +51,6 @@ export default function Hero() {
             The Art of 180
           </Link>
         </motion.div>
-      </div>
-
-      <div className={styles.dots}>
-        {SLIDES.map((src, i) => (
-          <button
-            key={src}
-            className={`${styles.dot} ${i === active ? styles.dotActive : ""}`}
-            onClick={() => setActive(i)}
-            aria-label={`Show slide ${i + 1}`}
-          />
-        ))}
       </div>
     </section>
   );
