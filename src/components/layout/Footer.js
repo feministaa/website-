@@ -34,75 +34,73 @@ const COLUMNS = [
 ];
 
 const SOCIALS = [
-  {
-    href: "https://instagram.com",
-    label: "Instagram",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
-        <rect x="3" y="3" width="18" height="18" rx="5" />
-        <circle cx="12" cy="12" r="4" />
-        <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
-      </svg>
-    ),
-  },
-  {
-    href: "https://facebook.com",
-    label: "Facebook",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
-        <path d="M15 8.5h-2c-1.1 0-2 .9-2 2V22M9 13h6" strokeLinecap="round" />
-        <circle cx="12" cy="12" r="9.5" />
-      </svg>
-    ),
-  },
-  {
-    href: "https://tiktok.com",
-    label: "TikTok",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
-        <path d="M14 3.5c.4 2 1.9 3.4 4 3.6v2.4c-1.5 0-2.9-.5-4-1.4V15a5 5 0 1 1-4.8-5v2.4a2.6 2.6 0 1 0 2.6 2.6V3.5H14z" />
-      </svg>
-    ),
-  },
+  { href: "https://instagram.com", label: "Instagram" },
+  { href: "https://facebook.com", label: "Facebook" },
+  { href: "https://tiktok.com", label: "TikTok" },
 ];
+
+function OrbitGraphic() {
+  const dots = [
+    { r: 78, angle: -35, size: 9 },
+    { r: 78, angle: 150, size: 7 },
+    { r: 132, angle: 20, size: 8 },
+    { r: 132, angle: 195, size: 6 },
+    { r: 132, angle: 270, size: 9 },
+  ];
+  return (
+    <div className={styles.orbit}>
+      <span className={styles.orbitRing} style={{ width: 156, height: 156 }} />
+      <span className={styles.orbitRing} style={{ width: 264, height: 264 }} />
+      <span className={styles.orbitCenter}>
+        <Image src="/feminista-logo-black.png" alt="" width={30} height={16} />
+      </span>
+      {dots.map((d, i) => {
+        const rad = (d.angle * Math.PI) / 180;
+        const x = Math.cos(rad) * d.r;
+        const y = Math.sin(rad) * d.r;
+        return (
+          <span
+            key={i}
+            className={styles.orbitDot}
+            style={{ width: d.size, height: d.size, transform: `translate(${x}px, ${y}px)` }}
+          />
+        );
+      })}
+    </div>
+  );
+}
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.upper}>
-        <div className={styles.brandCol}>
-          <Image src="/feminista-logo.png" alt="Feminista" width={120} height={64} className={styles.logo} />
-          <p>Created for her. Never adapted to her. Celebrating the many expressions of modern femininity through fragrance.</p>
-          <div className={styles.socials}>
-            {SOCIALS.map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label} className={styles.socialBtn}>
-                {s.icon}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <div className={styles.newsletterPanel}>
-          <span className={styles.cornerTL} />
-          <span className={styles.cornerBR} />
+      <div className={styles.ctaCard}>
+        <div className={styles.ctaCopy}>
           <span className="eyebrow" style={{ color: "var(--gold-light)" }}>
             Join the Circle
           </span>
-          <h3 className={styles.newsletterTitle}>Private access, always.</h3>
-          <p className={styles.newsletterText}>New compositions, exclusive offers and stories from the house — before anyone else.</p>
-          <form className={styles.newsletterForm} onSubmit={(e) => e.preventDefault()}>
-            <input type="email" placeholder="Your email address" aria-label="Email address" required />
-            <button type="submit" className="btn btn-gold btn-block">
-              Join the Circle
+          <h2 className={styles.ctaTitle}>Private access, always.</h2>
+          <p className={styles.ctaText}>New compositions, exclusive offers and stories from the house — before anyone else.</p>
+          <form className={styles.ctaForm} onSubmit={(e) => e.preventDefault()}>
+            <input type="email" placeholder="Enter your email" aria-label="Email address" required />
+            <button type="submit" aria-label="Join">
+              <svg width="15" height="10" viewBox="0 0 15 10" fill="none">
+                <path d="M0 5H14M14 5L9.5 0.5M14 5L9.5 9.5" stroke="currentColor" strokeWidth="1.3" />
+              </svg>
             </button>
           </form>
         </div>
+        <OrbitGraphic />
       </div>
 
-      <nav className={styles.navRow}>
-        {COLUMNS.map((col) => (
-          <div key={col.title} className={styles.navGroup}>
-            <span className={styles.navGroupTitle}>{col.title}</span>
+      <div className={styles.lower}>
+        <div className={styles.brandCol}>
+          <Image src="/feminista-logo.png" alt="Feminista" width={110} height={59} className={styles.logo} />
+          <p>Created for her. Never adapted to her. The many expressions of modern femininity, in fragrance.</p>
+        </div>
+
+        {COLUMNS.slice(0, 2).map((col) => (
+          <div key={col.title} className={styles.linkCol}>
+            <span className={styles.colTitle}>{col.title}</span>
             {col.links.map((link) => (
               <Link key={link.href} href={link.href}>
                 {link.label}
@@ -110,10 +108,15 @@ export default function Footer() {
             ))}
           </div>
         ))}
-      </nav>
 
-      <div className={styles.brandBand}>
-        <Image src="/feminista-logo.png" alt="Feminista" width={220} height={118} className={styles.brandBandLogo} />
+        <div className={styles.linkCol}>
+          <span className={styles.colTitle}>Socials</span>
+          {SOCIALS.map((s) => (
+            <a key={s.label} href={s.href} target="_blank" rel="noreferrer">
+              {s.label} ↗
+            </a>
+          ))}
+        </div>
       </div>
 
       <div className={styles.bottom}>
