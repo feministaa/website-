@@ -2,10 +2,10 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import ProductCard from "@/components/ui/ProductCard";
-import ScentBottle from "@/components/ui/ScentBottle";
 import AnimateIn from "@/components/ui/AnimateIn";
 
 const FILTERS = [
@@ -56,9 +56,7 @@ export default function FragrancesClient({ products }) {
           </button>
         </AnimateIn>
         <AnimateIn delay={0.15} className={styles.heroVisual}>
-          <ScentBottle accent="#b8792f" accentSoft="#f1d9ab" size={110} />
-          <ScentBottle accent="#c98a93" accentSoft="#f3d9dc" size={110} />
-          <ScentBottle accent="#8fa66a" accentSoft="#e2ecc9" size={110} />
+          <Image src="/images/products/discovery-set.jpg" alt="The Discovery Set" fill className={styles.heroVisualPhoto} />
         </AnimateIn>
       </section>
 

@@ -170,6 +170,7 @@
     "compareAtPrice": 3600,
     "accent": "#eb9d1b",
     "accentSoft": "#f6d9a4",
+    "images": ["/images/products/discovery-set.jpg"],
     "sizes": [{ "label": "3 x 10 ml", "price": 2500 }],
     "stock": 42,
     "featured": true,

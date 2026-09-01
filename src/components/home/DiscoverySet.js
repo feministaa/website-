@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./DiscoverySet.module.css";
-import ScentBottle from "@/components/ui/ScentBottle";
 import AnimateIn from "@/components/ui/AnimateIn";
 import { formatINR } from "@/lib/format";
 import { useCart } from "@/context/CartContext";
@@ -12,10 +12,8 @@ export default function DiscoverySet({ product }) {
 
   return (
     <section className={styles.section}>
-      <AnimateIn>
-        <div className={styles.visual}>
-          <ScentBottle isSet size={220} />
-        </div>
+      <AnimateIn className={styles.visual}>
+        <Image src="/images/products/discovery-set.jpg" alt="The Discovery Set" fill className={styles.visualPhoto} />
       </AnimateIn>
       <AnimateIn delay={0.15} className={styles.copy}>
         <span className="eyebrow">Discovery Set</span>

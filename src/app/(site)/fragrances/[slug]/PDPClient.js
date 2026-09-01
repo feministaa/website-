@@ -76,7 +76,7 @@ export default function PDPClient({ product, related }) {
             className={styles.mainImage}
             style={{ background: `linear-gradient(160deg, ${product.accentSoft}66, var(--bg-alt))` }}
           >
-            {product.family === "set" ? (
+            {product.family === "set" && !product.images?.length ? (
               <ScentBottle isSet size={280} />
             ) : (
               <Image src={heroImage} alt={product.name} fill className={styles.productPhoto} priority />

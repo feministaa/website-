@@ -36,8 +36,8 @@ export default function ProductCard({ product, index = 0, minimal = false }) {
       {!minimal && <div className={styles.expression}>{product.expression}</div>}
       <h3 className={`${styles.name} ${minimal ? `${styles.nameMinimal} sr-only` : ""}`}>{product.name}</h3>
       {!minimal && <p className={styles.tagline}>{product.tagline}</p>}
-      {!minimal && !product.comingSoon && (
-        <div className={styles.priceRow}>
+      {!minimal && (
+        <div className={styles.priceRow} style={product.comingSoon ? { visibility: "hidden" } : undefined}>
           {product.compareAtPrice ? <span className={styles.compareAt}>{formatINR(product.compareAtPrice)}</span> : null}
           <span>{formatINR(product.price)}</span>
         </div>
@@ -73,7 +73,7 @@ export default function ProductCard({ product, index = 0, minimal = false }) {
             </svg>
           </button>
         )}
-        {product.family === "set" ? (
+        {product.family === "set" && !product.images?.length ? (
           <ScentBottle isSet size={150} className={styles.bottle} />
         ) : (
           <Image

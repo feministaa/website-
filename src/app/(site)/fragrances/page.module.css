@@ -9,14 +9,17 @@
 }
 
 .heroVisual {
+  position: relative;
   background: linear-gradient(150deg, var(--gold-pale)55, var(--bg-alt));
   border: 1px solid var(--line);
   border-radius: 6px;
   aspect-ratio: 16/10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
+  overflow: hidden;
+}
+
+.heroVisualPhoto {
+  object-fit: cover;
+  object-position: center;
 }
 
 .heroTitle {

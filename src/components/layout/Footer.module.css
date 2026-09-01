@@ -1,23 +1,49 @@
 .footer {
   background: var(--black);
   color: var(--cream);
-  padding: 0 0 28px;
+  padding: 0 0 32px;
   overflow: hidden;
+  position: relative;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-light) 50%, transparent);
+  opacity: 0.6;
 }
 
 .brandBand {
-  padding: 44px 24px 20px;
+  position: relative;
+  padding: 64px 24px 56px;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.brandBand::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(600px, 70vw);
+  height: 200px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse, rgba(235, 157, 27, 0.16), transparent 70%);
+  pointer-events: none;
+}
+
 .brandBandText {
+  position: relative;
   font-family: var(--font-serif);
   font-style: italic;
   font-size: clamp(46px, 9vw, 128px);
   line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(251, 248, 242, 0.28);
+  -webkit-text-stroke: 1px rgba(251, 248, 242, 0.3);
   letter-spacing: -0.01em;
 }
 
@@ -27,7 +53,7 @@
   gap: 32px;
   max-width: var(--container);
   margin: 0 auto;
-  padding: 56px 24px 56px;
+  padding: 72px 24px 68px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
@@ -81,8 +107,9 @@
 .newsletterForm {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(251, 248, 242, 0.3);
-  padding-bottom: 10px;
+  border: 1px solid rgba(251, 248, 242, 0.25);
+  border-radius: 999px;
+  padding: 5px 5px 5px 18px;
   transition: border-color 0.25s var(--ease);
 }
 
@@ -104,14 +131,21 @@
 }
 
 .newsletterForm button {
-  color: rgba(251, 248, 242, 0.75);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--gold-light);
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  transition: color 0.25s var(--ease), transform 0.25s var(--ease);
+  transition: background 0.25s var(--ease), transform 0.25s var(--ease);
 }
 
 .newsletterForm button:hover {
-  color: var(--gold-light);
-  transform: translateX(3px);
+  background: var(--cream);
+  transform: scale(1.06);
 }
 
 .colTitle {
