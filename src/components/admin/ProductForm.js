@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./ProductForm.module.css";
+import { ImageUploadField, ImageGalleryField } from "./ImageUploadField";
 
 function toList(str) {
   return str
@@ -27,17 +28,39 @@ export default function ProductForm({ initialProduct = null }) {
     accent: initialProduct?.accent || "#eb9d1b",
     accentSoft: initialProduct?.accentSoft || "#f6d9a4",
     featured: initialProduct?.featured ?? true,
+    comingSoon: initialProduct?.comingSoon ?? false,
     topNotes: initialProduct?.notes?.top?.join(", ") || "",
     heartNotes: initialProduct?.notes?.heart?.join(", ") || "",
     baseNotes: initialProduct?.notes?.base?.join(", ") || "",
     howToWear: initialProduct?.howToWear || "",
     ingredients: initialProduct?.ingredients || "",
+    cardImage: initialProduct?.cardImage || "",
+    bannerImage: initialProduct?.bannerImage || "",
+    images: initialProduct?.images || [],
+    overview: initialProduct?.overview?.length
+      ? initialProduct.overview
+      : [{ title: "", body: "" }],
   });
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
   function update(field, value) {
     setForm((f) => ({ ...f, [field]: value }));
+  }
+
+  function updateOverview(i, key, value) {
+    setForm((f) => ({
+      ...f,
+      overview: f.overview.map((block, idx) => (idx === i ? { ...block, [key]: value } : block)),
+    }));
+  }
+
+  function addOverviewBlock() {
+    setForm((f) => ({ ...f, overview: [...f.overview, { title: "", body: "" }] }));
+  }
+
+  function removeOverviewBlock(i) {
+    setForm((f) => ({ ...f, overview: f.overview.filter((_, idx) => idx !== i) }));
   }
 
   async function handleSubmit(e) {
@@ -58,6 +81,7 @@ export default function ProductForm({ initialProduct = null }) {
       accent: form.accent,
       accentSoft: form.accentSoft,
       featured: form.featured,
+      comingSoon: form.comingSoon,
       notes: {
         top: toList(form.topNotes),
         heart: toList(form.heartNotes),
@@ -69,9 +93,10 @@ export default function ProductForm({ initialProduct = null }) {
         { label: "50 ml", price: Math.round(Number(form.price) * 0.65) },
         { label: "100 ml", price: Number(form.price) },
       ],
-      overview: initialProduct?.overview || [
-        { title: "A Presence That Lingers", body: form.shortDescription },
-      ],
+      overview: form.overview.filter((block) => block.title.trim() || block.body.trim()),
+      cardImage: form.cardImage || null,
+      bannerImage: form.bannerImage || null,
+      images: form.images,
       moodLabel: form.expression?.replace("The ", "") || "",
       moodDescription: form.tagline,
     };
@@ -172,6 +197,17 @@ export default function ProductForm({ initialProduct = null }) {
         <input type="checkbox" checked={form.featured} onChange={(e) => update("featured", e.target.checked)} />
         Feature on homepage
       </label>
+      <label className={styles.checkboxRow}>
+        <input type="checkbox" checked={form.comingSoon} onChange={(e) => update("comingSoon", e.target.checked)} />
+        Mark as "Coming Soon" (hides buy flow, shows a teaser page instead)
+      </label>
+
+      <div className={styles.sectionTitle}>Images</div>
+      <div className={styles.grid2}>
+        <ImageUploadField label="Homepage Card Image (optional)" value={form.cardImage} onChange={(v) => update("cardImage", v)} />
+        <ImageUploadField label="Product Page Banner (optional)" value={form.bannerImage} onChange={(v) => update("bannerImage", v)} />
+      </div>
+      <ImageGalleryField label="Product Gallery" values={form.images} onChange={(v) => update("images", v)} />
 
       <div className={styles.sectionTitle}>Fragrance Notes</div>
       <div className={styles.field}>
@@ -186,6 +222,31 @@ export default function ProductForm({ initialProduct = null }) {
         <label>Base Notes (comma separated)</label>
         <input className={styles.input} value={form.baseNotes} onChange={(e) => update("baseNotes", e.target.value)} />
       </div>
+
+      <div className={styles.sectionTitle}>Product Overview</div>
+      {form.overview.map((block, i) => (
+        <div key={i} className={styles.overviewBlock}>
+          <div className={styles.overviewHeader}>
+            <span>Block {i + 1}</span>
+            {form.overview.length > 1 && (
+              <button type="button" className={styles.removeBtn} onClick={() => removeOverviewBlock(i)}>
+                Remove
+              </button>
+            )}
+          </div>
+          <div className={styles.field}>
+            <label>Title</label>
+            <input className={styles.input} value={block.title} onChange={(e) => updateOverview(i, "title", e.target.value)} />
+          </div>
+          <div className={styles.field}>
+            <label>Body</label>
+            <textarea className={styles.textarea} value={block.body} onChange={(e) => updateOverview(i, "body", e.target.value)} />
+          </div>
+        </div>
+      ))}
+      <button type="button" className="btn btn-ghost" onClick={addOverviewBlock} style={{ marginBottom: 20 }}>
+        + Add Overview Block
+      </button>
 
       <div className={styles.sectionTitle}>Details</div>
       <div className={styles.field}>

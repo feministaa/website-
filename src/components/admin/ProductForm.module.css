@@ -82,3 +82,29 @@
   font-size: 13px;
   margin-bottom: 16px;
 }
+
+.overviewBlock {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 16px 18px 4px;
+  margin-bottom: 14px;
+  background: var(--bg);
+}
+
+.overviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 12px;
+}
+
+.removeBtn {
+  color: var(--danger);
+  font-size: 11.5px;
+  text-transform: none;
+  letter-spacing: normal;
+}

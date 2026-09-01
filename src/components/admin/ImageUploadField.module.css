@@ -1,0 +1,117 @@
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.uploadBox {
+  display: flex;
+}
+
+.uploadBtn {
+  padding: 11px 18px;
+  border: 1px dashed var(--line);
+  border-radius: 3px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  background: var(--bg);
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.uploadBtn:hover {
+  border-color: var(--gold-deep);
+  color: var(--ink);
+}
+
+.uploadBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.preview {
+  position: relative;
+  width: 140px;
+}
+
+.preview img {
+  width: 140px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  display: block;
+}
+
+.removeBtn {
+  margin-top: 6px;
+  font-size: 11.5px;
+  color: var(--danger);
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.galleryThumb {
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+
+.galleryThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  display: block;
+}
+
+.thumbRemove {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--black);
+  color: var(--cream);
+  font-size: 13px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addThumb {
+  width: 90px;
+  height: 90px;
+  border: 1px dashed var(--line);
+  border-radius: 4px;
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.addThumb:hover {
+  border-color: var(--gold-deep);
+  color: var(--ink);
+}
+
+.addThumb:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  color: var(--danger);
+  font-size: 12px;
+  margin-top: 6px;
+}
