@@ -19,7 +19,7 @@
   gap: 26px;
   overflow-x: auto;
   scroll-snap-type: x proximity;
-  padding: 0 24px 12px max(24px, calc((100vw - 1560px) / 2 + 24px));
+  padding: 0 24px 12px 40px;
   scrollbar-width: none;
 }
 
