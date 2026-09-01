@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { useSearchParams, useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import ProductCard from "@/components/ui/ProductCard";
 import ScentBottle from "@/components/ui/ScentBottle";
@@ -18,15 +19,28 @@ const FILTERS = [
 export default function FragrancesClient({ products }) {
   const [filter, setFilter] = useState("all");
   const [sort, setSort] = useState("featured");
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const query = searchParams.get("q") || "";
 
   const visible = useMemo(() => {
     let list = filter === "all" ? products : products.filter((p) => p.family === filter);
+    if (query.trim()) {
+      const q = query.trim().toLowerCase();
+      list = list.filter(
+        (p) =>
+          p.name.toLowerCase().includes(q) ||
+          p.expression.toLowerCase().includes(q) ||
+          p.tagline.toLowerCase().includes(q) ||
+          p.shortDescription.toLowerCase().includes(q)
+      );
+    }
     list = [...list];
     if (sort === "price-asc") list.sort((a, b) => a.price - b.price);
     if (sort === "price-desc") list.sort((a, b) => b.price - a.price);
     if (sort === "name") list.sort((a, b) => a.name.localeCompare(b.name));
     return list;
-  }, [products, filter, sort]);
+  }, [products, filter, sort, query]);
 
   return (
     <main>
@@ -47,6 +61,20 @@ export default function FragrancesClient({ products }) {
           <ScentBottle accent="#8fa66a" accentSoft="#e2ecc9" size={110} />
         </AnimateIn>
       </section>
+
+      {query && (
+        <div className="container" style={{ paddingTop: 30 }}>
+          <p style={{ fontSize: 13.5, color: "var(--ink-soft)" }}>
+            {visible.length} result{visible.length !== 1 ? "s" : ""} for &ldquo;{query}&rdquo;{" "}
+            <button
+              onClick={() => router.push("/fragrances")}
+              style={{ textDecoration: "underline", color: "var(--gold-deep)" }}
+            >
+              Clear
+            </button>
+          </p>
+        </div>
+      )}
 
       <div className={styles.toolbar}>
         <div className={styles.filters}>
@@ -69,7 +97,7 @@ export default function FragrancesClient({ products }) {
       </div>
 
       {visible.length === 0 ? (
-        <p className={styles.empty}>No fragrances match this filter yet.</p>
+        <p className={styles.empty}>No fragrances match {query ? `"${query}"` : "this filter"} yet.</p>
       ) : (
         <div className={styles.grid}>
           {visible.map((product, i) => (
@@ -85,7 +113,7 @@ export default function FragrancesClient({ products }) {
           <span className="eyebrow">Still deciding?</span>
           <h2 className={styles.bannerTitle}>Discover your signature.</h2>
           <p className={styles.bannerSub}>Answer a few questions and find the scent that feels unmistakably you.</p>
-          <Link href="/the-art-of-180" className="btn btn-primary">
+          <Link href="/the-art-of-180" className="btn btn-gold">
             Find My Scent
           </Link>
         </AnimateIn>

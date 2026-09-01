@@ -1,0 +1,157 @@
+.authWrap {
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 80px 24px 120px;
+}
+
+.authTitle {
+  font-size: clamp(28px, 3.6vw, 36px);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.authSub {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin-bottom: 40px;
+}
+
+.field {
+  margin-bottom: 18px;
+}
+
+.field label {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  font-size: 14px;
+  background: var(--surface);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--gold-deep);
+}
+
+.error {
+  color: var(--danger);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.switchLine {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+.switchLine a {
+  color: var(--gold-deep);
+  text-decoration: underline;
+}
+
+/* Dashboard */
+.dashWrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 56px 24px 100px;
+}
+
+.dashHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 44px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.dashTitle {
+  font-size: clamp(28px, 3.6vw, 38px);
+  margin-bottom: 6px;
+}
+
+.dashSub {
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.dashGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 30px;
+}
+
+.cardTitle {
+  font-size: 17px;
+  margin-bottom: 20px;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13.5px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line-soft);
+  color: var(--ink-soft);
+}
+
+.infoRow span:last-child {
+  color: var(--ink);
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.orderRow {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 13.5px;
+}
+
+.orderId {
+  font-family: var(--font-serif);
+  font-size: 15px;
+}
+
+.empty {
+  text-align: center;
+  padding: 40px 0;
+  color: var(--ink-faint);
+  font-size: 13.5px;
+}
+
+@media (max-width: 900px) {
+  .dashGrid {
+    grid-template-columns: 1fr;
+  }
+  .orderRow {
+    grid-template-columns: 1fr auto;
+    row-gap: 4px;
+  }
+}

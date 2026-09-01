@@ -12,6 +12,15 @@
     "compareAtPrice": null,
     "accent": "#b8792f",
     "accentSoft": "#f1d9ab",
+    "cardImage": "/images/products/locken-water.jpg",
+    "bannerImage": "/images/banner-hero-campaign.jpg",
+    "images": [
+      "/images/products/locken-silk.jpg",
+      "/images/products/locken-arch.jpg",
+      "/images/products/locken-marble.jpg",
+      "/images/products/locken-water.jpg",
+      "/images/products/locken-real.jpg"
+    ],
     "sizes": [
       { "label": "50 ml", "price": 5200 },
       { "label": "100 ml", "price": 8000 }
@@ -58,6 +67,9 @@
     "compareAtPrice": null,
     "accent": "#c98a93",
     "accentSoft": "#f3d9dc",
+    "comingSoon": true,
+    "cardImage": "/images/products/vers-coming-soon.jpg",
+    "images": ["/images/products/vers-coming-soon.jpg"],
     "sizes": [
       { "label": "50 ml", "price": 5200 },
       { "label": "100 ml", "price": 8000 }
@@ -104,6 +116,12 @@
     "compareAtPrice": null,
     "accent": "#8fa66a",
     "accentSoft": "#e2ecc9",
+    "bannerImage": "/images/banner-fresca-campaign.jpg",
+    "images": [
+      "/images/products/fresca-bouquet.jpg",
+      "/images/products/fresca-vase.jpg",
+      "/images/products/fresca-frame.jpg"
+    ],
     "sizes": [
       { "label": "50 ml", "price": 5200 },
       { "label": "100 ml", "price": 8000 }

@@ -23,10 +23,8 @@
 .heroVisual {
   aspect-ratio: 4/3;
   border-radius: 6px;
-  background: linear-gradient(150deg, var(--gold-pale)55, var(--bg-alt));
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: url("/images/banner-yellow-surface.jpg") center / cover no-repeat;
+  box-shadow: 0 30px 60px -24px rgba(13, 12, 10, 0.28);
 }
 
 .maison {
@@ -67,7 +65,7 @@
 }
 
 .pillars {
-  background: var(--bg-alt);
+  background: var(--bg);
   padding: 90px 24px;
 }
 

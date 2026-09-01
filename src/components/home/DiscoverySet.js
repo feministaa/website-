@@ -17,7 +17,7 @@ export default function DiscoverySet({ product }) {
           <ScentBottle isSet size={220} />
         </div>
       </AnimateIn>
-      <AnimateIn delay={0.15}>
+      <AnimateIn delay={0.15} className={styles.copy}>
         <span className="eyebrow">Discovery Set</span>
         <h2 className={styles.title}>Meet all three.</h2>
         <p className={styles.desc}>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./page.module.css";
-import ScentBottle from "@/components/ui/ScentBottle";
 import AnimateIn from "@/components/ui/AnimateIn";
+import HeroVisual from "./HeroVisual";
 
 export const metadata = {
   title: "Our Story — Feminista",
@@ -59,9 +59,7 @@ export default function OurStoryPage() {
             Explore the House
           </Link>
         </AnimateIn>
-        <AnimateIn delay={0.15} className={styles.heroVisual}>
-          <ScentBottle accent="#c98a93" accentSoft="#f3d9dc" size={200} />
-        </AnimateIn>
+        <HeroVisual />
       </section>
 
       <section className={styles.maison}>

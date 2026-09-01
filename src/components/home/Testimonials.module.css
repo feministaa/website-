@@ -1,0 +1,156 @@
+.section {
+  background: var(--bg);
+  padding: 130px 24px 120px;
+  overflow: hidden;
+}
+
+.header {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 56px;
+}
+
+.title {
+  font-size: clamp(30px, 4vw, 44px);
+  margin: 10px 0 12px;
+}
+
+.sub {
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: 1320px;
+  height: 720px;
+}
+
+.card {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 460px;
+  min-height: 700px;
+  max-width: 86vw;
+  background-size: cover;
+  background-position: center;
+  border-radius: 6px;
+  padding: 44px 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: transform 0.55s var(--ease), opacity 0.55s var(--ease);
+}
+
+.cardActive {
+  box-shadow: 0 34px 64px -24px rgba(13, 12, 10, 0.4);
+}
+
+.stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 16px;
+}
+
+.quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: var(--cream);
+  margin-bottom: 22px;
+}
+
+.attribution {
+  padding-top: 18px;
+  border-top: 1px solid rgba(251, 248, 242, 0.25);
+}
+
+.name {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--cream);
+}
+
+.meta {
+  font-size: 11.5px;
+  color: rgba(251, 248, 242, 0.65);
+}
+
+.arrow {
+  position: relative;
+  z-index: 4;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  background: var(--bg);
+  transition: all 0.25s var(--ease);
+}
+
+.arrow:hover {
+  border-color: var(--gold-deep);
+  color: var(--gold-deep);
+  transform: scale(1.06);
+}
+
+.arrowLeft {
+  margin-right: -10px;
+}
+
+.arrowRight {
+  margin-left: -10px;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 36px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line);
+  transition: all 0.3s var(--ease);
+}
+
+.dotActive {
+  background: var(--gold-deep);
+  width: 22px;
+  border-radius: 4px;
+}
+
+@media (max-width: 720px) {
+  .stage {
+    height: 460px;
+  }
+  .arrow {
+    width: 38px;
+    height: 38px;
+  }
+  .arrowLeft {
+    margin-right: -6px;
+  }
+  .arrowRight {
+    margin-left: -6px;
+  }
+}

@@ -1,8 +1,9 @@
 import Hero from "@/components/home/Hero";
 import SignatureCollection from "@/components/home/SignatureCollection";
-import ShopByScent from "@/components/home/ShopByScent";
+import AboutTeaser from "@/components/home/AboutTeaser";
 import DiscoverySet from "@/components/home/DiscoverySet";
 import ServicesStrip from "@/components/home/ServicesStrip";
+import Testimonials from "@/components/home/Testimonials";
 import Newsletter from "@/components/home/Newsletter";
 import products from "@/data/products.json";
 
@@ -27,10 +28,11 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <AboutTeaser />
       <SignatureCollection products={collection} />
-      <ShopByScent />
       <DiscoverySet product={discoverySet} />
       <ServicesStrip />
+      <Testimonials />
       <Newsletter />
     </main>
   );

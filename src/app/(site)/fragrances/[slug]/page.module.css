@@ -1,24 +1,39 @@
-.breadcrumb {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 22px 24px 0;
-  font-size: 12.5px;
-  color: var(--ink-faint);
-  display: flex;
-  gap: 8px;
-}
-
-.breadcrumb a:hover {
-  color: var(--gold-deep);
-}
-
 .top {
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
+  grid-template-columns: 1.65fr 1fr;
   gap: 64px;
-  max-width: var(--container);
+  align-items: start;
+  max-width: 1560px;
   margin: 0 auto;
-  padding: 30px 24px 40px;
+  padding: 48px 24px 40px;
+}
+
+.comingSoonWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 64px 24px 80px;
+}
+
+.comingSoonImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 40px 80px -30px rgba(13, 12, 10, 0.3);
+  margin-bottom: 36px;
+}
+
+.comingSoonInfo .name {
+  margin-bottom: 10px;
+}
+
+.comingSoonInfo .tagline {
+  margin-bottom: 24px;
 }
 
 .gallery {
@@ -29,7 +44,7 @@
 
 .mainImage {
   position: relative;
-  aspect-ratio: 1/1.1;
+  aspect-ratio: 4/5;
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -38,26 +53,43 @@
 }
 
 .thumbRow {
-  display: flex;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
 }
 
 .thumb {
-  width: 62px;
-  height: 62px;
-  border-radius: 4px;
-  border: 1px solid var(--line);
+  position: relative;
+  aspect-ratio: 1/1.15;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 0.25s var(--ease);
+  overflow: hidden;
+  cursor: pointer;
+  transition: opacity 0.25s var(--ease);
+}
+
+.thumb:hover {
+  opacity: 0.85;
+}
+
+.productPhoto {
+  object-fit: cover;
+  object-position: center;
 }
 
 .thumbActive {
-  border-color: var(--gold-deep);
+  outline: 2px solid var(--gold-deep);
+  outline-offset: -2px;
 }
 
 .info {
+  position: sticky;
+  top: 110px;
   padding-top: 6px;
 }
 
@@ -82,12 +114,27 @@
   margin-bottom: 6px;
 }
 
+.ratingRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.ratingText {
+  font-size: 12.5px;
+  color: var(--ink-faint);
+}
+
 .tagline {
   color: var(--ink-soft);
   font-size: 14px;
   margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--line);
 }
 
 .price {
@@ -137,11 +184,64 @@
   margin-bottom: 8px;
 }
 
-.wishRow {
+.actionTopRow {
+  display: grid;
+  grid-template-columns: 1fr 56px;
+  gap: 12px;
+}
+
+.wishBtnCompact {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+}
+
+.trustRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 30px;
+  padding-top: 8px;
+}
+
+.trustItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  font-size: 13.5px;
+  letter-spacing: 0.01em;
+  color: var(--ink-faint);
+  padding: 0 10px;
+  border-left: 1px solid var(--line-soft);
+}
+
+.trustItem:first-child {
+  border-left: none;
+}
+
+.trustItem svg {
+  color: var(--gold-deep);
+  flex-shrink: 0;
+}
+
+.notesPreview {
+  margin-top: 26px;
+}
+
+.noteTags {
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
+}
+
+.noteTag {
+  font-size: 12px;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 7px 14px;
 }
 
 .stockNote {
@@ -150,14 +250,63 @@
   margin-top: 4px;
 }
 
+.details {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 20px 24px 70px;
+}
+
 .accordionWrap {
   margin-top: 8px;
 }
 
 .related {
-  max-width: var(--container);
+  max-width: 1560px;
   margin: 0 auto;
   padding: 40px 24px 90px;
+}
+
+.storyBanner {
+  position: relative;
+  width: 100%;
+  height: 92vh;
+  min-height: 560px;
+  max-height: 820px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(0deg, rgba(10, 9, 7, 0.55), rgba(10, 9, 7, 0.35)),
+    url("/images/banner-crystal-bottle.jpg") center 40% / cover no-repeat;
+}
+
+.storyBannerCopy {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+  padding: 0 24px;
+  color: var(--cream);
+}
+
+.storyBannerCta {
+  position: absolute;
+  z-index: 2;
+  right: 40px;
+  bottom: 40px;
+}
+
+.storyBannerTitle {
+  font-size: clamp(30px, 4.2vw, 50px);
+  color: var(--cream);
+  margin: 12px 0 18px;
+}
+
+.storyBannerText {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(251, 248, 242, 0.88);
+  margin-bottom: 28px;
 }
 
 .relatedTitle {
@@ -173,14 +322,20 @@
 }
 
 .banner {
-  background: linear-gradient(150deg, var(--bg-deep), var(--bg-alt));
+  background: linear-gradient(150deg, rgba(13, 12, 10, 0.72), rgba(13, 12, 10, 0.55)), url("/images/banner-gold-liquid.jpg") center 30% / cover no-repeat;
   text-align: center;
-  padding: 70px 24px;
+  padding: 90px 24px;
+  color: var(--cream);
+}
+
+.banner :global(.eyebrow) {
+  color: var(--gold-light);
 }
 
 .bannerTitle {
-  font-size: clamp(24px, 3vw, 34px);
+  font-size: clamp(26px, 3.4vw, 38px);
   margin: 10px 0 12px;
+  color: var(--cream);
 }
 
 @media (max-width: 900px) {

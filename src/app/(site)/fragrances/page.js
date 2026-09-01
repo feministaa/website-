@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import FragrancesClient from "./FragrancesClient";
 import products from "@/data/products.json";
 
@@ -14,5 +15,9 @@ export const metadata = {
 };
 
 export default function FragrancesPage() {
-  return <FragrancesClient products={products} />;
+  return (
+    <Suspense fallback={null}>
+      <FragrancesClient products={products} />
+    </Suspense>
+  );
 }

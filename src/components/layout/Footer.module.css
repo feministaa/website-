@@ -1,31 +1,117 @@
 .footer {
   background: var(--black);
   color: var(--cream);
-  padding: 72px 0 28px;
-  margin-top: 120px;
+  padding: 0 0 28px;
+  overflow: hidden;
+}
+
+.brandBand {
+  padding: 44px 24px 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.brandBandText {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(46px, 9vw, 128px);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(251, 248, 242, 0.28);
+  letter-spacing: -0.01em;
 }
 
 .top {
   display: grid;
-  grid-template-columns: 1.4fr repeat(4, 1fr);
-  gap: 40px;
+  grid-template-columns: 1.5fr 0.9fr 0.9fr 0.9fr 1.3fr;
+  gap: 32px;
   max-width: var(--container);
   margin: 0 auto;
-  padding: 0 24px 56px;
+  padding: 56px 24px 56px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .brandCol .logo {
-  font-family: var(--font-serif);
-  font-size: 24px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .brandCol p {
   font-size: 13.5px;
   color: rgba(251, 248, 242, 0.6);
-  max-width: 260px;
-  line-height: 1.7;
+  max-width: 280px;
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+
+.socials {
+  display: flex;
+  gap: 10px;
+}
+
+.socialBtn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(251, 248, 242, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(251, 248, 242, 0.75);
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.socialBtn:hover {
+  border-color: var(--gold-light);
+  color: var(--gold-light);
+  transform: translateY(-2px);
+}
+
+.linkCol {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  padding-left: 24px;
+}
+
+.newsletterText {
+  font-size: 13px;
+  color: rgba(251, 248, 242, 0.6);
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.newsletterForm {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(251, 248, 242, 0.3);
+  padding-bottom: 10px;
+  transition: border-color 0.25s var(--ease);
+}
+
+.newsletterForm:focus-within {
+  border-color: var(--gold-light);
+}
+
+.newsletterForm input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--cream);
+  font-size: 13px;
+  min-width: 0;
+}
+
+.newsletterForm input::placeholder {
+  color: rgba(251, 248, 242, 0.4);
+}
+
+.newsletterForm button {
+  color: rgba(251, 248, 242, 0.75);
+  flex-shrink: 0;
+  transition: color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.newsletterForm button:hover {
+  color: var(--gold-light);
+  transform: translateX(3px);
 }
 
 .colTitle {
@@ -33,23 +119,24 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold-light);
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .colLinks {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 13px;
 }
 
 .colLinks a {
   font-size: 13.5px;
   color: rgba(251, 248, 242, 0.75);
-  transition: color 0.25s var(--ease);
+  transition: color 0.25s var(--ease), padding-left 0.25s var(--ease);
 }
 
 .colLinks a:hover {
   color: var(--gold-light);
+  padding-left: 3px;
 }
 
 .bottom {
@@ -72,9 +159,19 @@
 
 @media (max-width: 900px) {
   .top {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
-  .brandCol {
-    grid-column: span 2;
+  .linkCols {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .linkCol {
+    padding-left: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .linkCols {
+    grid-template-columns: 1fr 1fr;
   }
 }

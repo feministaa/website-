@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./page.module.css";
-import ScentBottle from "@/components/ui/ScentBottle";
 import AnimateIn from "@/components/ui/AnimateIn";
+import HeroVisual from "./HeroVisual";
 
 export const metadata = {
   title: "The Art of 180 — Feminista",
@@ -49,9 +49,7 @@ export default function ArtOf180Page() {
             Explore the Process
           </Link>
         </AnimateIn>
-        <AnimateIn delay={0.15} className={styles.heroVisual}>
-          <ScentBottle accent="#a87f3f" accentSoft="#e7d6ad" size={200} />
-        </AnimateIn>
+        <HeroVisual />
       </section>
 
       <div className={styles.intro} id="process">
