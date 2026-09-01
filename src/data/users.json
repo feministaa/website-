@@ -77,5 +77,17 @@
     "status": "active",
     "joined": "2026-09-01T09:13:44.822Z",
     "passwordHash": "$2b$10$T64iQamhG/AQnuuvf8RYPubA0Q6nqLIbFBcqlB8rkIWQBmjkrgEGG"
+  },
+  {
+    "id": "u1788254461105",
+    "name": "karan",
+    "email": "karan123@gmail.com",
+    "phone": "8510988703",
+    "city": "ghaziabad",
+    "orders": 0,
+    "totalSpent": 0,
+    "status": "active",
+    "joined": "2026-09-01T09:21:01.105Z",
+    "passwordHash": "$2b$10$CbORPzNctkglrmHt4ff1/.1GGaMyCeXnmlWpOhtkAxG/9p9nyFl/G"
   }
 ]
