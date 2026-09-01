@@ -189,41 +189,20 @@ export default function Header() {
         <div className={styles.announce}>Complimentary shipping across India</div>
         <header className={`${styles.header} ${scrolled ? styles.headerScrolled : ""}`}>
         <div className={styles.topRow}>
-          <button className={styles.menuBtn} aria-label="Open menu" onClick={() => setMobileOpen(true)}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
-          </button>
-
           <SearchBar />
 
           <Link href="/" className={styles.logo} aria-label="Feminista home">
             <Image src="/feminista-logo-black.png" alt="Feminista" width={100} height={54} priority className={styles.logoImg} />
           </Link>
 
-          <div className={styles.topIcons}>
-            <Link href="/wishlist" className={styles.iconBtn} aria-label="Wishlist">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-              </svg>
-              {wishCount > 0 && <span className={styles.badge}>{wishCount}</span>}
-            </Link>
-            <button className={styles.iconBtn} aria-label="Open cart" onClick={openDrawer}>
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                <rect x="5.5" y="9" width="13" height="11.5" rx="1" />
-                <path d="M8.7 9V7.2C8.7 5.2 10.2 3.6 12 3.6C13.8 3.6 15.3 5.2 15.3 7.2V9" />
-              </svg>
-              {count > 0 && <span className={styles.badge}>{count}</span>}
-            </button>
-            <Link href="/account" className={styles.iconBtn} aria-label="Your account">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                <circle cx="12" cy="8.2" r="3.6" />
-                <path d="M4.8 20C5.4 16.4 8.3 14 12 14C15.7 14 18.6 16.4 19.2 20" />
-              </svg>
-            </Link>
-          </div>
+          <button className={styles.menuBtn} aria-label="Open menu" onClick={() => setMobileOpen(true)}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+            {wishCount + count > 0 && <span className={styles.badge}>{wishCount + count}</span>}
+          </button>
         </div>
 
         <div className={styles.navRow}>
@@ -280,9 +259,17 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
-              <Link href="/cart" style={{ fontSize: 14, letterSpacing: "0.06em", textTransform: "uppercase", marginTop: "auto" }}>
-                View Cart
-              </Link>
+              <div style={{ display: "flex", flexDirection: "column", gap: 16, marginTop: "auto", paddingTop: 22, borderTop: "1px solid var(--line)" }}>
+                <Link href="/account" className={styles.drawerLink}>
+                  My Account
+                </Link>
+                <Link href="/wishlist" className={styles.drawerLink}>
+                  Wishlist {wishCount > 0 && `(${wishCount})`}
+                </Link>
+                <Link href="/cart" className={styles.drawerLink}>
+                  View Cart {count > 0 && `(${count})`}
+                </Link>
+              </div>
             </motion.div>
           </motion.div>
         )}
