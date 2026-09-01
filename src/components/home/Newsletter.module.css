@@ -1,6 +1,6 @@
 .section {
   position: relative;
-  background: linear-gradient(150deg, rgba(13, 12, 10, 0.82), rgba(13, 12, 10, 0.68)), url("/images/banner-gold-liquid.jpg") center 55% / cover no-repeat;
+  background: linear-gradient(150deg, rgba(13, 12, 10, 0.82), rgba(13, 12, 10, 0.68)), url("/images/banner-circle-cat.jpg") center 40% / cover no-repeat;
   padding: 110px 24px;
   text-align: center;
   color: var(--cream);
