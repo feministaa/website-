@@ -7,7 +7,7 @@ import AnimateIn from "@/components/ui/AnimateIn";
 import { formatINR } from "@/lib/format";
 import { useCart } from "@/context/CartContext";
 
-export default function DiscoverySet({ product }) {
+export default function DiscoverySet({ product, collection = [] }) {
   const { addToCart } = useCart();
 
   return (
@@ -22,6 +22,21 @@ export default function DiscoverySet({ product }) {
           Three scents. One unforgettable you. The Discovery Set brings Locken, Vers and Fresca together in travel-ready 10ml
           formats — the easiest way to find your signature.
         </p>
+
+        {collection.length > 0 && (
+          <div className={styles.contents}>
+            <span className={styles.contentsLabel}>What's Inside</span>
+            <div className={styles.chips}>
+              {collection.map((p) => (
+                <span key={p.id} className={styles.chip}>
+                  <span className={styles.chipDot} style={{ background: p.accent }} />
+                  {p.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className={styles.priceRow}>
           {product.compareAtPrice && <span className={styles.compareAt}>{formatINR(product.compareAtPrice)}</span>}
           <span>{formatINR(product.price)}</span>
