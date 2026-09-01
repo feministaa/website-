@@ -5,7 +5,6 @@ import DiscoverySet from "@/components/home/DiscoverySet";
 import ServicesStrip from "@/components/home/ServicesStrip";
 import HomeReels from "@/components/home/HomeReels";
 import Testimonials from "@/components/home/Testimonials";
-import Newsletter from "@/components/home/Newsletter";
 import products from "@/data/products.json";
 
 export const metadata = {
@@ -35,7 +34,6 @@ export default function Home() {
       <ServicesStrip />
       <HomeReels />
       <Testimonials />
-      <Newsletter />
     </main>
   );
 }
