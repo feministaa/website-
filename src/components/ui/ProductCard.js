@@ -83,15 +83,6 @@ export default function ProductCard({ product, index = 0, minimal = false }) {
         {minimal && (
           <>
             <h3 className="sr-only">{product.name}</h3>
-            {!product.comingSoon && (
-              <button className={styles.quickAddIcon} onClick={handleAdd} aria-label={`Quick add ${product.name}`}>
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
-                  <path d="M6 8h12l-1 12.5a1.5 1.5 0 01-1.5 1.5h-7a1.5 1.5 0 01-1.5-1.5L6 8z" />
-                  <path d="M9 8V6a3 3 0 016 0v2" />
-                  <path d="M12 12v4M10 14h4" />
-                </svg>
-              </button>
-            )}
             <div className={styles.scrimMinimal} />
             <div className={styles.captionMinimal}>
               <span className={styles.captionTagline}>{product.tagline}</span>

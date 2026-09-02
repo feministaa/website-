@@ -58,35 +58,6 @@
   color: rgba(241, 233, 230, 0.85);
 }
 
-.quickAddIcon {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--black);
-  opacity: 0;
-  transform: translateY(-6px);
-  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), background 0.3s var(--ease);
-  backdrop-filter: blur(4px);
-}
-
-.cardMinimal:hover .quickAddIcon {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.quickAddIcon:hover {
-  background: var(--gold);
-  color: var(--cream);
-}
-
 .discoverBtn {
   align-self: flex-start;
   font-size: 11px;
