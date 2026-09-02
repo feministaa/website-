@@ -32,19 +32,17 @@ export default function ProductCard({ product, index = 0, minimal = false }) {
   }
 
   const metaContent = (
-    <div className={`${styles.meta} ${minimal ? styles.metaMinimal : ""}`}>
-      {!minimal && <div className={styles.expression}>{product.expression}</div>}
-      <h3 className={`${styles.name} ${minimal ? `${styles.nameMinimal} sr-only` : ""}`}>{product.name}</h3>
-      {!minimal && <p className={styles.tagline}>{product.tagline}</p>}
-      {!minimal && (
-        <div className={styles.priceRow} style={product.comingSoon ? { visibility: "hidden" } : undefined}>
-          {product.compareAtPrice ? <span className={styles.compareAt}>{formatINR(product.compareAtPrice)}</span> : null}
-          <span>{formatINR(product.price)}</span>
-        </div>
-      )}
+    <div className={styles.meta}>
+      <div className={styles.expression}>{product.expression}</div>
+      <h3 className={styles.name}>{product.name}</h3>
+      <p className={styles.tagline}>{product.tagline}</p>
+      <div className={styles.priceRow} style={product.comingSoon ? { visibility: "hidden" } : undefined}>
+        {product.compareAtPrice ? <span className={styles.compareAt}>{formatINR(product.compareAtPrice)}</span> : null}
+        <span>{formatINR(product.price)}</span>
+      </div>
       <div className={styles.actions}>
         <button className="btn btn-outline" onClick={handleAdd}>
-          {product.comingSoon ? "Coming Soon" : minimal ? `Discover ${product.name}` : hovering ? "Add to Cart" : "Shop Now"}
+          {product.comingSoon ? "Coming Soon" : hovering ? "Add to Cart" : "Shop Now"}
         </button>
       </div>
     </div>
@@ -82,7 +80,18 @@ export default function ProductCard({ product, index = 0, minimal = false }) {
             className={styles.productPhoto}
           />
         )}
-        {minimal && metaContent}
+        {minimal && (
+          <>
+            <h3 className="sr-only">{product.name}</h3>
+            <div className={styles.hoverScrim} />
+            <div className={styles.hoverActions}>
+              <button className={styles.quickAddBtn} onClick={handleAdd} disabled={product.comingSoon}>
+                {product.comingSoon ? "Coming Soon" : "Quick Add"}
+              </button>
+              <span className={styles.discoverBtn}>Discover {product.name}</span>
+            </div>
+          </>
+        )}
       </div>
       {!minimal && metaContent}
     </Link>
