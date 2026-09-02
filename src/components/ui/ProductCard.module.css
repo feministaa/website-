@@ -69,8 +69,8 @@
 }
 
 .quickAddBtn {
-  width: 100%;
-  padding: 14px 20px;
+  width: auto;
+  padding: 13px 34px;
   font-size: 11.5px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
