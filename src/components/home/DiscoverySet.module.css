@@ -16,21 +16,6 @@
   object-position: center;
 }
 
-.badge {
-  position: absolute;
-  top: 28px;
-  right: 28px;
-  z-index: 1;
-  background: var(--black);
-  color: var(--cream);
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 10px 18px;
-  border-radius: var(--radius-sm);
-  box-shadow: 0 16px 30px -14px rgba(13, 12, 10, 0.5);
-}
-
 .copy {
   display: flex;
   flex-direction: column;
@@ -41,20 +26,12 @@
 .kicker {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
   font-family: var(--font-sans);
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold-deep);
   font-weight: 500;
-}
-
-.kicker::before {
-  content: "";
-  width: 26px;
-  height: 1px;
-  background: var(--gold-deep);
 }
 
 .title {
@@ -73,8 +50,6 @@
 
 .contents {
   margin-bottom: 32px;
-  padding-top: 28px;
-  border-top: 1px solid var(--line);
   max-width: 460px;
 }
 
@@ -150,5 +125,17 @@
   }
   .copy {
     padding: 48px 24px;
+    align-items: center;
+    text-align: center;
+  }
+  .desc,
+  .contents,
+  .priceRow {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .chips,
+  .actions {
+    justify-content: center;
   }
 }

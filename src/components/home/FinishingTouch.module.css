@@ -14,7 +14,6 @@
   background-image: repeating-linear-gradient(45deg, var(--line-soft) 0, var(--line-soft) 1px, transparent 1px, transparent 64px),
     repeating-linear-gradient(-45deg, var(--line-soft) 0, var(--line-soft) 1px, transparent 1px, transparent 64px);
   opacity: 0.6;
-  mask-image: linear-gradient(90deg, black, black 40%, transparent 78%);
 }
 
 .panel {
@@ -54,7 +53,7 @@
 }
 
 .card {
-  flex: 0 0 300px;
+  flex: 0 0 380px;
   aspect-ratio: 3/4.2;
   scroll-snap-align: start;
 }
@@ -131,6 +130,6 @@
     padding-left: 24px;
   }
   .card {
-    flex-basis: 240px;
+    flex-basis: 270px;
   }
 }

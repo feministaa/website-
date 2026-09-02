@@ -14,7 +14,6 @@ export default function DiscoverySet({ product, collection = [] }) {
     <section className={styles.section}>
         <AnimateIn className={styles.visual}>
           <Image src="/images/products/discovery-set.jpg" alt="The Discovery Set" fill className={styles.visualPhoto} />
-          <span className={styles.badge}>Complete Ritual</span>
         </AnimateIn>
         <AnimateIn delay={0.15} className={styles.copy}>
           <span className={styles.kicker}>Discovery Set</span>
