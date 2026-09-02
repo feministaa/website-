@@ -245,50 +245,79 @@ export default function Header() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            className={styles.overlay}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            style={{ position: "fixed", inset: 0, background: "rgba(13,12,10,0.4)", zIndex: 200 }}
             onClick={() => setMobileOpen(false)}
           >
             <motion.div
+              className={styles.drawer}
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              style={{
-                background: "var(--bg)",
-                width: 300,
-                maxWidth: "82vw",
-                height: "100%",
-                padding: "28px 26px",
-                display: "flex",
-                flexDirection: "column",
-                gap: 22,
-              }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div className={styles.drawerHead}>
                 <Image src="/feminista-logo-black.png" alt="Feminista" width={84} height={45} className={styles.logoImg} />
-                <button aria-label="Close menu" onClick={() => setMobileOpen(false)}>
-                  ✕
+                <button className={styles.closeBtn} aria-label="Close menu" onClick={() => setMobileOpen(false)}>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
+                    <line x1="4" y1="4" x2="20" y2="20" />
+                    <line x1="20" y1="4" x2="4" y2="20" />
+                  </svg>
                 </button>
               </div>
-              <SearchBar mobile onNavigate={() => setMobileOpen(false)} />
-              {NAV_LINKS.map((link) => (
-                <Link key={link.href} href={link.href} style={{ fontSize: 18, fontFamily: "var(--font-serif)" }}>
-                  {link.label}
+
+              <div className={styles.drawerSearch}>
+                <SearchBar mobile onNavigate={() => setMobileOpen(false)} />
+              </div>
+
+              <nav className={styles.drawerNav}>
+                {NAV_LINKS.map((link, i) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={styles.drawerNavLink}
+                    style={{ transitionDelay: `${i * 0.03}s` }}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <span>{link.label}</span>
+                    <svg width="13" height="10" viewBox="0 0 15 10" fill="none" className={styles.drawerNavArrow}>
+                      <path d="M0 5H14M14 5L9.5 0.5M14 5L9.5 9.5" stroke="currentColor" strokeWidth="1.3" />
+                    </svg>
+                  </Link>
+                ))}
+              </nav>
+
+              <div className={styles.drawerFoot}>
+                <Link href="/account" className={styles.drawerFootLink} onClick={() => setMobileOpen(false)}>
+                  <span className={styles.drawerFootIcon}>
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3">
+                      <path d="M4 18v-1a5 5 0 015-5h6a5 5 0 015 5v1" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  </span>
+                  <span>My Account</span>
                 </Link>
-              ))}
-              <div style={{ display: "flex", flexDirection: "column", gap: 16, marginTop: "auto", paddingTop: 22, borderTop: "1px solid var(--line)" }}>
-                <Link href="/account" className={styles.drawerLink}>
-                  My Account
+                <Link href="/wishlist" className={styles.drawerFootLink} onClick={() => setMobileOpen(false)}>
+                  <span className={styles.drawerFootIcon}>
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3">
+                      <path d="M12 20.2s-7.6-4.6-10-9.3C.4 7.4 2.3 4 5.9 4c2 0 3.5 1 6.1 3.6C14.6 5 16.1 4 18.1 4c3.6 0 5.5 3.4 3.9 6.9-2.4 4.7-10 9.3-10 9.3z" />
+                    </svg>
+                  </span>
+                  <span>Wishlist</span>
+                  {wishCount > 0 && <span className={styles.drawerFootBadge}>{wishCount}</span>}
                 </Link>
-                <Link href="/wishlist" className={styles.drawerLink}>
-                  Wishlist {wishCount > 0 && `(${wishCount})`}
-                </Link>
-                <Link href="/cart" className={styles.drawerLink}>
-                  View Cart {count > 0 && `(${count})`}
+                <Link href="/cart" className={styles.drawerFootLink} onClick={() => setMobileOpen(false)}>
+                  <span className={styles.drawerFootIcon}>
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3">
+                      <path d="M6 8h12l-1 12.5a1.5 1.5 0 01-1.5 1.5h-7a1.5 1.5 0 01-1.5-1.5L6 8z" />
+                      <path d="M9 8V6a3 3 0 016 0v2" />
+                    </svg>
+                  </span>
+                  <span>View Cart</span>
+                  {count > 0 && <span className={styles.drawerFootBadge}>{count}</span>}
                 </Link>
               </div>
             </motion.div>
