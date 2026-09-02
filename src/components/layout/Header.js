@@ -144,10 +144,8 @@ export default function Header() {
   const { count, openDrawer } = useCart();
   const { count: wishCount } = useWishlist();
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const chromeRef = useRef(null);
-  const lastY = useRef(0);
   const rafId = useRef(null);
   const isHome = pathname === "/";
   const transparent = isHome && !scrolled;
@@ -155,17 +153,7 @@ export default function Header() {
   useEffect(() => {
     function update() {
       rafId.current = null;
-      const y = window.scrollY;
-      setScrolled(y > 10);
-      const delta = y - lastY.current;
-      if (y < 40) {
-        setHidden(false);
-      } else if (delta > 0) {
-        setHidden(true);
-      } else if (delta < 0) {
-        setHidden(false);
-      }
-      lastY.current = y;
+      setScrolled(window.scrollY > 10);
     }
     function onScroll() {
       if (rafId.current) return;
@@ -195,11 +183,7 @@ export default function Header() {
 
   return (
     <>
-      <div
-        ref={chromeRef}
-        className={`${styles.chrome} ${isHome ? styles.chromeFixed : ""}`}
-        style={{ transform: hidden ? "translateY(-100%)" : "translateY(0)" }}
-      >
+      <div ref={chromeRef} className={`${styles.chrome} ${isHome ? styles.chromeFixed : ""}`}>
         <div className={styles.announce}>Complimentary shipping across India</div>
         <header className={`${styles.header} ${scrolled ? styles.headerScrolled : ""} ${transparent ? styles.headerTransparent : ""}`}>
         <div className={styles.topRow}>
@@ -224,20 +208,6 @@ export default function Header() {
             </svg>
             {wishCount + count > 0 && <span className={styles.badge}>{wishCount + count}</span>}
           </button>
-        </div>
-
-        <div className={styles.navRow}>
-          <nav className={styles.navInner}>
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`${styles.navLink} ${pathname === link.href ? styles.navLinkActive : ""}`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
         </div>
       </header>
       </div>

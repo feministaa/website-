@@ -37,6 +37,13 @@
   font-size: 14.5px;
 }
 
+.rowWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
 .row {
   position: relative;
   z-index: 1;
@@ -45,6 +52,7 @@
   overflow-x: auto;
   padding: 4px 48px 4px 0;
   scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
   scrollbar-width: none;
 }
 
@@ -53,9 +61,35 @@
 }
 
 .card {
-  flex: 0 0 380px;
+  flex: 0 0 460px;
   aspect-ratio: 3/4.2;
   scroll-snap-align: start;
+}
+
+.arrows {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 12px;
+}
+
+.arrowBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: var(--bg);
+  transition: all 0.25s var(--ease);
+}
+
+.arrowBtn:hover {
+  border-color: var(--gold-deep);
+  color: var(--gold-deep);
+  transform: scale(1.06);
 }
 
 .cardLink {
@@ -130,6 +164,6 @@
     padding-left: 24px;
   }
   .card {
-    flex-basis: 270px;
+    flex-basis: 300px;
   }
 }
