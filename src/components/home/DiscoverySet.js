@@ -12,12 +12,8 @@ export default function DiscoverySet({ product, collection = [] }) {
 
   return (
     <section className={styles.section}>
-      <div className={styles.inner}>
         <AnimateIn className={styles.visual}>
-          <div className={styles.frame} aria-hidden="true" />
-          <div className={styles.photoBox}>
-            <Image src="/images/products/discovery-set.jpg" alt="The Discovery Set" fill className={styles.visualPhoto} />
-          </div>
+          <Image src="/images/products/discovery-set.jpg" alt="The Discovery Set" fill className={styles.visualPhoto} />
           <span className={styles.badge}>Complete Ritual</span>
         </AnimateIn>
         <AnimateIn delay={0.15} className={styles.copy}>
@@ -55,7 +51,6 @@ export default function DiscoverySet({ product, collection = [] }) {
             </Link>
           </div>
         </AnimateIn>
-      </div>
     </section>
   );
 }

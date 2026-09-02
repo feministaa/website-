@@ -1,37 +1,14 @@
 .section {
-  background: var(--bg-alt);
-  padding: 120px 24px;
-  overflow: hidden;
-}
-
-.inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 100px;
-  max-width: 1320px;
-  margin: 0 auto;
+  align-items: stretch;
+  background: var(--bg-alt);
+  overflow: hidden;
 }
 
 .visual {
   position: relative;
-  padding: 22px 0 0 22px;
-}
-
-.frame {
-  position: absolute;
-  inset: 0 0 -22px 0;
-  border: 1px solid var(--gold);
-  border-radius: var(--radius-md);
-  opacity: 0.55;
-}
-
-.photoBox {
-  position: relative;
-  aspect-ratio: 5/5.6;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: 0 50px 90px -32px rgba(13, 12, 10, 0.35);
+  min-height: 640px;
 }
 
 .visualPhoto {
@@ -41,8 +18,9 @@
 
 .badge {
   position: absolute;
-  top: 0;
-  right: -14px;
+  top: 28px;
+  right: 28px;
+  z-index: 1;
   background: var(--black);
   color: var(--cream);
   font-size: 10.5px;
@@ -54,7 +32,10 @@
 }
 
 .copy {
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 80px;
 }
 
 .kicker {
@@ -162,21 +143,12 @@
 
 @media (max-width: 900px) {
   .section {
-    padding: 72px 24px;
-  }
-  .inner {
     grid-template-columns: 1fr;
-    gap: 56px;
   }
   .visual {
-    padding: 16px 0 0 16px;
-    max-width: 420px;
-    margin: 0 auto;
+    min-height: 420px;
   }
-  .frame {
-    inset: 0 0 -16px 0;
-  }
-  .badge {
-    right: -8px;
+  .copy {
+    padding: 48px 24px;
   }
 }
