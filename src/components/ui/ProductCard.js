@@ -86,7 +86,14 @@ export default function ProductCard({ product, index = 0, minimal = false }) {
             <div className={styles.scrimMinimal} />
             <div className={styles.captionMinimal}>
               <span className={styles.captionTagline}>{product.tagline}</span>
-              <span className={styles.discoverBtn}>{product.comingSoon ? "Coming Soon" : `Discover ${product.name}`}</span>
+              <div className={styles.captionLinks}>
+                {!product.comingSoon && (
+                  <button className={styles.discoverBtn} onClick={handleAdd}>
+                    Quick Add to Cart
+                  </button>
+                )}
+                <span className={styles.discoverBtn}>{product.comingSoon ? "Coming Soon" : `Discover ${product.name}`}</span>
+              </div>
             </div>
           </>
         )}
