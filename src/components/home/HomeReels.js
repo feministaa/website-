@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import styles from "./HomeReels.module.css";
 
 const REELS = [
@@ -14,12 +14,15 @@ const REELS = [
 
 function ReelCard({ reel }) {
   const videoRef = useRef(null);
-  const [playing, setPlaying] = useState(false);
 
-  function handlePlay() {
-    setPlaying(true);
-    videoRef.current?.play();
-  }
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const tryPlay = () => video.play().catch(() => {});
+    tryPlay();
+    video.addEventListener("loadeddata", tryPlay);
+    return () => video.removeEventListener("loadeddata", tryPlay);
+  }, []);
 
   return (
     <div className={styles.card}>
@@ -28,25 +31,14 @@ function ReelCard({ reel }) {
         className={styles.media}
         src={reel.video}
         poster={reel.poster}
+        autoPlay
         playsInline
         loop
         muted
-        controls={playing}
-        onClick={handlePlay}
-        preload="metadata"
+        preload="auto"
       />
-
-      {!playing && (
-        <>
-          <div className={styles.scrim} />
-          <button className={styles.playBtn} onClick={handlePlay} aria-label={`Play ${reel.caption}`}>
-            <svg width="20" height="22" viewBox="0 0 20 22" fill="var(--black)">
-              <path d="M1 1.5v19l18-9.5-18-9.5z" />
-            </svg>
-          </button>
-          <span className={styles.caption}>{reel.caption}</span>
-        </>
-      )}
+      <div className={styles.scrim} />
+      <span className={styles.caption}>{reel.caption}</span>
     </div>
   );
 }
@@ -59,9 +51,11 @@ export default function HomeReels() {
         <h2 className={styles.title}>The Ritual, Filmed.</h2>
       </div>
       <div className={styles.row}>
+        <div className={styles.spacer} aria-hidden="true" />
         {REELS.map((reel) => (
           <ReelCard key={reel.id} reel={reel} />
         ))}
+        <div className={styles.spacer} aria-hidden="true" />
       </div>
     </section>
   );

@@ -15,22 +15,6 @@ const COLUMNS = [
       { href: "/fragrances/discovery-set", label: "Discovery Set" },
     ],
   },
-  {
-    title: "The House",
-    links: [
-      { href: "/our-story", label: "Our Story" },
-      { href: "/the-art-of-180", label: "The Art of 180" },
-      { href: "/the-collection", label: "The Collection" },
-    ],
-  },
-  {
-    title: "Client Care",
-    links: [
-      { href: "/cart", label: "Your Bag" },
-      { href: "/wishlist", label: "Wishlist" },
-      { href: "/checkout", label: "Track Order" },
-    ],
-  },
 ];
 
 const SOCIALS = [
@@ -75,30 +59,25 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.ctaCard}>
         <div className={styles.ctaCopy}>
-          <span className="eyebrow" style={{ color: "var(--gold-light)" }}>
-            Join the Circle
-          </span>
-          <h2 className={styles.ctaTitle}>Private access, always.</h2>
-          <p className={styles.ctaText}>New compositions, exclusive offers and stories from the house — before anyone else.</p>
-          <form className={styles.ctaForm} onSubmit={(e) => e.preventDefault()}>
-            <input type="email" placeholder="Enter your email" aria-label="Email address" required />
-            <button type="submit" aria-label="Join">
-              <svg width="15" height="10" viewBox="0 0 15 10" fill="none">
-                <path d="M0 5H14M14 5L9.5 0.5M14 5L9.5 9.5" stroke="currentColor" strokeWidth="1.3" />
-              </svg>
-            </button>
-          </form>
+          <span className={styles.eyebrow}>Join the Circle</span>
+          <h2 className={styles.ctaTitle}>Never miss a new scent.</h2>
+          <p className={styles.ctaText}>
+            Be the first to know about new compositions, private launches and stories from the house of Feminista.
+          </p>
+          <Link href="/account/register" className={styles.ctaBtn}>
+            Create an Account ↗
+          </Link>
         </div>
         <OrbitGraphic />
       </div>
 
       <div className={styles.lower}>
         <div className={styles.brandCol}>
-          <Image src="/feminista-logo.png" alt="Feminista" width={110} height={59} className={styles.logo} />
-          <p>Created for her. Never adapted to her. The many expressions of modern femininity, in fragrance.</p>
+          <Image src="/feminista-logo-black.png" alt="Feminista" width={110} height={59} className={styles.logo} />
+          <p>Created for her. Never adapted to her.</p>
         </div>
 
-        {COLUMNS.slice(0, 2).map((col) => (
+        {COLUMNS.map((col) => (
           <div key={col.title} className={styles.linkCol}>
             <span className={styles.colTitle}>{col.title}</span>
             {col.links.map((link) => (
@@ -117,10 +96,23 @@ export default function Footer() {
             </a>
           ))}
         </div>
+
+        <div className={styles.linkCol}>
+          <span className={styles.colTitle}>Newsletter</span>
+          <p className={styles.newsletterText}>Receive product updates, exclusive offers and early access.</p>
+          <form className={styles.newsletterForm} onSubmit={(e) => e.preventDefault()}>
+            <input type="email" placeholder="Enter your email…" aria-label="Email address" required />
+            <button type="submit" aria-label="Subscribe">
+              <svg width="14" height="10" viewBox="0 0 15 10" fill="none">
+                <path d="M0 5H14M14 5L9.5 0.5M14 5L9.5 9.5" stroke="currentColor" strokeWidth="1.3" />
+              </svg>
+            </button>
+          </form>
+        </div>
       </div>
 
       <div className={styles.bottom}>
-        <span>© {new Date().getFullYear()} Feminista. All rights reserved.</span>
+        <span>© {new Date().getFullYear()} Feminista · All rights reserved</span>
         <div className={styles.bottomLinks}>
           <span>Privacy Policy</span>
           <span>Terms of Service</span>

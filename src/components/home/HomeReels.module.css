@@ -19,7 +19,7 @@
   gap: 26px;
   overflow-x: auto;
   scroll-snap-type: x proximity;
-  padding: 0 24px 12px 40px;
+  padding-bottom: 12px;
   scrollbar-width: none;
 }
 
@@ -27,10 +27,15 @@
   display: none;
 }
 
+.spacer {
+  flex: 0 0 auto;
+  width: 40px;
+}
+
 .card {
   position: relative;
   flex: 0 0 auto;
-  width: 300px;
+  width: 360px;
   aspect-ratio: 9/16;
   border-radius: 12px;
   overflow: hidden;
@@ -87,6 +92,6 @@
 
 @media (max-width: 700px) {
   .card {
-    width: 240px;
+    width: 270px;
   }
 }
