@@ -6,6 +6,14 @@
   will-change: transform;
 }
 
+.chromeFixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
 .announce {
   background: var(--black);
   color: var(--cream);
@@ -29,6 +37,33 @@
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   box-shadow: 0 10px 30px rgba(13, 12, 10, 0.07);
+}
+
+.headerTransparent {
+  background: transparent;
+  border-bottom-color: transparent;
+}
+
+.headerTransparent .navLink,
+.headerTransparent .menuBtn,
+.headerTransparent .searchIcon {
+  color: var(--cream);
+}
+
+.headerTransparent .navLink::after {
+  background: var(--cream);
+}
+
+.headerTransparent .searchWrap {
+  border-bottom-color: rgba(241, 233, 230, 0.5);
+}
+
+.headerTransparent .searchInput {
+  color: var(--cream);
+}
+
+.headerTransparent .searchInput::placeholder {
+  color: rgba(241, 233, 230, 0.7);
 }
 
 .topRow {
@@ -182,6 +217,11 @@
   color: var(--ink-faint);
 }
 
+.searchIcon {
+  color: var(--ink);
+  transition: color 0.4s var(--ease);
+}
+
 .badge {
   position: absolute;
   top: -3px;
@@ -213,6 +253,7 @@
   text-transform: uppercase;
   position: relative;
   padding: 4px 0;
+  transition: color 0.4s var(--ease);
 }
 
 .navLink::after {
@@ -239,7 +280,7 @@
   width: 42px;
   height: 42px;
   justify-self: end;
-  transition: transform 0.25s var(--ease);
+  transition: transform 0.25s var(--ease), color 0.4s var(--ease);
 }
 
 .menuBtn:hover {

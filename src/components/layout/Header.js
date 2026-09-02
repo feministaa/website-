@@ -84,7 +84,15 @@ function SearchBar({ mobile = false, onNavigate }) {
           }}
         />
         <button type="submit" aria-label="Search" style={{ display: "flex", flexShrink: 0 }}>
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" style={{ color: "var(--ink)" }}>
+          <svg
+            className={styles.searchIcon}
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+          >
             <circle cx="11" cy="11" r="7" />
             <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
@@ -141,6 +149,8 @@ export default function Header() {
   const chromeRef = useRef(null);
   const lastY = useRef(0);
   const rafId = useRef(null);
+  const isHome = pathname === "/";
+  const transparent = isHome && !scrolled;
 
   useEffect(() => {
     function update() {
@@ -185,14 +195,25 @@ export default function Header() {
 
   return (
     <>
-      <div ref={chromeRef} className={styles.chrome} style={{ transform: hidden ? "translateY(-100%)" : "translateY(0)" }}>
+      <div
+        ref={chromeRef}
+        className={`${styles.chrome} ${isHome ? styles.chromeFixed : ""}`}
+        style={{ transform: hidden ? "translateY(-100%)" : "translateY(0)" }}
+      >
         <div className={styles.announce}>Complimentary shipping across India</div>
-        <header className={`${styles.header} ${scrolled ? styles.headerScrolled : ""}`}>
+        <header className={`${styles.header} ${scrolled ? styles.headerScrolled : ""} ${transparent ? styles.headerTransparent : ""}`}>
         <div className={styles.topRow}>
           <SearchBar />
 
           <Link href="/" className={styles.logo} aria-label="Feminista home">
-            <Image src="/feminista-logo-black.png" alt="Feminista" width={100} height={54} priority className={styles.logoImg} />
+            <Image
+              src={transparent ? "/feminista-logo.png" : "/feminista-logo-black.png"}
+              alt="Feminista"
+              width={100}
+              height={54}
+              priority
+              className={styles.logoImg}
+            />
           </Link>
 
           <button className={styles.menuBtn} aria-label="Open menu" onClick={() => setMobileOpen(true)}>

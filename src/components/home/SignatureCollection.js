@@ -8,7 +8,6 @@ export default function SignatureCollection({ products }) {
       <AnimateIn className={styles.header}>
         <span className="eyebrow">The Signature Collection</span>
         <h2 className={styles.title}>Her, in Three Acts</h2>
-        <p className={styles.sub}>Three compositions. Three expressions of her.</p>
       </AnimateIn>
       <div className={styles.grid}>
         {products.map((product, i) => (

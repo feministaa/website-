@@ -79,7 +79,6 @@ export default function Testimonials() {
       <AnimateIn className={styles.header}>
         <span className="eyebrow">In Her Words</span>
         <h2 className={styles.title}>Loved, and worn daily.</h2>
-        <p className={styles.sub}>Real words from the women wearing Feminista.</p>
       </AnimateIn>
 
       <div className={styles.carousel}>

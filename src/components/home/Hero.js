@@ -1,43 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import styles from "./Hero.module.css";
 
-const SLIDES = ["/images/banner-hero-campaign.jpg", "/images/fresca-banner.png"];
-
 export default function Hero() {
-  const [active, setActive] = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setActive((a) => (a + 1) % SLIDES.length);
-    }, 5500);
-    return () => clearInterval(id);
-  }, []);
-
   return (
     <section className={styles.hero}>
-      {SLIDES.map((src, i) => (
-        <div
-          key={src}
-          className={styles.slide}
-          style={{ backgroundImage: `url(${src})`, opacity: i === active ? 1 : 0 }}
-        />
-      ))}
+      <video
+        className={styles.video}
+        src="/videos/hero-banner.mp4"
+        poster="/images/banner-hero-video-poster.jpg"
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
+      <div className={styles.scrim} />
 
       <div className={styles.copy}>
-        <div className={styles.dots}>
-          {SLIDES.map((src, i) => (
-            <button
-              key={src}
-              className={`${styles.dot} ${i === active ? styles.dotActive : ""}`}
-              onClick={() => setActive(i)}
-              aria-label={`Show slide ${i + 1}`}
-            />
-          ))}
-        </div>
         <motion.div
           className={styles.ctaRow}
           initial={{ opacity: 0, y: 18 }}

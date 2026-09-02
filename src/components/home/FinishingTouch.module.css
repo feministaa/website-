@@ -1,0 +1,136 @@
+.section {
+  position: relative;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 40px;
+  padding: 120px 0 120px 48px;
+  overflow: hidden;
+}
+
+.pattern {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: repeating-linear-gradient(45deg, var(--line-soft) 0, var(--line-soft) 1px, transparent 1px, transparent 64px),
+    repeating-linear-gradient(-45deg, var(--line-soft) 0, var(--line-soft) 1px, transparent 1px, transparent 64px);
+  opacity: 0.6;
+  mask-image: linear-gradient(90deg, black, black 40%, transparent 78%);
+}
+
+.panel {
+  position: sticky;
+  top: 140px;
+  align-self: start;
+  z-index: 1;
+  max-width: 300px;
+  height: fit-content;
+}
+
+.title {
+  font-size: clamp(30px, 3.2vw, 42px);
+  line-height: 1.12;
+  margin: 16px 0 18px;
+}
+
+.desc {
+  color: var(--ink-soft);
+  line-height: 1.75;
+  font-size: 14.5px;
+}
+
+.row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding: 4px 48px 4px 0;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+
+.row::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  flex: 0 0 300px;
+  aspect-ratio: 3/4.2;
+  scroll-snap-align: start;
+}
+
+.cardLink {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 30px 60px -28px rgba(13, 12, 10, 0.35);
+}
+
+.cardImage {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.7s var(--ease);
+}
+
+.cardLink:hover .cardImage {
+  transform: scale(1.06);
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(9, 9, 9, 0.82) 0%, rgba(9, 9, 9, 0.05) 55%);
+}
+
+.cardCopy {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--cream);
+}
+
+.cardLabel {
+  font-family: var(--font-serif);
+  font-size: 19px;
+}
+
+.discover {
+  align-self: flex-start;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding-bottom: 3px;
+  border-bottom: 1px solid rgba(241, 233, 230, 0.6);
+  transition: border-color 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+
+.cardLink:hover .discover {
+  border-color: var(--cream);
+}
+
+@media (max-width: 900px) {
+  .section {
+    grid-template-columns: 1fr;
+    padding: 72px 24px;
+    gap: 32px;
+  }
+  .panel {
+    position: static;
+    max-width: none;
+  }
+  .row {
+    padding: 4px 24px 4px 0;
+    margin: 0 -24px;
+    padding-left: 24px;
+  }
+  .card {
+    flex-basis: 240px;
+  }
+}

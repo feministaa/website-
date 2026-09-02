@@ -2,7 +2,7 @@ import Hero from "@/components/home/Hero";
 import SignatureCollection from "@/components/home/SignatureCollection";
 import AboutTeaser from "@/components/home/AboutTeaser";
 import DiscoverySet from "@/components/home/DiscoverySet";
-import ServicesStrip from "@/components/home/ServicesStrip";
+import FinishingTouch from "@/components/home/FinishingTouch";
 import HomeReels from "@/components/home/HomeReels";
 import Testimonials from "@/components/home/Testimonials";
 import products from "@/data/products.json";
@@ -31,7 +31,7 @@ export default function Home() {
       <AboutTeaser />
       <SignatureCollection products={collection} />
       <DiscoverySet product={discoverySet} collection={collection} />
-      <ServicesStrip />
+      <FinishingTouch />
       <HomeReels />
       <Testimonials />
     </main>
