@@ -2,13 +2,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: stretch;
-  background: var(--bg-alt);
+  background: var(--bg);
   overflow: hidden;
 }
 
 .visual {
   position: relative;
-  min-height: 640px;
+  min-height: 85vh;
 }
 
 .visualPhoto {
