@@ -6,7 +6,6 @@ export default function SignatureCollection({ products }) {
   return (
     <section className={`section ${styles.section}`}>
       <AnimateIn className={styles.header}>
-        <span className="eyebrow">The Signature Collection</span>
         <h2 className={styles.title}>Her, in Three Acts</h2>
       </AnimateIn>
       <div className={styles.grid}>
