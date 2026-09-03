@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Testimonials.module.css";
 import AnimateIn from "@/components/ui/AnimateIn";
 
@@ -63,6 +63,13 @@ export default function Testimonials() {
   const [active, setActive] = useState(0);
   const n = TESTIMONIALS.length;
 
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActive((a) => (a + 1) % n);
+    }, 2000);
+    return () => clearInterval(id);
+  }, [n]);
+
   function offsetOf(i) {
     const raw = i - active;
     if (raw > n / 2) return raw - n;
@@ -94,7 +101,7 @@ export default function Testimonials() {
             const abs = Math.abs(offset);
             const visible = abs <= 2;
             const scale = offset === 0 ? 1 : abs === 1 ? 0.87 : 0.74;
-            const opacity = visible ? (offset === 0 ? 1 : abs === 1 ? 0.65 : 0.35) : 0;
+            const opacity = visible ? 1 : 0;
             return (
               <div
                 key={t.name}

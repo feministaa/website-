@@ -1,0 +1,52 @@
+.section {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  object-position: 70% center;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(9, 9, 9, 0.78) 0%, rgba(9, 9, 9, 0.4) 42%, rgba(9, 9, 9, 0.05) 68%);
+}
+
+.copy {
+  position: relative;
+  z-index: 1;
+  max-width: 480px;
+  padding: 0 64px;
+  color: var(--cream);
+}
+
+.title {
+  font-size: clamp(30px, 3.6vw, 44px);
+  margin: 14px 0 16px;
+  line-height: 1.12;
+}
+
+.desc {
+  color: rgba(241, 233, 230, 0.82);
+  line-height: 1.75;
+  font-size: 15px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 900px) {
+  .section {
+    min-height: 70vh;
+  }
+  .scrim {
+    background: linear-gradient(0deg, rgba(9, 9, 9, 0.8) 0%, rgba(9, 9, 9, 0.35) 55%, rgba(9, 9, 9, 0.15) 100%);
+  }
+  .copy {
+    padding: 0 24px;
+    max-width: none;
+  }
+}

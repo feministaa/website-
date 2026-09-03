@@ -1,5 +1,6 @@
 import Hero from "@/components/home/Hero";
 import SignatureCollection from "@/components/home/SignatureCollection";
+import HomeBanner from "@/components/home/HomeBanner";
 import AboutTeaser from "@/components/home/AboutTeaser";
 import DiscoverySet from "@/components/home/DiscoverySet";
 import FinishingTouch from "@/components/home/FinishingTouch";
@@ -30,6 +31,7 @@ export default function Home() {
       <Hero />
       <AboutTeaser />
       <SignatureCollection products={collection} />
+      <HomeBanner />
       <DiscoverySet product={discoverySet} collection={collection} />
       <FinishingTouch />
       <HomeReels />

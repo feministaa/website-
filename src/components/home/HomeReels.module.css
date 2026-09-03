@@ -30,6 +30,7 @@
 .spacer {
   flex: 0 0 auto;
   width: 40px;
+  scroll-snap-align: start;
 }
 
 .card {
