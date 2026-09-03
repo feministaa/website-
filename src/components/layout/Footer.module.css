@@ -151,21 +151,22 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  margin: -50% 0 0 -50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .orbitSatInnerA,
 .orbitSatInnerB {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  display: block;
   border-radius: 50%;
+  overflow: hidden;
   background: var(--surface);
-  border: 1px solid var(--line);
-  box-shadow: 0 4px 14px -6px rgba(13, 12, 10, 0.25);
+  border: 2px solid var(--surface);
+  box-shadow: 0 0 0 1px var(--line), 0 4px 14px -6px rgba(13, 12, 10, 0.35);
+}
+
+.orbitFace {
+  object-fit: cover;
+  object-position: center;
 }
 
 .orbitSatInnerA {

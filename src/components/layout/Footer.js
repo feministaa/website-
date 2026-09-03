@@ -23,15 +23,23 @@ const SOCIALS = [
   { href: "https://tiktok.com", label: "TikTok" },
 ];
 
+const ORBIT_FACES = [
+  "/images/testimonials/testimonial-1.jpg",
+  "/images/testimonials/testimonial-2.jpg",
+  "/images/testimonials/testimonial-3.jpg",
+  "/images/testimonials/testimonial-1.jpg",
+  "/images/testimonials/testimonial-2.jpg",
+];
+
 function OrbitGraphic() {
   const innerDots = [
-    { angle: -35, size: 30 },
-    { angle: 150, size: 26 },
+    { angle: -35, size: 44 },
+    { angle: 150, size: 38 },
   ];
   const outerDots = [
-    { angle: 20, size: 28 },
-    { angle: 195, size: 24 },
-    { angle: 270, size: 32 },
+    { angle: 20, size: 40 },
+    { angle: 195, size: 36 },
+    { angle: 270, size: 46 },
   ];
   return (
     <div className={styles.orbit}>
@@ -47,9 +55,13 @@ function OrbitGraphic() {
           const x = Math.cos(rad) * 78;
           const y = Math.sin(rad) * 78;
           return (
-            <span key={i} className={styles.orbitSat} style={{ transform: `translate(${x}px, ${y}px)` }}>
+            <span
+              key={i}
+              className={styles.orbitSat}
+              style={{ transform: `translate(calc(${x}px - 50%), calc(${y}px - 50%))` }}
+            >
               <span className={styles.orbitSatInnerA} style={{ width: d.size, height: d.size }}>
-                <Image src="/feminista-logo-black.png" alt="" width={d.size - 8} height={(d.size - 8) * 0.54} />
+                <Image src={ORBIT_FACES[i]} alt="Feminista customer" fill className={styles.orbitFace} />
               </span>
             </span>
           );
@@ -62,9 +74,13 @@ function OrbitGraphic() {
           const x = Math.cos(rad) * 132;
           const y = Math.sin(rad) * 132;
           return (
-            <span key={i} className={styles.orbitSat} style={{ transform: `translate(${x}px, ${y}px)` }}>
+            <span
+              key={i}
+              className={styles.orbitSat}
+              style={{ transform: `translate(calc(${x}px - 50%), calc(${y}px - 50%))` }}
+            >
               <span className={styles.orbitSatInnerB} style={{ width: d.size, height: d.size }}>
-                <Image src="/feminista-logo-black.png" alt="" width={d.size - 8} height={(d.size - 8) * 0.54} />
+                <Image src={ORBIT_FACES[i + 2]} alt="Feminista customer" fill className={styles.orbitFace} />
               </span>
             </span>
           );
