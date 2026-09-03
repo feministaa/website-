@@ -29,6 +29,30 @@ const TESTIMONIALS = [
     initial: "K",
     image: "/images/testimonials/testimonial-3.jpg",
   },
+  {
+    quote:
+      "Fresca is what I reach for on days I need to feel like myself again. It's fresh without being thin, and it actually lasts. I've already recommended it to half my office.",
+    name: "Riya P.",
+    meta: "Verified Purchase · Fresca",
+    initial: "R",
+    image: "/images/testimonials/testimonial-1.jpg",
+  },
+  {
+    quote:
+      "I've bought perfume from every brand you can name and Locken is the first one that made a stranger stop me in an elevator. Worth every rupee.",
+    name: "Simran K.",
+    meta: "Verified Purchase · Locken",
+    initial: "S",
+    image: "/images/testimonials/testimonial-2.jpg",
+  },
+  {
+    quote:
+      "Matured for 180 days and it genuinely shows on skin. Vers has become the one thing people ask me about every single time I wear it.",
+    name: "Priya D.",
+    meta: "Verified Purchase · Vers",
+    initial: "P",
+    image: "/images/testimonials/testimonial-3.jpg",
+  },
 ];
 
 // Render many back-to-back copies of the testimonials so the fan always has
@@ -57,6 +81,7 @@ function Stars() {
 
 export default function Testimonials() {
   const [pointer, setPointer] = useState(START);
+  const [instant, setInstant] = useState(false);
 
   useEffect(() => {
     const id = setInterval(() => step(1), 2000);
@@ -66,8 +91,25 @@ export default function Testimonials() {
   function step(dir) {
     setPointer((p) => {
       let next = p + dir;
-      if (next >= START + N * 3) next -= N * 3;
-      if (next < START - N * 3) next += N * 3;
+      let wrapped = false;
+      if (next >= START + N * 3) {
+        next -= N * 3;
+        wrapped = true;
+      }
+      if (next < START - N * 3) {
+        next += N * 3;
+        wrapped = true;
+      }
+      if (wrapped) {
+        // The strip just got silently re-centered by a full cycle. The
+        // content on screen is identical before and after, but the
+        // transform values jumped, so skip the transition for this one
+        // frame — otherwise every card visibly animates through that
+        // jump before settling back, which looks like the carousel
+        // "restarting".
+        setInstant(true);
+        requestAnimationFrame(() => requestAnimationFrame(() => setInstant(false)));
+      }
       return next;
     });
   }
@@ -90,9 +132,12 @@ export default function Testimonials() {
           {LOOPED.map((t, i) => {
             const offset = i - pointer;
             const abs = Math.abs(offset);
-            const visible = abs <= 2;
-            if (!visible) return null;
-            const opacity = 1;
+            // Mount one extra card just past each edge (abs 3) and keep it
+            // invisible. That way, when the pointer advances, that card is
+            // already in the DOM and can transition smoothly into the
+            // visible fan instead of popping in with no entrance animation.
+            if (abs > 3) return null;
+            const opacity = abs <= 2 ? 1 : 0;
             return (
               <div
                 key={i}
@@ -103,10 +148,15 @@ export default function Testimonials() {
                   opacity,
                   zIndex: offset === 0 ? 3 : 3 - abs,
                   pointerEvents: offset === 0 ? "auto" : "none",
+                  transition: instant ? "none" : undefined,
                 }}
               >
-                <div className={styles.nameRow}>
-                  <span className={styles.name}>{t.name}</span>
+                <div className={styles.attribution}>
+                  <Stars />
+                  <p className={styles.quote}>{t.quote}</p>
+                  <div className={styles.nameRow}>
+                    <span className={styles.name}>{t.name}</span>
+                  </div>
                 </div>
               </div>
             );
@@ -119,11 +169,6 @@ export default function Testimonials() {
           </svg>
         </button>
       </div>
-
-      <AnimateIn key={((pointer % N) + N) % N} className={styles.caption}>
-        <Stars />
-        <p className={styles.quote}>{TESTIMONIALS[((pointer % N) + N) % N].quote}</p>
-      </AnimateIn>
 
       <div className={styles.dots}>
         {TESTIMONIALS.map((t, i) => (

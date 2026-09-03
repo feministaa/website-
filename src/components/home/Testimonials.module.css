@@ -61,39 +61,37 @@
   box-shadow: 0 34px 64px -24px rgba(13, 12, 10, 0.4);
 }
 
+.attribution {
+  position: relative;
+}
+
+.stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 14px;
+}
+
+.quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
 .nameRow {
   display: flex;
 }
 
 .name {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--cream);
   padding-bottom: 8px;
   border-bottom: 2px solid var(--cream);
-}
-
-.stars {
-  display: flex;
-  justify-content: center;
-  gap: 3px;
-  margin-bottom: 14px;
-}
-
-.caption {
-  max-width: 520px;
-  margin: 44px auto 0;
-  text-align: center;
-}
-
-.quote {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 17px;
-  line-height: 1.6;
-  color: var(--ink);
 }
 
 .arrow {
