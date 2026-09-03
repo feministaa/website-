@@ -23,6 +23,8 @@ export default function DiscoverySet({ product, collection = [] }) {
             10ml formats — the easiest way to find your signature.
           </p>
 
+          <span className={styles.divider} aria-hidden="true" />
+
           {collection.length > 0 && (
             <div className={styles.contents}>
               <span className={styles.contentsLabel}>What&rsquo;s Inside</span>
@@ -39,7 +41,14 @@ export default function DiscoverySet({ product, collection = [] }) {
 
           <div className={styles.priceRow}>
             <span className={styles.price}>{formatINR(product.price)}</span>
-            {product.compareAtPrice && <span className={styles.compareAt}>{formatINR(product.compareAtPrice)}</span>}
+            {product.compareAtPrice && (
+              <>
+                <span className={styles.compareAt}>{formatINR(product.compareAtPrice)}</span>
+                <span className={styles.saveBadge}>
+                  Save {Math.round((1 - product.price / product.compareAtPrice) * 100)}%
+                </span>
+              </>
+            )}
           </div>
           <div className={styles.actions}>
             <button className="btn btn-primary" onClick={() => addToCart(product, product.sizes[0], 1)}>

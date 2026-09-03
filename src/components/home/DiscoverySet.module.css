@@ -8,8 +8,8 @@
 
 .visual {
   position: relative;
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: 90vh;
+  min-height: 90svh;
 }
 
 .visualPhoto {
@@ -18,23 +18,35 @@
 }
 
 .copy {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   padding: 60px 80px;
+  background: radial-gradient(120% 100% at 50% 0%, var(--bg-alt) 0%, var(--bg) 65%);
 }
 
 .kicker {
   display: inline-flex;
   align-items: center;
+  gap: 14px;
   font-family: var(--font-sans);
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold-deep);
   font-weight: 500;
+}
+
+.kicker::before,
+.kicker::after {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--gold-deep);
+  opacity: 0.6;
 }
 
 .title {
@@ -45,14 +57,22 @@
 
 .desc {
   color: var(--ink-soft);
-  margin: 0 auto 32px;
+  margin: 0 auto 0;
   max-width: 430px;
   line-height: 1.8;
   font-size: 15px;
 }
 
+.divider {
+  display: block;
+  width: 56px;
+  height: 1px;
+  margin: 30px auto;
+  background: linear-gradient(90deg, transparent, var(--gold-deep), transparent);
+}
+
 .contents {
-  margin: 0 auto 32px;
+  margin: 0 auto 34px;
   max-width: 460px;
 }
 
@@ -95,7 +115,7 @@
 
 .priceRow {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: center;
   gap: 14px;
   margin: 0 auto 4px;
@@ -104,8 +124,18 @@
 
 .price {
   font-family: var(--font-serif);
-  font-size: 28px;
+  font-size: 36px;
   color: var(--gold-deep);
+}
+
+.saveBadge {
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  background: var(--gold-pale);
+  padding: 5px 10px;
+  border-radius: 20px;
 }
 
 .compareAt {
