@@ -58,6 +58,13 @@
   width: 100%;
   padding: 26px 4px;
   text-align: left;
+  background: none;
+  border: none;
+}
+
+.question:focus-visible {
+  outline: 1px solid var(--gold-deep);
+  outline-offset: 4px;
 }
 
 .index {
@@ -105,7 +112,7 @@
   transition: grid-template-rows 0.4s var(--ease);
 }
 
-.answerOpen {
+.answerWrap.answerOpen {
   grid-template-rows: 1fr;
 }
 
@@ -116,7 +123,11 @@
   font-size: 14.5px;
   line-height: 1.75;
   max-width: 520px;
-  padding: 0 4px 26px 58px;
+  padding: 0 4px 0 58px;
+}
+
+.answerWrap.answerOpen .answer {
+  padding-bottom: 26px;
 }
 
 @media (max-width: 900px) {
