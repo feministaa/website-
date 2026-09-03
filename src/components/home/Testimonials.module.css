@@ -35,6 +35,7 @@
   width: 100%;
   max-width: 1320px;
   height: 720px;
+  perspective: 1800px;
 }
 
 .card {
@@ -51,6 +52,8 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
   transition: transform 1.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
