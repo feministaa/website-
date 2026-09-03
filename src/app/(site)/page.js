@@ -24,7 +24,6 @@ export const metadata = {
 };
 
 export default function Home() {
-  const collection = products.filter((p) => p.family !== "set");
   const discoverySet = products.find((p) => p.family === "set");
 
   return (
@@ -32,8 +31,8 @@ export default function Home() {
       <Hero />
       <AboutTeaser />
       <SignatureCollection products={products} />
-      <HomeBanner />
       <FinishingTouch />
+      <HomeBanner />
       <DiscoverySet product={discoverySet} />
       <HomeReels />
       <Testimonials />
