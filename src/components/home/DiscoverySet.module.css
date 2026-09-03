@@ -10,8 +10,7 @@
   position: relative;
   min-height: 90vh;
   min-height: 90svh;
-  padding: 48px;
-  background: var(--bg-alt);
+  padding: 80px;
 }
 
 .photoBox {
@@ -34,7 +33,6 @@
   align-items: flex-start;
   justify-content: center;
   padding: 60px 10% 60px 90px;
-  background: radial-gradient(120% 100% at 0% 0%, var(--bg-alt) 0%, var(--bg) 60%);
 }
 
 .kicker {
@@ -111,7 +109,7 @@
   }
   .visual {
     min-height: 420px;
-    padding: 24px;
+    padding: 32px;
   }
   .copy {
     padding: 48px 24px;
