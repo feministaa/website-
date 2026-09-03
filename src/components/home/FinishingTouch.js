@@ -62,10 +62,10 @@ export default function FinishingTouch() {
         </p>
       </AnimateIn>
 
-      <div className={styles.rowWrap}>
+      <AnimateIn delay={0.1} className={styles.rowWrap}>
         <div className={styles.row} ref={rowRef}>
           {CARDS.map((card) => (
-            <AnimateIn key={card.label} className={styles.card}>
+            <div key={card.label} className={styles.card}>
               <Link href={card.href} className={styles.cardLink}>
                 <Image src={card.image} alt={card.label} fill className={styles.cardImage} />
                 <div className={styles.scrim} />
@@ -74,7 +74,7 @@ export default function FinishingTouch() {
                   <span className={styles.discover}>Discover</span>
                 </div>
               </Link>
-            </AnimateIn>
+            </div>
           ))}
         </div>
 
@@ -90,7 +90,7 @@ export default function FinishingTouch() {
             </svg>
           </button>
         </div>
-      </div>
+      </AnimateIn>
     </section>
   );
 }

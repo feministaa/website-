@@ -6,6 +6,7 @@ import DiscoverySet from "@/components/home/DiscoverySet";
 import FinishingTouch from "@/components/home/FinishingTouch";
 import HomeReels from "@/components/home/HomeReels";
 import Testimonials from "@/components/home/Testimonials";
+import HomeFAQ from "@/components/home/HomeFAQ";
 import products from "@/data/products.json";
 
 export const metadata = {
@@ -36,6 +37,7 @@ export default function Home() {
       <DiscoverySet product={discoverySet} collection={collection} />
       <HomeReels />
       <Testimonials />
+      <HomeFAQ />
     </main>
   );
 }

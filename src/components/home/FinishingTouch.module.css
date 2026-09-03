@@ -62,7 +62,7 @@
 
 .card {
   flex: 0 0 460px;
-  aspect-ratio: 3/4.2;
+  aspect-ratio: 3/4.6;
   scroll-snap-align: start;
 }
 
