@@ -12,7 +12,6 @@ export default function AboutTeaser() {
           single definition.
         </h2>
         <div className={styles.footer}>
-          <span className={styles.footnote}>Matured for 180 days, every composition.</span>
           <Link href="/our-story" className={styles.link}>
             Discover Our Story
             <svg width="15" height="10" viewBox="0 0 15 10" fill="none">

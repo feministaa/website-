@@ -175,7 +175,9 @@ export default function Header() {
   return (
     <>
       <div ref={chromeRef} className={`${styles.chrome} ${isHome ? styles.chromeFixed : ""}`}>
-        <div className={styles.announce}>Complimentary shipping across India</div>
+        <div className={`${styles.announce} ${scrolled ? styles.announceCollapsed : ""}`}>
+          Complimentary shipping across India
+        </div>
         <header className={`${styles.header} ${scrolled ? styles.headerScrolled : ""} ${transparent ? styles.headerTransparent : ""}`}>
         <div className={styles.topRow}>
           <SearchBar />

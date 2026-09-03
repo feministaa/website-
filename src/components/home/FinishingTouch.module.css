@@ -2,6 +2,7 @@
   position: relative;
   display: grid;
   grid-template-columns: 360px 1fr;
+  align-items: center;
   gap: 40px;
   padding: 120px 0 120px 48px;
   overflow: hidden;
@@ -19,7 +20,6 @@
 .panel {
   position: sticky;
   top: 140px;
-  align-self: start;
   z-index: 1;
   max-width: 300px;
   height: fit-content;

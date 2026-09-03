@@ -32,24 +32,28 @@ export default function HomeFAQ() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className={`section ${styles.section}`}>
-      <AnimateIn className={styles.header}>
+    <section className={styles.section}>
+      <AnimateIn className={styles.panel}>
         <span className="eyebrow">Good to Know</span>
         <h2 className={styles.title}>Questions, Answered</h2>
+        <p className={styles.desc}>Everything you might want to know before your first order — and after it arrives.</p>
+        <Link href="/our-story" className={styles.link}>
+          Still have a question? Get in touch
+          <svg width="15" height="10" viewBox="0 0 15 10" fill="none">
+            <path d="M0 5H14M14 5L9.5 0.5M14 5L9.5 9.5" stroke="currentColor" strokeWidth="1.3" />
+          </svg>
+        </Link>
       </AnimateIn>
 
       <div className={styles.list}>
         {FAQS.map((item, i) => {
           const isOpen = open === i;
           return (
-            <AnimateIn key={item.q} delay={i * 0.05} className={styles.item}>
-              <button
-                className={styles.question}
-                onClick={() => setOpen(isOpen ? -1 : i)}
-                aria-expanded={isOpen}
-              >
-                <span>{item.q}</span>
-                <span className={`${styles.icon} ${isOpen ? styles.iconOpen : ""}`} aria-hidden="true">
+            <AnimateIn key={item.q} delay={i * 0.05} className={`${styles.item} ${isOpen ? styles.itemOpen : ""}`}>
+              <button className={styles.question} onClick={() => setOpen(isOpen ? -1 : i)} aria-expanded={isOpen}>
+                <span className={styles.index}>{String(i + 1).padStart(2, "0")}</span>
+                <span className={styles.questionText}>{item.q}</span>
+                <span className={styles.icon} aria-hidden="true">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <line x1="12" y1="4" x2="12" y2="20" className={styles.iconV} />
                     <line x1="4" y1="12" x2="20" y2="12" />
@@ -63,16 +67,6 @@ export default function HomeFAQ() {
           );
         })}
       </div>
-
-      <AnimateIn delay={0.2} className={styles.footer}>
-        <span>Still have a question?</span>
-        <Link href="/our-story" className={styles.link}>
-          Get in touch
-          <svg width="15" height="10" viewBox="0 0 15 10" fill="none">
-            <path d="M0 5H14M14 5L9.5 0.5M14 5L9.5 9.5" stroke="currentColor" strokeWidth="1.3" />
-          </svg>
-        </Link>
-      </AnimateIn>
     </section>
   );
 }

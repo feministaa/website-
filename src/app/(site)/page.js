@@ -31,7 +31,7 @@ export default function Home() {
     <main>
       <Hero />
       <AboutTeaser />
-      <SignatureCollection products={collection} />
+      <SignatureCollection products={products} />
       <HomeBanner />
       <FinishingTouch />
       <DiscoverySet product={discoverySet} />

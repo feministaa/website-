@@ -50,7 +50,6 @@ export default function FinishingTouch() {
     <section className={styles.section}>
       <div className={styles.pattern} aria-hidden="true" />
       <AnimateIn className={styles.panel}>
-        <span className="eyebrow">Beyond the Bottle</span>
         <h2 className={styles.title}>
           The Finishing
           <br />
@@ -60,6 +59,19 @@ export default function FinishingTouch() {
           Perfection lives in the details. Explore the rituals that turn a bottle of Feminista into something entirely
           yours.
         </p>
+
+        <div className={styles.arrows}>
+          <button className={styles.arrowBtn} onClick={() => scroll(-1)} aria-label="Scroll left">
+            <svg width="16" height="12" viewBox="0 0 15 10" fill="none">
+              <path d="M15 5H1M1 5L5.5 0.5M1 5L5.5 9.5" stroke="currentColor" strokeWidth="1.3" />
+            </svg>
+          </button>
+          <button className={styles.arrowBtn} onClick={() => scroll(1)} aria-label="Scroll right">
+            <svg width="16" height="12" viewBox="0 0 15 10" fill="none">
+              <path d="M0 5H14M14 5L9.5 0.5M14 5L9.5 9.5" stroke="currentColor" strokeWidth="1.3" />
+            </svg>
+          </button>
+        </div>
       </AnimateIn>
 
       <AnimateIn delay={0.1} className={styles.rowWrap}>
@@ -76,19 +88,6 @@ export default function FinishingTouch() {
               </Link>
             </div>
           ))}
-        </div>
-
-        <div className={styles.arrows}>
-          <button className={styles.arrowBtn} onClick={() => scroll(-1)} aria-label="Scroll left">
-            <svg width="16" height="12" viewBox="0 0 15 10" fill="none">
-              <path d="M15 5H1M1 5L5.5 0.5M1 5L5.5 9.5" stroke="currentColor" strokeWidth="1.3" />
-            </svg>
-          </button>
-          <button className={styles.arrowBtn} onClick={() => scroll(1)} aria-label="Scroll right">
-            <svg width="16" height="12" viewBox="0 0 15 10" fill="none">
-              <path d="M0 5H14M14 5L9.5 0.5M14 5L9.5 9.5" stroke="currentColor" strokeWidth="1.3" />
-            </svg>
-          </button>
         </div>
       </AnimateIn>
     </section>

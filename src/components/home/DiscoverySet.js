@@ -16,9 +16,6 @@ export default function DiscoverySet({ product }) {
         <Image src="/images/products/discovery-set.jpg" alt="The Discovery Set" fill className={styles.visualPhoto} />
       </AnimateIn>
       <AnimateIn delay={0.15} className={styles.copy}>
-        <span className={styles.watermark} aria-hidden="true">
-          III
-        </span>
         <span className={styles.kicker}>Discovery Set</span>
         <h2 className={styles.title}>Meet all three</h2>
         <p className={styles.desc}>
@@ -30,12 +27,7 @@ export default function DiscoverySet({ product }) {
           <div className={styles.priceRow}>
             <span className={styles.price}>{formatINR(product.price)}</span>
             {product.compareAtPrice && (
-              <>
-                <span className={styles.compareAt}>{formatINR(product.compareAtPrice)}</span>
-                <span className={styles.saveBadge}>
-                  Save {Math.round((1 - product.price / product.compareAtPrice) * 100)}%
-                </span>
-              </>
+              <span className={styles.compareAt}>{formatINR(product.compareAtPrice)}</span>
             )}
           </div>
           <div className={styles.actions}>
