@@ -99,7 +99,7 @@ export default function Testimonials() {
                 className={`${styles.card} ${offset === 0 ? styles.cardActive : ""}`}
                 style={{
                   backgroundImage: `linear-gradient(0deg, rgba(10,9,7,0.8) 0%, rgba(10,9,7,0.32) 26%, rgba(10,9,7,0) 45%), url(${t.image})`,
-                  transform: `translateX(calc(-50% + ${offset * 46}%)) rotateY(${offset * -18}deg) translateZ(${-abs * 220}px)`,
+                  transform: `translateX(calc(-50% + ${offset * 92}%)) rotateY(${offset * -18}deg) translateZ(${-abs * 220}px)`,
                   opacity,
                   zIndex: offset === 0 ? 3 : 3 - abs,
                   pointerEvents: offset === 0 ? "auto" : "none",
