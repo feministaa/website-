@@ -146,25 +146,16 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const chromeRef = useRef(null);
-  const rafId = useRef(null);
   const isHome = pathname === "/";
   const transparent = isHome && !scrolled;
 
   useEffect(() => {
-    function update() {
-      rafId.current = null;
+    function onScroll() {
       setScrolled(window.scrollY > 10);
     }
-    function onScroll() {
-      if (rafId.current) return;
-      rafId.current = requestAnimationFrame(update);
-    }
-    update();
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (rafId.current) cancelAnimationFrame(rafId.current);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
