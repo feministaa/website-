@@ -31,6 +31,18 @@ const TESTIMONIALS = [
   },
 ];
 
+// Render many back-to-back copies of the testimonials so the fan always has
+// a deep buffer of cards waiting off-screen on both sides. `pointer` only
+// ever increases (or decreases for the back arrow) through this long strip
+// — it never wraps back to a small range — so a card already on screen is
+// never suddenly reused at the opposite edge. Every so often we quietly
+// re-center the pointer by a whole number of cycles; that recentring only
+// ever touches cards deep off-screen (opacity 0), so nothing visible jumps.
+const N = TESTIMONIALS.length;
+const COPIES = 9;
+const LOOPED = Array.from({ length: N * COPIES }, (_, i) => TESTIMONIALS[i % N]);
+const START = N * Math.floor(COPIES / 2);
+
 function Stars() {
   return (
     <div className={styles.stars}>
@@ -44,25 +56,20 @@ function Stars() {
 }
 
 export default function Testimonials() {
-  const [active, setActive] = useState(0);
-  const n = TESTIMONIALS.length;
+  const [pointer, setPointer] = useState(START);
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setActive((a) => (a + 1) % n);
-    }, 2000);
+    const id = setInterval(() => step(1), 2000);
     return () => clearInterval(id);
-  }, [n]);
+  }, []);
 
-  function offsetOf(i) {
-    const raw = i - active;
-    if (raw > n / 2) return raw - n;
-    if (raw < -n / 2) return raw + n;
-    return raw;
-  }
-
-  function go(dir) {
-    setActive((a) => (a + dir + n) % n);
+  function step(dir) {
+    setPointer((p) => {
+      let next = p + dir;
+      if (next >= START + N * 3) next -= N * 3;
+      if (next < START - N * 3) next += N * 3;
+      return next;
+    });
   }
 
   return (
@@ -73,21 +80,22 @@ export default function Testimonials() {
       </AnimateIn>
 
       <div className={styles.carousel}>
-        <button className={`${styles.arrow} ${styles.arrowLeft}`} onClick={() => go(-1)} aria-label="Previous testimonial">
+        <button className={`${styles.arrow} ${styles.arrowLeft}`} onClick={() => step(-1)} aria-label="Previous testimonial">
           <svg width="16" height="12" viewBox="0 0 15 10" fill="none">
             <path d="M15 5H1M1 5L5.5 0.5M1 5L5.5 9.5" stroke="currentColor" strokeWidth="1.3" />
           </svg>
         </button>
 
         <div className={styles.stage}>
-          {TESTIMONIALS.map((t, i) => {
-            const offset = offsetOf(i);
+          {LOOPED.map((t, i) => {
+            const offset = i - pointer;
             const abs = Math.abs(offset);
             const visible = abs <= 2;
-            const opacity = visible ? 1 : 0;
+            if (!visible) return null;
+            const opacity = 1;
             return (
               <div
-                key={t.name}
+                key={i}
                 className={`${styles.card} ${offset === 0 ? styles.cardActive : ""}`}
                 style={{
                   backgroundImage: `linear-gradient(0deg, rgba(10,9,7,0.8) 0%, rgba(10,9,7,0.32) 26%, rgba(10,9,7,0) 45%), url(${t.image})`,
@@ -109,7 +117,7 @@ export default function Testimonials() {
           })}
         </div>
 
-        <button className={`${styles.arrow} ${styles.arrowRight}`} onClick={() => go(1)} aria-label="Next testimonial">
+        <button className={`${styles.arrow} ${styles.arrowRight}`} onClick={() => step(1)} aria-label="Next testimonial">
           <svg width="16" height="12" viewBox="0 0 15 10" fill="none">
             <path d="M0 5H14M14 5L9.5 0.5M14 5L9.5 9.5" stroke="currentColor" strokeWidth="1.3" />
           </svg>
@@ -120,8 +128,8 @@ export default function Testimonials() {
         {TESTIMONIALS.map((t, i) => (
           <button
             key={t.name}
-            className={`${styles.dot} ${i === active ? styles.dotActive : ""}`}
-            onClick={() => setActive(i)}
+            className={`${styles.dot} ${i === ((pointer % N) + N) % N ? styles.dotActive : ""}`}
+            onClick={() => setPointer(START + i)}
             aria-label={`Go to testimonial ${i + 1}`}
           />
         ))}
