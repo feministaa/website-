@@ -75,34 +75,42 @@
   position: relative;
   z-index: 1;
   margin-top: 40px;
-  padding: 28px 30px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  box-shadow: 0 24px 48px -28px rgba(13, 12, 10, 0.25);
+  width: 100%;
+  max-width: 460px;
+  padding: 34px 36px 32px;
+  background: linear-gradient(165deg, var(--surface) 0%, var(--bg-alt) 130%);
+  border-radius: 16px;
+  border-top: 3px solid var(--gold-deep);
+  box-shadow: 0 30px 60px -30px rgba(13, 12, 10, 0.3);
+}
+
+.saveBadge {
+  position: absolute;
+  top: -13px;
+  right: 28px;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: var(--gold-deep);
+  padding: 6px 14px;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px -8px rgba(185, 120, 18, 0.6);
 }
 
 .priceRow {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 14px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
 }
 
 .price {
   font-family: var(--font-serif);
-  font-size: 32px;
+  font-size: 34px;
   color: var(--gold-deep);
-}
-
-.saveBadge {
-  font-size: 10.5px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gold-deep);
-  background: var(--gold-pale);
-  padding: 5px 10px;
-  border-radius: 20px;
 }
 
 .compareAt {
@@ -113,8 +121,12 @@
 
 .actions {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
+}
+
+.actions > * {
+  flex: 1;
 }
 
 @media (max-width: 900px) {
