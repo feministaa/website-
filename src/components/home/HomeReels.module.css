@@ -36,7 +36,7 @@
 .card {
   position: relative;
   flex: 0 0 auto;
-  width: 430px;
+  width: 400px;
   aspect-ratio: 9/16;
   border-radius: 0;
   overflow: hidden;
