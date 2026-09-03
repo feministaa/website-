@@ -105,12 +105,8 @@ export default function Testimonials() {
                   pointerEvents: offset === 0 ? "auto" : "none",
                 }}
               >
-                <div className={styles.attribution}>
-                  <Stars />
-                  <p className={styles.quote}>{t.quote}</p>
-                  <div className={styles.nameRow}>
-                    <span className={styles.name}>{t.name}</span>
-                  </div>
+                <div className={styles.nameRow}>
+                  <span className={styles.name}>{t.name}</span>
                 </div>
               </div>
             );
@@ -123,6 +119,11 @@ export default function Testimonials() {
           </svg>
         </button>
       </div>
+
+      <AnimateIn key={((pointer % N) + N) % N} className={styles.caption}>
+        <Stars />
+        <p className={styles.quote}>{TESTIMONIALS[((pointer % N) + N) % N].quote}</p>
+      </AnimateIn>
 
       <div className={styles.dots}>
         {TESTIMONIALS.map((t, i) => (
