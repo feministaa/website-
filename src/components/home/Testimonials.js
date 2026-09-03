@@ -100,25 +100,26 @@ export default function Testimonials() {
             const offset = offsetOf(i);
             const abs = Math.abs(offset);
             const visible = abs <= 2;
-            const scale = offset === 0 ? 1 : abs === 1 ? 0.87 : 0.74;
+            const scale = offset === 0 ? 1 : abs === 1 ? 0.93 : 0.85;
             const opacity = visible ? 1 : 0;
             return (
               <div
                 key={t.name}
                 className={`${styles.card} ${offset === 0 ? styles.cardActive : ""}`}
                 style={{
-                  backgroundImage: `linear-gradient(0deg, rgba(10,9,7,0.86) 0%, rgba(10,9,7,0.35) 42%, rgba(10,9,7,0.08) 62%), url(${t.image})`,
-                  transform: `translateX(calc(-50% + ${offset * 60}%)) scale(${scale}) rotate(${offset * 2.5}deg)`,
+                  backgroundImage: `linear-gradient(0deg, rgba(10,9,7,0.8) 0%, rgba(10,9,7,0.32) 26%, rgba(10,9,7,0) 45%), url(${t.image})`,
+                  transform: `translateX(calc(-50% + ${offset * 74}%)) scale(${scale}) rotate(${offset * 4}deg)`,
                   opacity,
                   zIndex: offset === 0 ? 3 : 3 - abs,
                   pointerEvents: offset === 0 ? "auto" : "none",
                 }}
               >
-                <Stars />
-                <p className={styles.quote}>{t.quote}</p>
                 <div className={styles.attribution}>
-                  <div className={styles.name}>{t.name}</div>
-                  <div className={styles.meta}>{t.meta}</div>
+                  <Stars />
+                  <p className={styles.quote}>{t.quote}</p>
+                  <div className={styles.nameRow}>
+                    <span className={styles.name}>{t.name}</span>
+                  </div>
                 </div>
               </div>
             );
