@@ -31,8 +31,8 @@ export default function Home() {
       <Hero />
       <AboutTeaser />
       <SignatureCollection products={collection} />
-      <FinishingTouch />
       <HomeBanner />
+      <FinishingTouch />
       <DiscoverySet product={discoverySet} />
       <HomeReels />
       <HomeFAQ />
