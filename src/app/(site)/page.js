@@ -34,7 +34,7 @@ export default function Home() {
       <SignatureCollection products={collection} />
       <HomeBanner />
       <FinishingTouch />
-      <DiscoverySet product={discoverySet} collection={collection} />
+      <DiscoverySet product={discoverySet} />
       <HomeReels />
       <Testimonials />
       <HomeFAQ />
