@@ -29,22 +29,6 @@ const TESTIMONIALS = [
     initial: "K",
     image: "/images/testimonials/testimonial-3.jpg",
   },
-  {
-    quote:
-      "Fresca is what I reach for on days I need to feel like myself again. It's fresh without being thin, and it actually lasts. I've already recommended it to half my office.",
-    name: "Riya P.",
-    meta: "Verified Purchase · Fresca",
-    initial: "R",
-    image: "/images/testimonials/testimonial-1.jpg",
-  },
-  {
-    quote:
-      "I've bought perfume from every brand you can name and Locken is the first one that made a stranger stop me in an elevator. Worth every rupee, and the bottle looks incredible on my dresser.",
-    name: "Simran K.",
-    meta: "Verified Purchase · Locken",
-    initial: "S",
-    image: "/images/testimonials/testimonial-2.jpg",
-  },
 ];
 
 function Stars() {
