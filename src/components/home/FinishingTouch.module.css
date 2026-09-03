@@ -71,6 +71,7 @@
   z-index: 1;
   display: flex;
   gap: 12px;
+  margin-top: 28px;
 }
 
 .arrowBtn {

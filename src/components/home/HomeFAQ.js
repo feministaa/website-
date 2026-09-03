@@ -26,6 +26,14 @@ const FAQS = [
     q: "Can I return or exchange a fragrance?",
     a: "If something isn't right, reach out to us within 7 days of delivery and we'll help you sort out a return or exchange.",
   },
+  {
+    q: "How long does a fragrance last on skin?",
+    a: "Most compositions sit comfortably for 6-8 hours, with the base notes lingering longer on fabric. For the fullest experience, apply to pulse points right after a shower.",
+  },
+  {
+    q: "Do you offer gift wrapping?",
+    a: "Yes — every order can be wrapped for gifting at checkout, at no extra cost. A small note card is included so you can add your own message.",
+  },
 ];
 
 export default function HomeFAQ() {
