@@ -5,7 +5,6 @@ import AboutTeaser from "@/components/home/AboutTeaser";
 import DiscoverySet from "@/components/home/DiscoverySet";
 import FinishingTouch from "@/components/home/FinishingTouch";
 import HomeReels from "@/components/home/HomeReels";
-import Testimonials from "@/components/home/Testimonials";
 import HomeFAQ from "@/components/home/HomeFAQ";
 import products from "@/data/products.json";
 
@@ -24,18 +23,18 @@ export const metadata = {
 };
 
 export default function Home() {
+  const collection = products.filter((p) => p.family !== "set");
   const discoverySet = products.find((p) => p.family === "set");
 
   return (
     <main>
       <Hero />
       <AboutTeaser />
-      <SignatureCollection products={products} />
+      <SignatureCollection products={collection} />
       <FinishingTouch />
       <HomeBanner />
       <DiscoverySet product={discoverySet} />
       <HomeReels />
-      <Testimonials />
       <HomeFAQ />
     </main>
   );

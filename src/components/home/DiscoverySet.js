@@ -13,7 +13,9 @@ export default function DiscoverySet({ product }) {
   return (
     <section className={styles.section}>
       <AnimateIn className={styles.visual}>
-        <Image src="/images/products/discovery-set.jpg" alt="The Discovery Set" fill className={styles.visualPhoto} />
+        <div className={styles.photoBox}>
+          <Image src="/images/products/discovery-set.jpg" alt="The Discovery Set" fill className={styles.visualPhoto} />
+        </div>
       </AnimateIn>
       <AnimateIn delay={0.15} className={styles.copy}>
         <span className={styles.kicker}>Discovery Set</span>

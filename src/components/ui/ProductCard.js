@@ -59,7 +59,7 @@ export default function ProductCard({ product, index = 0, minimal = false }) {
         className={`${styles.imageWrap} ${minimal ? styles.imageWrapMinimal : ""}`}
         style={{ background: `linear-gradient(160deg, ${product.accentSoft}55, var(--bg-alt))` }}
       >
-        {!product.comingSoon && product.compareAtPrice ? (
+        {!minimal && !product.comingSoon && product.compareAtPrice ? (
           <span className={styles.badge}>Save {Math.round((1 - product.price / product.compareAtPrice) * 100)}%</span>
         ) : null}
         {!minimal && (
