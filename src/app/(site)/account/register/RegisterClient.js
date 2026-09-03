@@ -45,7 +45,7 @@ export default function RegisterClient() {
         <span className="eyebrow" style={{ display: "block", textAlign: "center", marginBottom: 10 }}>
           The Feminista Circle
         </span>
-        <h1 className={styles.authTitle}>Create your account.</h1>
+        <h1 className={styles.authTitle}>Create your account</h1>
         <p className={styles.authSub}>Track orders, save your details and enjoy a faster checkout.</p>
 
         <form onSubmit={handleSubmit}>

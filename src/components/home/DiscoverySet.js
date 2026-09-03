@@ -17,7 +17,7 @@ export default function DiscoverySet({ product, collection = [] }) {
         </AnimateIn>
         <AnimateIn delay={0.15} className={styles.copy}>
           <span className={styles.kicker}>Discovery Set</span>
-          <h2 className={styles.title}>Meet all three.</h2>
+          <h2 className={styles.title}>Meet all three</h2>
           <p className={styles.desc}>
             Three scents. One unforgettable you. The Discovery Set brings Locken, Vers and Fresca together in travel-ready
             10ml formats — the easiest way to find your signature.

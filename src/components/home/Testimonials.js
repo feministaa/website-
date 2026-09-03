@@ -85,7 +85,7 @@ export default function Testimonials() {
     <section className={styles.section}>
       <AnimateIn className={styles.header}>
         <span className="eyebrow">In Her Words</span>
-        <h2 className={styles.title}>Loved, and worn daily.</h2>
+        <h2 className={styles.title}>Loved, and worn daily</h2>
       </AnimateIn>
 
       <div className={styles.carousel}>

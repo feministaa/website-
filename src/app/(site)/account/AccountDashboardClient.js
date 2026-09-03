@@ -56,7 +56,7 @@ export default function AccountDashboardClient({ user, orders }) {
     <main className={styles.dashWrap}>
       <AnimateIn className={styles.dashHeader}>
         <div>
-          <h1 className={styles.dashTitle}>Hello, {user.name.split(" ")[0]}.</h1>
+          <h1 className={styles.dashTitle}>Hello, {user.name.split(" ")[0]}</h1>
           <p className={styles.dashSub}>Welcome to your Feminista account.</p>
         </div>
         <button className="btn btn-ghost" onClick={handleLogout}>

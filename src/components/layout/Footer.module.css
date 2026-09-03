@@ -82,8 +82,8 @@
 .orbitCenter {
   position: relative;
   z-index: 1;
-  width: 50px;
-  height: 50px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
   background: var(--bg-alt);
   border: 1px solid var(--line);
@@ -92,11 +92,88 @@
   justify-content: center;
 }
 
-.orbitDot {
+@keyframes orbitSpin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes orbitSpinReverse {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+@keyframes orbitCounterSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes orbitCounterSpinReverse {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.orbitGroupA,
+.orbitGroupB {
   position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.orbitGroupA {
+  width: 156px;
+  height: 156px;
+  animation: orbitSpin 20s linear infinite;
+}
+
+.orbitGroupB {
+  width: 264px;
+  height: 264px;
+  animation: orbitSpinReverse 30s linear infinite;
+}
+
+.orbitSat {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -50% 0 0 -50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbitSatInnerA,
+.orbitSatInnerB {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
-  background: var(--gold-deep);
-  box-shadow: 0 0 0 4px var(--surface);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 14px -6px rgba(13, 12, 10, 0.25);
+}
+
+.orbitSatInnerA {
+  animation: orbitCounterSpin 20s linear infinite;
+}
+
+.orbitSatInnerB {
+  animation: orbitCounterSpinReverse 30s linear infinite;
 }
 
 .lower {

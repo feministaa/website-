@@ -258,7 +258,7 @@ export default function PDPClient({ product, related }) {
             <span className="eyebrow" style={{ color: "var(--gold-light)" }}>
               The Art of 180
             </span>
-            <h2 className={styles.storyBannerTitle}>Nothing about her is rushed.</h2>
+            <h2 className={styles.storyBannerTitle}>Nothing about her is rushed</h2>
             <p className={styles.storyBannerText}>
               Every Feminista fragrance matures for nearly 180 days before it ever reaches you — time enough for its
               notes to settle into something worth wearing.
@@ -284,7 +284,7 @@ export default function PDPClient({ product, related }) {
       <div className={styles.banner}>
         <AnimateIn>
           <span className="eyebrow">Still deciding?</span>
-          <h2 className={styles.bannerTitle}>Discover your signature.</h2>
+          <h2 className={styles.bannerTitle}>Discover your signature</h2>
           <Link href="/fragrances" className="btn btn-gold" style={{ marginTop: 16 }}>
             Explore the Collection
           </Link>

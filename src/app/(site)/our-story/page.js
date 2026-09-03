@@ -53,7 +53,7 @@ export default function OurStoryPage() {
       <section className={styles.hero}>
         <AnimateIn>
           <span className="eyebrow">The House of Feminista</span>
-          <h1 className={styles.heroTitle}>Created for her. Never adapted to her.</h1>
+          <h1 className={styles.heroTitle}>Created for her. Never adapted to her</h1>
           <p className={styles.heroSub}>Our story is rooted in purpose, crafted for presence that lingers.</p>
           <Link href="/the-art-of-180" className="btn btn-primary">
             Explore the House

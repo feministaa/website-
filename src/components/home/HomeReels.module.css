@@ -36,9 +36,9 @@
 .card {
   position: relative;
   flex: 0 0 auto;
-  width: 360px;
+  width: 430px;
   aspect-ratio: 9/16;
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
   scroll-snap-align: start;
   background: var(--black);
@@ -93,6 +93,6 @@
 
 @media (max-width: 700px) {
   .card {
-    width: 270px;
+    width: 310px;
   }
 }

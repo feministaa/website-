@@ -24,32 +24,52 @@ const SOCIALS = [
 ];
 
 function OrbitGraphic() {
-  const dots = [
-    { r: 78, angle: -35, size: 9 },
-    { r: 78, angle: 150, size: 7 },
-    { r: 132, angle: 20, size: 8 },
-    { r: 132, angle: 195, size: 6 },
-    { r: 132, angle: 270, size: 9 },
+  const innerDots = [
+    { angle: -35, size: 30 },
+    { angle: 150, size: 26 },
+  ];
+  const outerDots = [
+    { angle: 20, size: 28 },
+    { angle: 195, size: 24 },
+    { angle: 270, size: 32 },
   ];
   return (
     <div className={styles.orbit}>
       <span className={styles.orbitRing} style={{ width: 156, height: 156 }} />
       <span className={styles.orbitRing} style={{ width: 264, height: 264 }} />
       <span className={styles.orbitCenter}>
-        <Image src="/feminista-logo-black.png" alt="" width={30} height={16} />
+        <Image src="/feminista-logo-black.png" alt="Feminista" width={54} height={29} />
       </span>
-      {dots.map((d, i) => {
-        const rad = (d.angle * Math.PI) / 180;
-        const x = Math.cos(rad) * d.r;
-        const y = Math.sin(rad) * d.r;
-        return (
-          <span
-            key={i}
-            className={styles.orbitDot}
-            style={{ width: d.size, height: d.size, transform: `translate(${x}px, ${y}px)` }}
-          />
-        );
-      })}
+
+      <span className={styles.orbitGroupA}>
+        {innerDots.map((d, i) => {
+          const rad = (d.angle * Math.PI) / 180;
+          const x = Math.cos(rad) * 78;
+          const y = Math.sin(rad) * 78;
+          return (
+            <span key={i} className={styles.orbitSat} style={{ transform: `translate(${x}px, ${y}px)` }}>
+              <span className={styles.orbitSatInnerA} style={{ width: d.size, height: d.size }}>
+                <Image src="/feminista-logo-black.png" alt="" width={d.size - 8} height={(d.size - 8) * 0.54} />
+              </span>
+            </span>
+          );
+        })}
+      </span>
+
+      <span className={styles.orbitGroupB}>
+        {outerDots.map((d, i) => {
+          const rad = (d.angle * Math.PI) / 180;
+          const x = Math.cos(rad) * 132;
+          const y = Math.sin(rad) * 132;
+          return (
+            <span key={i} className={styles.orbitSat} style={{ transform: `translate(${x}px, ${y}px)` }}>
+              <span className={styles.orbitSatInnerB} style={{ width: d.size, height: d.size }}>
+                <Image src="/feminista-logo-black.png" alt="" width={d.size - 8} height={(d.size - 8) * 0.54} />
+              </span>
+            </span>
+          );
+        })}
+      </span>
     </div>
   );
 }
@@ -60,7 +80,7 @@ export default function Footer() {
       <div className={styles.ctaCard}>
         <div className={styles.ctaCopy}>
           <span className={styles.eyebrow}>Join the Circle</span>
-          <h2 className={styles.ctaTitle}>Never miss a new scent.</h2>
+          <h2 className={styles.ctaTitle}>Never miss a new scent</h2>
           <p className={styles.ctaText}>
             Be the first to know about new compositions, private launches and stories from the house of Feminista.
           </p>

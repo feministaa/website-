@@ -64,8 +64,8 @@ export default function FinishingTouch() {
 
       <div className={styles.rowWrap}>
         <div className={styles.row} ref={rowRef}>
-          {CARDS.map((card, i) => (
-            <AnimateIn key={card.label} delay={i * 0.1} className={styles.card}>
+          {CARDS.map((card) => (
+            <AnimateIn key={card.label} className={styles.card}>
               <Link href={card.href} className={styles.cardLink}>
                 <Image src={card.image} alt={card.label} fill className={styles.cardImage} />
                 <div className={styles.scrim} />

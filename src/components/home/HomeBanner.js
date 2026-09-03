@@ -15,7 +15,7 @@ export default function HomeBanner() {
       <div className={styles.scrim} />
       <AnimateIn className={styles.copy}>
         <span className="eyebrow">180 Days in the Making</span>
-        <h2 className={styles.title}>Made to be remembered.</h2>
+        <h2 className={styles.title}>Made to be remembered</h2>
         <p className={styles.desc}>
           Every Feminista fragrance is matured for nearly 180 days before it ever reaches you — patience, poured into
           every bottle.

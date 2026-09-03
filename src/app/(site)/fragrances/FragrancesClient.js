@@ -102,7 +102,7 @@ export default function FragrancesClient({ products }) {
         <RotatingBanner images={BANNER_IMAGES} />
         <AnimateIn className={styles.bannerContent}>
           <span className="eyebrow">Still deciding?</span>
-          <h2 className={styles.bannerTitle}>Discover your signature.</h2>
+          <h2 className={styles.bannerTitle}>Discover your signature</h2>
           <p className={styles.bannerSub}>Answer a few questions and find the scent that feels unmistakably you.</p>
           <Link href="/the-art-of-180" className="btn btn-gold">
             Find My Scent

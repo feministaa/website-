@@ -41,7 +41,7 @@ export default function ArtOf180Page() {
       <section className={styles.hero}>
         <AnimateIn>
           <span className="eyebrow">The Art of 180</span>
-          <h1 className={styles.heroTitle}>Time is our rarest ingredient.</h1>
+          <h1 className={styles.heroTitle}>Time is our rarest ingredient</h1>
           <p className={styles.heroSub}>
             Every Feminista fragrance is given nearly 180 days to mature — so you experience its truest, most beautiful self.
           </p>
@@ -55,7 +55,7 @@ export default function ArtOf180Page() {
       <div className={styles.intro} id="process">
         <AnimateIn>
           <span className="eyebrow">Crafted Slowly. Remembered Long After.</span>
-          <h2 className={styles.introTitle}>The Art of 180 is our signature craftsmanship ritual.</h2>
+          <h2 className={styles.introTitle}>The Art of 180 is our signature craftsmanship ritual</h2>
           <p style={{ color: "var(--ink-soft)" }}>
             A patient, deliberate process where composition, time and precision work together. Nothing is rushed — every
             fragrance is allowed to evolve until its character feels complete.
@@ -77,7 +77,7 @@ export default function ArtOf180Page() {
       <section className={styles.daysSection}>
         <AnimateIn>
           <span className="eyebrow">180 Days</span>
-          <h2 className={styles.daysTitle}>Not rushed. Never compromised.</h2>
+          <h2 className={styles.daysTitle}>Not rushed. Never compromised</h2>
           <p className={styles.daysSub}>
             We believe patience transforms ingredients into emotion. Nearly 180 days of time and care create fragrances that
             linger with depth and grace.
@@ -114,7 +114,7 @@ export default function ArtOf180Page() {
           <span className="eyebrow" style={{ color: "var(--gold-light)" }}>
             Brand Philosophy
           </span>
-          <h2 className={styles.philosophyTitle}>The beauty of becoming.</h2>
+          <h2 className={styles.philosophyTitle}>The beauty of becoming</h2>
         </AnimateIn>
         <div className={styles.philosophyGrid}>
           {PHILOSOPHY.map((p, i) => (
@@ -129,7 +129,7 @@ export default function ArtOf180Page() {
       <section className={styles.closing}>
         <AnimateIn>
           <span className="eyebrow">Some things only time can perfect.</span>
-          <h2 className={styles.closingTitle}>Discover three expressions shaped by patience, precision and presence.</h2>
+          <h2 className={styles.closingTitle}>Discover three expressions shaped by patience, precision and presence</h2>
           <div className={styles.actList}>
             <div>
               <strong style={{ fontFamily: "var(--font-serif)", fontSize: 18 }}>Locken</strong>

@@ -41,7 +41,7 @@ export default function LoginClient() {
         <span className="eyebrow" style={{ display: "block", textAlign: "center", marginBottom: 10 }}>
           The Feminista Circle
         </span>
-        <h1 className={styles.authTitle}>Welcome back.</h1>
+        <h1 className={styles.authTitle}>Welcome back</h1>
         <p className={styles.authSub}>Sign in to view your orders and manage your details.</p>
 
         <form onSubmit={handleSubmit}>

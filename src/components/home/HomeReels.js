@@ -48,7 +48,7 @@ export default function HomeReels() {
     <section className={`section ${styles.section}`}>
       <div className={styles.header}>
         <span className="eyebrow">In Motion</span>
-        <h2 className={styles.title}>The Ritual, Filmed.</h2>
+        <h2 className={styles.title}>The Ritual, Filmed</h2>
       </div>
       <div className={styles.row}>
         <div className={styles.spacer} aria-hidden="true" />
