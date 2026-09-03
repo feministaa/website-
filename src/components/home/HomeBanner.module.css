@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  margin-top: 48px;
 }
 
 .image {
