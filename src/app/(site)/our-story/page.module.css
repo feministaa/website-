@@ -56,27 +56,32 @@
 
 .maison {
   position: relative;
-  max-width: 720px;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 80px;
+  max-width: var(--container);
   margin: 0 auto;
-  padding: 120px 24px;
+  padding: 140px 24px;
   overflow: hidden;
 }
 
 .watermark {
   position: absolute;
-  top: -6%;
+  top: -18%;
   right: -2%;
   font-family: var(--font-serif);
-  font-size: clamp(160px, 22vw, 320px);
+  font-size: clamp(200px, 26vw, 380px);
   line-height: 1;
   color: var(--gold-deep);
-  opacity: 0.06;
+  opacity: 0.05;
   pointer-events: none;
   user-select: none;
 }
 
-.maisonInner {
-  position: relative;
+.maisonLabel {
+  position: sticky;
+  top: 140px;
+  align-self: start;
 }
 
 .kickerDark {
@@ -100,110 +105,133 @@
 }
 
 .maisonTitle {
-  font-size: clamp(28px, 3.6vw, 40px);
-  margin: 16px 0 24px;
+  font-size: clamp(32px, 3.4vw, 44px);
+  margin: 16px 0 20px;
+  line-height: 1.08;
 }
 
 .maisonLead {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 21px;
-  margin-bottom: 26px;
-  color: var(--ink);
+  font-size: 19px;
+  color: var(--ink-soft);
+  line-height: 1.5;
 }
 
-.maison p {
+.maisonBody {
+  position: relative;
+  padding-top: 6px;
+}
+
+.maisonBody p {
   color: var(--ink-soft);
-  line-height: 1.85;
-  margin-bottom: 20px;
-  font-size: 15.5px;
+  line-height: 1.9;
+  margin-bottom: 26px;
+  font-size: 16px;
+  max-width: 560px;
+}
+
+.maisonBody p:first-child {
+  font-size: 18px;
+  color: var(--ink);
 }
 
 .quoteBand {
   position: relative;
-  background: var(--bg-alt);
-  padding: 90px 24px 100px;
+  background: var(--black);
+  padding: 130px 24px;
   text-align: center;
+  overflow: hidden;
 }
 
 .quoteMark {
   display: block;
   font-family: var(--font-serif);
-  font-size: 90px;
+  font-size: 100px;
   line-height: 1;
-  color: var(--gold-deep);
-  opacity: 0.5;
-  margin-bottom: -10px;
+  color: var(--gold);
+  opacity: 0.7;
+  margin-bottom: -16px;
 }
 
 .closingLine {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(22px, 2.6vw, 30px);
-  max-width: 680px;
+  font-size: clamp(24px, 3vw, 36px);
+  max-width: 720px;
   margin: 0 auto;
-  color: var(--ink);
-  line-height: 1.5;
+  color: var(--cream);
+  line-height: 1.45;
 }
 
 .pillars {
   background: var(--bg);
-  padding: 110px 24px;
+  padding: 120px 24px;
 }
 
-.pillarsGrid {
-  max-width: var(--container);
+.pillarsList {
+  max-width: 920px;
   margin: 0 auto;
+}
+
+.pillarRow {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 44px;
+  grid-template-columns: 70px 62px 1fr;
+  align-items: center;
+  gap: 32px;
+  padding: 40px 0;
+  border-top: 1px solid var(--line);
+  transition: padding-left 0.35s var(--ease);
 }
 
-.pillar {
-  position: relative;
-  text-align: center;
-  padding: 44px 28px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+.pillarRow:last-child {
+  border-bottom: 1px solid var(--line);
 }
 
-.pillar:hover {
-  border-color: var(--gold-pale);
-  transform: translateY(-6px);
-  box-shadow: 0 30px 50px -30px rgba(13, 12, 10, 0.25);
+.pillarRow:hover {
+  padding-left: 14px;
 }
 
 .pillarIndex {
-  position: absolute;
-  top: 20px;
-  left: 24px;
   font-family: var(--font-serif);
-  font-size: 13px;
+  font-size: 15px;
   color: var(--gold-pale);
+  transition: color 0.35s var(--ease);
+}
+
+.pillarRow:hover .pillarIndex {
+  color: var(--gold-deep);
 }
 
 .pillarIcon {
-  width: 62px;
-  height: 62px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 22px;
   background: var(--gold-pale);
   color: var(--gold-deep);
+  flex-shrink: 0;
+}
+
+.pillarText {
+  display: flex;
+  align-items: baseline;
+  gap: 28px;
+  flex-wrap: wrap;
 }
 
 .pillarTitle {
-  font-size: 19px;
-  margin-bottom: 10px;
+  font-size: 24px;
+  flex: 0 0 200px;
 }
 
 .pillarBody {
-  font-size: 13.5px;
-  line-height: 1.7;
+  font-size: 14.5px;
+  line-height: 1.75;
   color: var(--ink-soft);
+  max-width: 440px;
 }
 
 .header {
@@ -235,8 +263,15 @@
 .serviceCard {
   background: var(--surface);
   border-radius: 14px;
-  padding: 34px 30px;
+  border-top: 3px solid var(--gold-deep);
+  padding: 38px 30px 34px;
   box-shadow: 0 24px 48px -30px rgba(13, 12, 10, 0.2);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+
+.serviceCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 34px 60px -28px rgba(13, 12, 10, 0.3);
 }
 
 .serviceIcon {
@@ -276,12 +311,35 @@
     max-width: none;
   }
   .maison {
+    grid-template-columns: 1fr;
+    gap: 32px;
     padding: 80px 24px;
+  }
+  .maisonLabel {
+    position: static;
   }
   .watermark {
     display: none;
   }
-  .pillarsGrid,
+  .pillarRow {
+    grid-template-columns: 44px 1fr;
+    gap: 18px;
+    padding: 28px 0;
+  }
+  .pillarIndex {
+    grid-row: 1;
+  }
+  .pillarIcon {
+    grid-row: 2;
+    width: 44px;
+    height: 44px;
+  }
+  .pillarText {
+    grid-column: 2;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
   .serviceGrid {
     grid-template-columns: 1fr;
   }

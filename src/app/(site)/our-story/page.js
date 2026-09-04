@@ -95,10 +95,12 @@ export default function OurStoryPage() {
         <span className={styles.watermark} aria-hidden="true">
           F
         </span>
-        <AnimateIn className={styles.maisonInner}>
+        <AnimateIn className={styles.maisonLabel}>
           <span className={styles.kickerDark}>Modern Femininity, Composed</span>
           <h2 className={styles.maisonTitle}>About Feminista</h2>
           <p className={styles.maisonLead}>Created for her. Never adapted to her.</p>
+        </AnimateIn>
+        <AnimateIn delay={0.1} className={styles.maisonBody}>
           <p>
             Feminista was born from a belief that femininity has no single definition. It can be soft and commanding,
             graceful and fearless, intimate and entirely individual.
@@ -134,13 +136,15 @@ export default function OurStoryPage() {
           <span className="eyebrow">Our Philosophy</span>
           <h2 className={styles.headerTitle}>What Feminista Stands For</h2>
         </AnimateIn>
-        <div className={styles.pillarsGrid}>
+        <div className={styles.pillarsList}>
           {PILLARS.map((p, i) => (
-            <AnimateIn key={p.title} delay={i * 0.1} className={styles.pillar}>
+            <AnimateIn key={p.title} delay={i * 0.08} className={styles.pillarRow}>
               <span className={styles.pillarIndex}>{String(i + 1).padStart(2, "0")}</span>
               <div className={styles.pillarIcon}>{p.icon}</div>
-              <h3 className={styles.pillarTitle}>{p.title}</h3>
-              <p className={styles.pillarBody}>{p.body}</p>
+              <div className={styles.pillarText}>
+                <h3 className={styles.pillarTitle}>{p.title}</h3>
+                <p className={styles.pillarBody}>{p.body}</p>
+              </div>
             </AnimateIn>
           ))}
         </div>
