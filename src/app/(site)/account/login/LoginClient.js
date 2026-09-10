@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import styles from "../account.module.css";
 import AnimateIn from "@/components/ui/AnimateIn";
+import GoogleSignInButton from "@/components/ui/GoogleSignInButton";
 
 export default function LoginClient() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -43,6 +44,9 @@ export default function LoginClient() {
         </span>
         <h1 className={styles.authTitle}>Welcome back</h1>
         <p className={styles.authSub}>Sign in to view your orders and manage your details.</p>
+
+        <GoogleSignInButton label="Sign in with Google" />
+        <div className={styles.divider}>Or sign in with email</div>
 
         <form onSubmit={handleSubmit}>
           <div className={styles.field}>

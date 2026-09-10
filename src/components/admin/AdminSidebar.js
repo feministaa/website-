@@ -7,6 +7,7 @@ import styles from "./AdminSidebar.module.css";
 const LINKS = [
   { href: "/admin", label: "Insights", exact: true },
   { href: "/admin/products", label: "Products" },
+  { href: "/admin/orders", label: "Orders" },
   { href: "/admin/users", label: "Customers" },
 ];
 

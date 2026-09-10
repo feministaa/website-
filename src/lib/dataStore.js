@@ -149,7 +149,18 @@ export async function getOrdersForCustomer(customerId) {
   return data.map(orderFromRow);
 }
 
-export async function createOrder({ customerId, customerName, email, phone, address, items, total }) {
+export async function createOrder({
+  customerId,
+  customerName,
+  email,
+  phone,
+  address,
+  items,
+  total,
+  razorpayOrderId,
+  razorpayPaymentId,
+  paymentStatus,
+}) {
   const orders = await getOrders();
   const nextNumber = orders.length
     ? Math.max(...orders.map((o) => parseInt(o.id.split("-")[1], 10) || 0)) + 1
@@ -165,6 +176,9 @@ export async function createOrder({ customerId, customerName, email, phone, addr
     address: address || "",
     total,
     status: "pending",
+    razorpay_order_id: razorpayOrderId || null,
+    razorpay_payment_id: razorpayPaymentId || null,
+    payment_status: paymentStatus || "unpaid",
   });
   if (orderError) throw orderError;
 
@@ -175,5 +189,14 @@ export async function createOrder({ customerId, customerName, email, phone, addr
 
   const { data, error } = await supabaseAdmin().from("orders").select("*, order_items(*)").eq("id", id).single();
   if (error) throw error;
+  return orderFromRow(data);
+}
+
+export async function updateOrder(id, patch) {
+  const { error } = await supabaseAdmin().from("orders").update(patch).eq("id", id);
+  if (error) throw error;
+
+  const { data, error: fetchError } = await supabaseAdmin().from("orders").select("*, order_items(*)").eq("id", id).single();
+  if (fetchError) throw fetchError;
   return orderFromRow(data);
 }

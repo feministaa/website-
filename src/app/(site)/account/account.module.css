@@ -48,6 +48,25 @@
   margin-bottom: 16px;
 }
 
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 24px 0;
+  color: var(--ink-faint);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
 .switchLine {
   text-align: center;
   margin-top: 24px;

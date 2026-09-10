@@ -26,31 +26,85 @@ export default function CheckoutClient() {
     setForm((f) => ({ ...f, [field]: value }));
   }
 
+  function loadRazorpayScript() {
+    return new Promise((resolve, reject) => {
+      if (window.Razorpay) return resolve();
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = resolve;
+      script.onerror = () => reject(new Error("Could not load payment gateway. Check your connection."));
+      document.body.appendChild(script);
+    });
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
     setSubmitting(true);
+
+    const orderPayload = {
+      customerName: form.name,
+      email: form.email,
+      phone: form.phone,
+      address: `${form.address}, ${form.city} ${form.pincode}`,
+      city: form.city,
+      items: items.map((i) => ({ productId: i.productId, name: i.name, size: i.size, qty: i.qty, price: i.price })),
+      total: subtotal,
+    };
+
     try {
-      const res = await fetch("/api/orders", {
+      await loadRazorpayScript();
+
+      const createRes = await fetch("/api/payment/create-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          customerName: form.name,
-          email: form.email,
-          phone: form.phone,
-          address: `${form.address}, ${form.city} ${form.pincode}`,
-          city: form.city,
-          items: items.map((i) => ({ productId: i.productId, name: i.name, size: i.size, qty: i.qty, price: i.price })),
-          total: subtotal,
-        }),
+        body: JSON.stringify({ amount: subtotal }),
       });
-      if (!res.ok) throw new Error("Could not place order. Please try again.");
-      const order = await res.json();
-      setConfirmedOrder(order);
-      clearCart();
+      if (!createRes.ok) throw new Error("Could not start payment. Please try again.");
+      const { orderId, amount, currency, keyId } = await createRes.json();
+
+      const razorpay = new window.Razorpay({
+        key: keyId,
+        order_id: orderId,
+        amount,
+        currency,
+        name: "Feminista",
+        description: "Order payment",
+        prefill: { name: form.name, email: form.email, contact: form.phone },
+        theme: { color: "#eb9d1b" },
+        handler: async (response) => {
+          try {
+            const verifyRes = await fetch("/api/payment/verify", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                order: orderPayload,
+              }),
+            });
+            if (!verifyRes.ok) throw new Error("Payment could not be verified. Please contact support.");
+            const confirmed = await verifyRes.json();
+            setConfirmedOrder(confirmed);
+            clearCart();
+          } catch (err) {
+            setError(err.message);
+          } finally {
+            setSubmitting(false);
+          }
+        },
+        modal: {
+          ondismiss: () => setSubmitting(false),
+        },
+      });
+      razorpay.on("payment.failed", () => {
+        setError("Payment failed. Please try again.");
+        setSubmitting(false);
+      });
+      razorpay.open();
     } catch (err) {
       setError(err.message);
-    } finally {
       setSubmitting(false);
     }
   }
@@ -67,8 +121,8 @@ export default function CheckoutClient() {
             Your order <strong>{confirmedOrder.id}</strong> has been received.
           </p>
           <p style={{ color: "var(--ink-soft)", marginBottom: 30 }}>
-            A confirmation will be sent to {confirmedOrder.email || "your inbox"}. Online payment via Razorpay is arriving
-            soon — for now, our team will reach out to confirm payment and delivery.
+            A confirmation will be sent to {confirmedOrder.email || "your inbox"}. Your payment has been received and
+            we&apos;ll begin preparing your order shortly.
           </p>
           <Link href="/fragrances" className="btn btn-primary">
             Continue Exploring
@@ -95,7 +149,7 @@ export default function CheckoutClient() {
     <main className={styles.wrap}>
       <AnimateIn>
         <h1 className={styles.title}>Quick Checkout</h1>
-        <p className={styles.subtitle}>Complimentary shipping across India. Razorpay online payment is coming soon.</p>
+        <p className={styles.subtitle}>Complimentary shipping across India. Secure payment via Razorpay.</p>
       </AnimateIn>
 
       <div className={styles.layout}>
@@ -142,15 +196,13 @@ export default function CheckoutClient() {
           {error && <p style={{ color: "var(--danger)", fontSize: 13, marginBottom: 14 }}>{error}</p>}
 
           <button type="submit" className="btn btn-primary btn-block" disabled={submitting} style={{ marginTop: 10 }}>
-            {submitting ? "Placing Order…" : `Place Order — ${formatINR(subtotal)}`}
+            {submitting ? "Processing…" : `Pay ${formatINR(subtotal)}`}
           </button>
         </AnimateIn>
 
         <AnimateIn delay={0.15} className={styles.summary}>
           <h2 style={{ fontSize: 18, marginBottom: 6 }}>Order Summary</h2>
-          <div className={styles.noteBox}>
-            Payment via Razorpay will be enabled soon. For now, orders are confirmed manually by our team.
-          </div>
+          <div className={styles.noteBox}>All major cards, UPI, netbanking and wallets accepted via Razorpay.</div>
           {items.map((item) => (
             <div key={`${item.productId}-${item.size}`} className={styles.line}>
               <div className={styles.lineImg} style={{ background: `linear-gradient(160deg, ${item.accentSoft}55, var(--bg-alt))` }}>

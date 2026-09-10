@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import styles from "../account.module.css";
 import AnimateIn from "@/components/ui/AnimateIn";
+import GoogleSignInButton from "@/components/ui/GoogleSignInButton";
 
 export default function RegisterClient() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", city: "", password: "" });
@@ -71,6 +72,9 @@ export default function RegisterClient() {
         </span>
         <h1 className={styles.authTitle}>Create your account</h1>
         <p className={styles.authSub}>Track orders, save your details and enjoy a faster checkout.</p>
+
+        <GoogleSignInButton label="Sign up with Google" />
+        <div className={styles.divider}>Or sign up with email</div>
 
         <form onSubmit={handleSubmit}>
           <div className={styles.field}>

@@ -102,5 +102,8 @@ export function orderFromRow(row) {
     total: row.total,
     status: row.status,
     date: row.created_at,
+    paymentStatus: row.payment_status ?? "unpaid",
+    razorpayOrderId: row.razorpay_order_id ?? null,
+    razorpayPaymentId: row.razorpay_payment_id ?? null,
   };
 }
