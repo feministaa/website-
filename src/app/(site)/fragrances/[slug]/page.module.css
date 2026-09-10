@@ -321,23 +321,6 @@
   gap: 32px;
 }
 
-.banner {
-  background: linear-gradient(150deg, rgba(13, 12, 10, 0.72), rgba(13, 12, 10, 0.55)), url("/images/banner-gold-liquid.jpg") center 30% / cover no-repeat;
-  text-align: center;
-  padding: 90px 24px;
-  color: var(--cream);
-}
-
-.banner :global(.eyebrow) {
-  color: var(--gold-light);
-}
-
-.bannerTitle {
-  font-size: clamp(26px, 3.4vw, 38px);
-  margin: 10px 0 12px;
-  color: var(--cream);
-}
-
 @media (max-width: 900px) {
   .top {
     grid-template-columns: 1fr;

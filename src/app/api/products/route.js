@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getProducts, saveProducts } from "@/lib/dataStore";
+import { getProducts, createProduct } from "@/lib/dataStore";
 import { isAdminAuthed } from "@/lib/auth";
 
 export const runtime = "nodejs";
@@ -33,7 +33,7 @@ export async function POST(request) {
     return NextResponse.json({ error: "A product with this slug already exists." }, { status: 409 });
   }
 
-  const newProduct = {
+  const newProduct = await createProduct({
     id: slug,
     slug,
     sku: body.sku || `FEM-${slug.toUpperCase()}`,
@@ -61,11 +61,7 @@ export async function POST(request) {
     images: body.images?.length ? body.images : [],
     moodLabel: body.moodLabel || "",
     moodDescription: body.moodDescription || "",
-    createdAt: new Date().toISOString(),
-  };
-
-  products.push(newProduct);
-  await saveProducts(products);
+  });
 
   return NextResponse.json(newProduct, { status: 201 });
 }

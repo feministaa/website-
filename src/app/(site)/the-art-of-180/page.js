@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./page.module.css";
 import AnimateIn from "@/components/ui/AnimateIn";
 import HeroVisual from "./HeroVisual";
@@ -16,17 +17,31 @@ export const metadata = {
 };
 
 const STEPS = [
-  { num: "01", title: "Selection", sub: "Ingredient Sourcing", body: "We source the finest natural materials from around the world, chosen for their purity, origin and aromatic potential." },
-  { num: "02", title: "Composition", sub: "Blending", body: "Our perfumers compose each fragrance with care, balancing top, heart and base notes in perfect harmony." },
-  { num: "03", title: "Maturation", sub: "180-Day Resting Period", body: "The blend is left to rest for nearly 180 days, allowing each ingredient to yield, soften and deepen naturally." },
-  { num: "04", title: "Evaluation", sub: "Refinement", body: "We evaluate the fragrance at every stage, refining and adjusting until it reaches its perfect balance." },
-  { num: "05", title: "Bottling", sub: "Final Finishing", body: "Only when complete, the fragrance is filtered, bottled and finished by hand with the utmost care." },
-];
-
-const FEATURES = [
-  { title: "Composed with Intention", body: "Thoughtfully blended to create a harmonious and evocative signature." },
-  { title: "Matured without Haste", body: "Time allows the fragrance to soften, integrate and reveal its truest character." },
-  { title: "Finished only when Complete", body: "We finish by hand, releasing each fragrance only when it is perfect." },
+  {
+    title: "Selection",
+    sub: "Ingredient Sourcing",
+    body: "Rare, pure materials — sourced for character, not convenience.",
+  },
+  {
+    title: "Composition",
+    sub: "Blending",
+    body: "Top, heart and base notes, balanced into harmony.",
+  },
+  {
+    title: "Maturation",
+    sub: "180-Day Resting Period",
+    body: "Nearly 180 days of rest — softened, deepened, complete.",
+  },
+  {
+    title: "Evaluation",
+    sub: "Refinement",
+    body: "Refined and adjusted until the balance feels right.",
+  },
+  {
+    title: "Bottling",
+    sub: "Final Finishing",
+    body: "Filtered, bottled and finished entirely by hand.",
+  },
 ];
 
 const PHILOSOPHY = [
@@ -39,109 +54,93 @@ export default function ArtOf180Page() {
   return (
     <main>
       <section className={styles.hero}>
-        <AnimateIn>
-          <span className="eyebrow">The Art of 180</span>
+        <HeroVisual />
+        <div className={styles.heroScrim} />
+        <AnimateIn className={styles.heroCopy}>
+          <span className={styles.heroKicker}>The Art of 180</span>
           <h1 className={styles.heroTitle}>Time is our rarest ingredient</h1>
           <p className={styles.heroSub}>
-            Every Feminista fragrance is given nearly 180 days to mature — so you experience its truest, most beautiful self.
+            Every Feminista fragrance is given nearly 180 days to mature — so you experience its truest self.
           </p>
-          <Link href="#process" className="btn btn-primary">
+          <Link href="#process" className="btn btn-light">
             Explore the Process
           </Link>
         </AnimateIn>
-        <HeroVisual />
       </section>
 
       <div className={styles.intro} id="process">
-        <AnimateIn>
-          <span className="eyebrow">Crafted Slowly. Remembered Long After.</span>
+        <span className={styles.introWatermark} aria-hidden="true">
+          180
+        </span>
+        <AnimateIn className={styles.introInner}>
+          <span className={styles.introKicker}>Crafted Slowly. Remembered Long After.</span>
           <h2 className={styles.introTitle}>The Art of 180 is our signature craftsmanship ritual</h2>
-          <p style={{ color: "var(--ink-soft)" }}>
-            A patient, deliberate process where composition, time and precision work together. Nothing is rushed — every
-            fragrance is allowed to evolve until its character feels complete.
-          </p>
+          <p className={styles.introBody}>Composition, time and precision, working in patient harmony.</p>
         </AnimateIn>
       </div>
 
-      <div className={styles.timeline}>
+      <div className={styles.processTrack}>
         {STEPS.map((step, i) => (
-          <AnimateIn key={step.num} delay={i * 0.1} className={styles.step}>
-            <div className={styles.stepNum}>{step.num}</div>
-            <h3 className={styles.stepTitle}>{step.title}</h3>
-            <div className={styles.stepSub}>{step.sub}</div>
-            <p className={styles.stepBody}>{step.body}</p>
+          <AnimateIn key={step.title} delay={i * 0.08} className={styles.processRow}>
+            <span className={styles.processIndex}>{String(i + 1).padStart(2, "0")}</span>
+            <h3 className={styles.processTitle}>{step.title}</h3>
+            <span className={styles.processSub}>{step.sub}</span>
+            <p className={styles.processBody}>{step.body}</p>
           </AnimateIn>
         ))}
       </div>
 
-      <section className={styles.daysSection}>
-        <AnimateIn>
-          <span className="eyebrow">180 Days</span>
-          <h2 className={styles.daysTitle}>Not rushed. Never compromised</h2>
-          <p className={styles.daysSub}>
-            We believe patience transforms ingredients into emotion. Nearly 180 days of time and care create fragrances that
-            linger with depth and grace.
-          </p>
-          <div className={styles.slider}>
-            <div className={styles.sliderFill} style={{ width: "100%" }} />
-          </div>
-          <div className={styles.sliderMarks}>
-            <span>0</span>
-            <span>30</span>
-            <span>150</span>
-            <span>180</span>
-          </div>
-        </AnimateIn>
-      </section>
-
-      <div className={styles.features}>
-        {FEATURES.map((f, i) => (
-          <AnimateIn key={f.title} delay={i * 0.1} className={styles.featureCard}>
-            <div className={styles.featureIcon}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#eb9d1b" strokeWidth="1.4">
-                <circle cx="12" cy="12" r="9" />
-                <path d="M12 7v5l3.5 2" />
-              </svg>
-            </div>
-            <h3 className={styles.featureTitle}>{f.title}</h3>
-            <p className={styles.featureBody}>{f.body}</p>
-          </AnimateIn>
-        ))}
-      </div>
+      <AnimateIn className={styles.plate}>
+        <Image
+          src="/images/products/locken-ingredients.jpg"
+          alt="The rare botanicals matured into every Feminista fragrance"
+          fill
+          className={styles.plateImg}
+          sizes="100vw"
+        />
+      </AnimateIn>
 
       <section className={styles.philosophy}>
-        <AnimateIn style={{ textAlign: "center" }}>
+        <AnimateIn className={styles.header}>
           <span className="eyebrow" style={{ color: "var(--gold-light)" }}>
             Brand Philosophy
           </span>
           <h2 className={styles.philosophyTitle}>The beauty of becoming</h2>
         </AnimateIn>
-        <div className={styles.philosophyGrid}>
+        <div className={styles.philosophyList}>
           {PHILOSOPHY.map((p, i) => (
-            <AnimateIn key={p.title} delay={i * 0.1} className={styles.philosophyItem}>
-              <h3>{p.title}</h3>
-              <p>{p.body}</p>
+            <AnimateIn key={p.title} delay={i * 0.1} className={styles.philosophyRow}>
+              <h3 className={styles.philosophyRowTitle}>{p.title}</h3>
+              <p className={styles.philosophyRowBody}>{p.body}</p>
             </AnimateIn>
           ))}
         </div>
       </section>
 
-      <section className={styles.closing}>
+      <section className={styles.quoteBand}>
         <AnimateIn>
-          <span className="eyebrow">Some things only time can perfect.</span>
-          <h2 className={styles.closingTitle}>Discover three expressions shaped by patience, precision and presence</h2>
+          <span className={styles.quoteMark} aria-hidden="true">
+            &ldquo;
+          </span>
+          <p className={styles.quoteLine}>Some things only time can perfect.</p>
+        </AnimateIn>
+      </section>
+
+      <section className={styles.closing}>
+        <AnimateIn className={styles.header}>
+          <h2 className={styles.closingTitle}>Three expressions, shaped by patience</h2>
           <div className={styles.actList}>
             <div>
-              <strong style={{ fontFamily: "var(--font-serif)", fontSize: 18 }}>Locken</strong>
-              <p style={{ fontSize: 12.5, color: "var(--ink-faint)" }}>The Magnetic</p>
+              <strong className={styles.actName}>Locken</strong>
+              <p className={styles.actExpr}>The Magnetic</p>
             </div>
             <div>
-              <strong style={{ fontFamily: "var(--font-serif)", fontSize: 18 }}>Vers</strong>
-              <p style={{ fontSize: 12.5, color: "var(--ink-faint)" }}>The Intimate</p>
+              <strong className={styles.actName}>Vers</strong>
+              <p className={styles.actExpr}>The Intimate</p>
             </div>
             <div>
-              <strong style={{ fontFamily: "var(--font-serif)", fontSize: 18 }}>Fresca</strong>
-              <p style={{ fontSize: 12.5, color: "var(--ink-faint)" }}>The Luminous</p>
+              <strong className={styles.actName}>Fresca</strong>
+              <p className={styles.actExpr}>The Luminous</p>
             </div>
           </div>
           <Link href="/fragrances" className="btn btn-primary">

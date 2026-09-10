@@ -6,7 +6,7 @@ import DiscoverySet from "@/components/home/DiscoverySet";
 import FinishingTouch from "@/components/home/FinishingTouch";
 import HomeReels from "@/components/home/HomeReels";
 import HomeFAQ from "@/components/home/HomeFAQ";
-import products from "@/data/products.json";
+import { getProducts } from "@/lib/dataStore";
 
 export const metadata = {
   title: "Feminista — Modern Femininity, Composed",
@@ -22,15 +22,16 @@ export const metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  const products = await getProducts();
   const collection = products.filter((p) => p.family !== "set");
   const discoverySet = products.find((p) => p.family === "set");
 
   return (
     <main>
       <Hero />
-      <AboutTeaser />
       <SignatureCollection products={collection} />
+      <AboutTeaser />
       <HomeBanner />
       <FinishingTouch />
       <DiscoverySet product={discoverySet} />

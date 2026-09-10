@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-import { writeFile, mkdir } from "fs/promises";
-import path from "path";
 import { isAdminAuthed } from "@/lib/auth";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 
 export const runtime = "nodejs";
 
@@ -13,6 +12,7 @@ const ALLOWED_TYPES = {
 };
 
 const MAX_BYTES = 8 * 1024 * 1024;
+const BUCKET = "product-images";
 
 function slugify(str) {
   return str
@@ -43,11 +43,18 @@ export async function POST(request) {
 
   const baseName = slugify(file.name.replace(/\.[^.]+$/, "")) || "image";
   const fileName = `${baseName}-${Date.now()}.${ext}`;
-  const dir = path.join(process.cwd(), "public", "images", "products");
-  await mkdir(dir, { recursive: true });
-
   const bytes = Buffer.from(await file.arrayBuffer());
-  await writeFile(path.join(dir, fileName), bytes);
 
-  return NextResponse.json({ path: `/images/products/${fileName}` }, { status: 201 });
+  const { error } = await supabaseAdmin()
+    .storage.from(BUCKET)
+    .upload(fileName, bytes, { contentType: file.type, upsert: false });
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  const {
+    data: { publicUrl },
+  } = supabaseAdmin().storage.from(BUCKET).getPublicUrl(fileName);
+
+  return NextResponse.json({ path: publicUrl }, { status: 201 });
 }

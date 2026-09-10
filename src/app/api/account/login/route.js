@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { getUsers } from "@/lib/dataStore";
-import { verifyPassword, setCustomerSession } from "@/lib/customerAuth";
+import { signInCustomer, getCurrentCustomer } from "@/lib/customerAuth";
 
 export const runtime = "nodejs";
 
@@ -10,14 +9,12 @@ export async function POST(request) {
     return NextResponse.json({ error: "Email and password are required." }, { status: 400 });
   }
 
-  const users = await getUsers();
-  const user = users.find((u) => u.email.toLowerCase() === email.toLowerCase());
-
-  if (!user || !(await verifyPassword(password, user.passwordHash))) {
+  try {
+    await signInCustomer({ email, password });
+  } catch {
     return NextResponse.json({ error: "Incorrect email or password." }, { status: 401 });
   }
 
-  await setCustomerSession(user.id);
-  const { passwordHash, ...safeUser } = user;
-  return NextResponse.json(safeUser);
+  const user = await getCurrentCustomer();
+  return NextResponse.json(user);
 }

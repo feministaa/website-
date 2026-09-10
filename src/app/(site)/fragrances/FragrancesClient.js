@@ -5,11 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import styles from "./page.module.css";
-import ProductCard from "@/components/ui/ProductCard";
 import AnimateIn from "@/components/ui/AnimateIn";
-import RotatingBanner from "@/components/ui/RotatingBanner";
-
-const BANNER_IMAGES = ["/images/banner-hero-campaign.jpg", "/images/banner-fresca-campaign.jpg"];
+import { useCart } from "@/context/CartContext";
 
 const FILTERS = [
   { key: "all", label: "All Fragrances" },
@@ -24,6 +21,7 @@ export default function FragrancesClient({ products }) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const query = searchParams.get("q") || "";
+  const { addToCart } = useCart();
 
   const visible = useMemo(() => {
     let list = filter === "all" ? products : products.filter((p) => p.family === filter);
@@ -42,19 +40,35 @@ export default function FragrancesClient({ products }) {
 
   return (
     <main>
+      <nav className={styles.crumb} aria-label="Breadcrumb">
+        <Link href="/">Home</Link>
+        <span>/</span>
+        <span>All Fragrances</span>
+      </nav>
+
       <section className={styles.hero}>
-        <AnimateIn>
-          <span className="eyebrow">The Collection</span>
-          <h1 className={styles.heroTitle}>Her, in Three Acts</h1>
-          <p style={{ color: "var(--ink-soft)", maxWidth: 420, marginBottom: 26 }}>
-            A dedicated space for Locken, Vers, Fresca and the Discovery Set — three compositions, three expressions of her.
+        <AnimateIn className={styles.heroCopy}>
+          <h1 className={styles.heroTitle}>All Fragrances</h1>
+          <p className={styles.heroSub}>
+            Feminista is known for composing modern, expressive fragrances built on patience and craft. Our full
+            collection is presented here, including{" "}
+            <Link href="/fragrances/locken" className={styles.heroLink}>
+              Locken
+            </Link>
+            ,{" "}
+            <Link href="/fragrances/vers" className={styles.heroLink}>
+              Vers
+            </Link>
+            ,{" "}
+            <Link href="/fragrances/fresca" className={styles.heroLink}>
+              Fresca
+            </Link>{" "}
+            and the{" "}
+            <button className={styles.heroLink} onClick={() => setFilter("set")}>
+              Discovery Set
+            </button>
+            .
           </p>
-          <button className="btn btn-primary" onClick={() => setFilter("all")}>
-            Explore All
-          </button>
-        </AnimateIn>
-        <AnimateIn delay={0.15} className={styles.heroVisual}>
-          <Image src="/images/products/discovery-set.jpg" alt="The Discovery Set" fill className={styles.heroVisualPhoto} />
         </AnimateIn>
       </section>
 
@@ -89,26 +103,49 @@ export default function FragrancesClient({ products }) {
       {visible.length === 0 ? (
         <p className={styles.empty}>No fragrances match {query ? `"${query}"` : "this filter"} yet.</p>
       ) : (
-        <div className={styles.grid}>
+        <div className={styles.rowsList}>
           {visible.map((product, i) => (
-            <AnimateIn key={product.id} delay={(i % 4) * 0.08}>
-              <ProductCard product={product} />
-            </AnimateIn>
+            <div
+              key={product.id}
+              className={`${styles.productRow} ${styles.productRowSticky} ${i % 2 === 1 ? styles.productRowReverse : ""}`}
+              style={{ zIndex: i + 1 }}
+            >
+              <div className={styles.productMedia}>
+                <div className={styles.productImgBox}>
+                  <Image
+                    src={product.cardImage || product.images?.[0]}
+                    alt={product.name}
+                    fill
+                    className={styles.productImg}
+                    sizes="(max-width: 900px) 100vw, 50vw"
+                  />
+                </div>
+              </div>
+              <div className={styles.productContent}>
+                <span className={styles.productExpr}>{product.expression}</span>
+                <h2 className={styles.productName}>{product.name}</h2>
+                <p className={styles.productTagline}>{product.tagline}</p>
+                <p className={styles.productDesc}>{product.shortDescription}</p>
+                <div className={styles.productActions}>
+                  <button
+                    className={styles.discoverLink}
+                    disabled={product.comingSoon}
+                    onClick={() => addToCart(product, product.sizes[product.sizes.length - 1], 1)}
+                  >
+                    {product.comingSoon ? "Coming Soon" : "Add to Cart"}
+                  </button>
+                  <Link href={`/fragrances/${product.slug}`} className={styles.discoverLink}>
+                    Discover {product.name}
+                    <svg width="15" height="10" viewBox="0 0 15 10" fill="none">
+                      <path d="M0 5H14M14 5L9.5 0.5M14 5L9.5 9.5" stroke="currentColor" strokeWidth="1.3" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       )}
-
-      <div className={styles.banner}>
-        <RotatingBanner images={BANNER_IMAGES} />
-        <AnimateIn className={styles.bannerContent}>
-          <span className="eyebrow">Still deciding?</span>
-          <h2 className={styles.bannerTitle}>Discover your signature</h2>
-          <p className={styles.bannerSub}>Answer a few questions and find the scent that feels unmistakably you.</p>
-          <Link href="/the-art-of-180" className="btn btn-gold">
-            Find My Scent
-          </Link>
-        </AnimateIn>
-      </div>
     </main>
   );
 }

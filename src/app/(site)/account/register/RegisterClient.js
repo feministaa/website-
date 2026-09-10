@@ -10,6 +10,7 @@ export default function RegisterClient() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", city: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [pendingConfirmation, setPendingConfirmation] = useState(false);
   const router = useRouter();
 
   function update(field, value) {
@@ -26,9 +27,13 @@ export default function RegisterClient() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
+      const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
         throw new Error(data.error || "Could not create account.");
+      }
+      if (data.pendingEmailConfirmation) {
+        setPendingConfirmation(true);
+        return;
       }
       router.push("/account");
       router.refresh();
@@ -37,6 +42,25 @@ export default function RegisterClient() {
     } finally {
       setLoading(false);
     }
+  }
+
+  if (pendingConfirmation) {
+    return (
+      <main className={styles.authWrap}>
+        <AnimateIn>
+          <span className="eyebrow" style={{ display: "block", textAlign: "center", marginBottom: 10 }}>
+            The Feminista Circle
+          </span>
+          <h1 className={styles.authTitle}>Check your email</h1>
+          <p className={styles.authSub}>
+            We&apos;ve sent a confirmation link to {form.email}. Click it to activate your account, then sign in.
+          </p>
+          <Link href="/account/login" className="btn btn-primary btn-block" style={{ marginTop: 20 }}>
+            Go to Sign In
+          </Link>
+        </AnimateIn>
+      </main>
+    );
   }
 
   return (

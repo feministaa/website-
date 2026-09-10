@@ -1,8 +1,10 @@
-import products from "@/data/products.json";
+import { getProducts } from "@/lib/dataStore";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-export default function sitemap() {
+export default async function sitemap() {
+  const products = await getProducts();
+
   const staticRoutes = [
     { path: "/", priority: 1, changeFrequency: "weekly" },
     { path: "/fragrances", priority: 0.9, changeFrequency: "weekly" },

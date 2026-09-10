@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import FragrancesClient from "./FragrancesClient";
-import products from "@/data/products.json";
+import { getProducts } from "@/lib/dataStore";
 
 export const metadata = {
   title: "Fragrances — Feminista",
@@ -14,7 +14,8 @@ export const metadata = {
   },
 };
 
-export default function FragrancesPage() {
+export default async function FragrancesPage() {
+  const products = await getProducts();
   return (
     <Suspense fallback={null}>
       <FragrancesClient products={products} />

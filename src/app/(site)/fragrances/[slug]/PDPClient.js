@@ -281,15 +281,6 @@ export default function PDPClient({ product, related }) {
         </div>
       )}
 
-      <div className={styles.banner}>
-        <AnimateIn>
-          <span className="eyebrow">Still deciding?</span>
-          <h2 className={styles.bannerTitle}>Discover your signature</h2>
-          <Link href="/fragrances" className="btn btn-gold" style={{ marginTop: 16 }}>
-            Explore the Collection
-          </Link>
-        </AnimateIn>
-      </div>
     </main>
   );
 }

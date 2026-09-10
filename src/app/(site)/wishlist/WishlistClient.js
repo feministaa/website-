@@ -1,14 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import products from "@/data/products.json";
 import { useWishlist } from "@/context/WishlistContext";
 import ProductCard from "@/components/ui/ProductCard";
 import ScentBottle from "@/components/ui/ScentBottle";
 import AnimateIn from "@/components/ui/AnimateIn";
 import styles from "./page.module.css";
 
-export default function WishlistClient() {
+export default function WishlistClient({ products }) {
   const { ids } = useWishlist();
   const items = products.filter((p) => ids.includes(p.id));
 

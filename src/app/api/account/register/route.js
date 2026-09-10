@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { getUsers, saveUsers } from "@/lib/dataStore";
-import { hashPassword, setCustomerSession } from "@/lib/customerAuth";
+import { signUpCustomer, getCurrentCustomer } from "@/lib/customerAuth";
 
 export const runtime = "nodejs";
 
@@ -14,40 +13,27 @@ export async function POST(request) {
     return NextResponse.json({ error: "Password must be at least 6 characters." }, { status: 400 });
   }
 
-  const users = await getUsers();
-  const existing = users.find((u) => u.email.toLowerCase() === email.toLowerCase());
-  if (existing?.passwordHash) {
-    return NextResponse.json({ error: "An account with this email already exists." }, { status: 409 });
+  let signUpResult;
+  try {
+    signUpResult = await signUpCustomer({ name, email, phone, city, password });
+  } catch (err) {
+    const message = /already registered|already exists/i.test(err.message)
+      ? "An account with this email already exists."
+      : err.message || "Could not create your account.";
+    const status = /already registered|already exists/i.test(err.message) ? 409 : 400;
+    return NextResponse.json({ error: message }, { status });
   }
 
-  const passwordHash = await hashPassword(password);
-
-  let user;
-  if (existing) {
-    existing.name = name;
-    existing.phone = phone || existing.phone;
-    existing.city = city || existing.city;
-    existing.passwordHash = passwordHash;
-    user = existing;
-  } else {
-    user = {
-      id: `u${Date.now()}`,
-      name,
-      email,
-      phone: phone || "",
-      city: city || "",
-      orders: 0,
-      totalSpent: 0,
-      status: "active",
-      joined: new Date().toISOString(),
-      passwordHash,
-    };
-    users.push(user);
+  // If Supabase Auth has "Confirm email" turned on, signUp succeeds but no
+  // session is issued until the user clicks the confirmation link — there's
+  // no signed-in customer to return yet.
+  if (!signUpResult.session) {
+    return NextResponse.json(
+      { pendingEmailConfirmation: true, message: "Check your email to confirm your account before signing in." },
+      { status: 201 }
+    );
   }
 
-  await saveUsers(users);
-  await setCustomerSession(user.id);
-
-  const { passwordHash: _omit, ...safeUser } = user;
-  return NextResponse.json(safeUser, { status: 201 });
+  const user = await getCurrentCustomer();
+  return NextResponse.json(user, { status: 201 });
 }

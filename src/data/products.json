@@ -68,8 +68,8 @@
     "accent": "#c98a93",
     "accentSoft": "#f3d9dc",
     "comingSoon": true,
-    "cardImage": "/images/products/vers-coming-soon.jpg",
-    "images": ["/images/products/vers-coming-soon.jpg"],
+    "cardImage": "/images/products/vers-smoke.png",
+    "images": ["/images/products/vers-smoke.png"],
     "sizes": [
       { "label": "50 ml", "price": 5200 },
       { "label": "100 ml", "price": 8000 }

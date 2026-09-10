@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { getUsers, saveUsers } from "@/lib/dataStore";
 import { getCurrentCustomer } from "@/lib/customerAuth";
+import { updateUser } from "@/lib/dataStore";
 
 export const runtime = "nodejs";
 
@@ -15,18 +15,11 @@ export async function PUT(request) {
   if (!current) return NextResponse.json({ error: "Not signed in." }, { status: 401 });
 
   const body = await request.json();
-  const users = await getUsers();
-  const idx = users.findIndex((u) => u.id === current.id);
-  if (idx === -1) return NextResponse.json({ error: "Not found." }, { status: 404 });
+  const updated = await updateUser(current.id, {
+    name: body.name ?? current.name,
+    phone: body.phone ?? current.phone,
+    city: body.city ?? current.city,
+  });
 
-  users[idx] = {
-    ...users[idx],
-    name: body.name ?? users[idx].name,
-    phone: body.phone ?? users[idx].phone,
-    city: body.city ?? users[idx].city,
-  };
-  await saveUsers(users);
-
-  const { passwordHash, ...safeUser } = users[idx];
-  return NextResponse.json(safeUser);
+  return NextResponse.json(updated);
 }

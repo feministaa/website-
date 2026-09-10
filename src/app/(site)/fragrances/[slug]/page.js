@@ -1,13 +1,15 @@
 import { notFound } from "next/navigation";
-import products from "@/data/products.json";
+import { getProducts } from "@/lib/dataStore";
 import PDPClient from "./PDPClient";
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const products = await getProducts();
   return products.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
+  const products = await getProducts();
   const product = products.find((p) => p.slug === slug);
   if (!product) return {};
   const title = `${product.name} — ${product.expression} | Feminista`;
@@ -26,6 +28,7 @@ export async function generateMetadata({ params }) {
 
 export default async function ProductPage({ params }) {
   const { slug } = await params;
+  const products = await getProducts();
   const product = products.find((p) => p.slug === slug);
   if (!product) notFound();
 

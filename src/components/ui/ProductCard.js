@@ -10,7 +10,7 @@ import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import { useToast } from "@/context/ToastContext";
 
-export default function ProductCard({ product, index = 0, minimal = false }) {
+export default function ProductCard({ product, index = 0, minimal = false, tall = false }) {
   const { addToCart } = useCart();
   const { toggleWishlist, isWishlisted } = useWishlist();
   const { showToast } = useToast();
@@ -56,7 +56,7 @@ export default function ProductCard({ product, index = 0, minimal = false }) {
       onMouseLeave={() => setHovering(false)}
     >
       <div
-        className={`${styles.imageWrap} ${minimal ? styles.imageWrapMinimal : ""}`}
+        className={`${styles.imageWrap} ${minimal ? styles.imageWrapMinimal : ""} ${tall ? styles.imageWrapTall : ""}`}
         style={{ background: `linear-gradient(160deg, ${product.accentSoft}55, var(--bg-alt))` }}
       >
         {!minimal && !product.comingSoon && product.compareAtPrice ? (

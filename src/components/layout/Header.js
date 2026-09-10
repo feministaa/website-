@@ -8,18 +8,16 @@ import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Header.module.css";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
-import products from "@/data/products.json";
 import ScentBottle from "@/components/ui/ScentBottle";
 import { formatINR } from "@/lib/format";
 
 const NAV_LINKS = [
   { href: "/fragrances", label: "Fragrances" },
-  { href: "/the-collection", label: "The Collection" },
   { href: "/the-art-of-180", label: "The Art of 180" },
   { href: "/our-story", label: "Our Story" },
 ];
 
-function SearchBar({ mobile = false, onNavigate }) {
+function SearchBar({ mobile = false, onNavigate, products }) {
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
@@ -28,7 +26,7 @@ function SearchBar({ mobile = false, onNavigate }) {
   const matches = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return [];
-    return products
+    return (products || [])
       .filter(
         (p) =>
           p.name.toLowerCase().includes(q) ||
@@ -37,7 +35,7 @@ function SearchBar({ mobile = false, onNavigate }) {
           p.shortDescription.toLowerCase().includes(q)
       )
       .slice(0, 5);
-  }, [query]);
+  }, [query, products]);
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -145,9 +143,17 @@ export default function Header() {
   const { count: wishCount } = useWishlist();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [products, setProducts] = useState([]);
   const chromeRef = useRef(null);
   const isHome = pathname === "/";
   const transparent = isHome && !scrolled;
+
+  useEffect(() => {
+    fetch("/api/products")
+      .then((res) => res.json())
+      .then(setProducts)
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     function onScroll() {
@@ -175,12 +181,14 @@ export default function Header() {
   return (
     <>
       <div ref={chromeRef} className={`${styles.chrome} ${isHome ? styles.chromeFixed : ""}`}>
-        <div className={`${styles.announce} ${scrolled ? styles.announceCollapsed : ""}`}>
-          Complimentary shipping across India
-        </div>
+        {isHome && (
+          <div className={`${styles.announce} ${scrolled ? styles.announceCollapsed : ""}`}>
+            Complimentary shipping across India
+          </div>
+        )}
         <header className={`${styles.header} ${scrolled ? styles.headerScrolled : ""} ${transparent ? styles.headerTransparent : ""}`}>
         <div className={styles.topRow}>
-          <SearchBar />
+          <SearchBar products={products} />
 
           <Link href="/" className={styles.logo} aria-label="Feminista home">
             <Image
@@ -194,11 +202,12 @@ export default function Header() {
           </Link>
 
           <button className={styles.menuBtn} aria-label="Open menu" onClick={() => setMobileOpen(true)}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <line x1="3" y1="6" x2="21" y2="6" />
               <line x1="3" y1="12" x2="21" y2="12" />
               <line x1="3" y1="18" x2="21" y2="18" />
             </svg>
+            <span className={styles.menuBtnLabel}>Menu</span>
             {wishCount + count > 0 && <span className={styles.badge}>{wishCount + count}</span>}
           </button>
         </div>
@@ -216,9 +225,9 @@ export default function Header() {
           >
             <motion.div
               className={styles.drawer}
-              initial={{ x: "-100%" }}
+              initial={{ x: "100%" }}
               animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
+              exit={{ x: "100%" }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
             >
@@ -233,7 +242,7 @@ export default function Header() {
               </div>
 
               <div className={styles.drawerSearch}>
-                <SearchBar mobile onNavigate={() => setMobileOpen(false)} />
+                <SearchBar mobile products={products} onNavigate={() => setMobileOpen(false)} />
               </div>
 
               <nav className={styles.drawerNav}>

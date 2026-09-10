@@ -1,13 +1,12 @@
 import { NextResponse } from "next/server";
-import { getProducts, saveProducts } from "@/lib/dataStore";
+import { getProduct, updateProduct, deleteProduct } from "@/lib/dataStore";
 import { isAdminAuthed } from "@/lib/auth";
 
 export const runtime = "nodejs";
 
 export async function GET(request, { params }) {
   const { id } = await params;
-  const products = await getProducts();
-  const product = products.find((p) => p.id === id);
+  const product = await getProduct(id);
   if (!product) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json(product);
 }
@@ -19,20 +18,17 @@ export async function PUT(request, { params }) {
 
   const { id } = await params;
   const body = await request.json();
-  const products = await getProducts();
-  const idx = products.findIndex((p) => p.id === id);
-  if (idx === -1) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  const existing = await getProduct(id);
+  if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
-  products[idx] = {
-    ...products[idx],
+  const updated = await updateProduct(id, {
     ...body,
-    price: body.price !== undefined ? Number(body.price) : products[idx].price,
-    compareAtPrice: body.compareAtPrice !== undefined ? (body.compareAtPrice ? Number(body.compareAtPrice) : null) : products[idx].compareAtPrice,
-    stock: body.stock !== undefined ? Number(body.stock) : products[idx].stock,
-  };
+    price: body.price !== undefined ? Number(body.price) : undefined,
+    compareAtPrice: body.compareAtPrice !== undefined ? (body.compareAtPrice ? Number(body.compareAtPrice) : null) : undefined,
+    stock: body.stock !== undefined ? Number(body.stock) : undefined,
+  });
 
-  await saveProducts(products);
-  return NextResponse.json(products[idx]);
+  return NextResponse.json(updated);
 }
 
 export async function DELETE(request, { params }) {
@@ -41,10 +37,9 @@ export async function DELETE(request, { params }) {
   }
 
   const { id } = await params;
-  const products = await getProducts();
-  const next = products.filter((p) => p.id !== id);
-  if (next.length === products.length) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  const existing = await getProduct(id);
+  if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
-  await saveProducts(next);
+  await deleteProduct(id);
   return NextResponse.json({ success: true });
 }

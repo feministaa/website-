@@ -1,4 +1,5 @@
 import WishlistClient from "./WishlistClient";
+import { getProducts } from "@/lib/dataStore";
 
 export const metadata = {
   title: "Your Wishlist — Feminista",
@@ -6,6 +7,7 @@ export const metadata = {
   robots: { index: false, follow: true },
 };
 
-export default function WishlistPage() {
-  return <WishlistClient />;
+export default async function WishlistPage() {
+  const products = await getProducts();
+  return <WishlistClient products={products} />;
 }

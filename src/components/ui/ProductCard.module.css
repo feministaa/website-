@@ -30,6 +30,10 @@
   margin-bottom: 0;
 }
 
+.imageWrapTall {
+  aspect-ratio: 3 / 4.6;
+}
+
 .cardMinimal:hover .imageWrapMinimal {
   transform: none;
   box-shadow: none;
