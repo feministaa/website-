@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getProduct, updateProduct, deleteProduct } from "@/lib/dataStore";
 import { isAdminAuthed } from "@/lib/auth";
 
@@ -28,6 +29,11 @@ export async function PUT(request, { params }) {
     stock: body.stock !== undefined ? Number(body.stock) : undefined,
   });
 
+  revalidatePath("/");
+  revalidatePath("/fragrances");
+  revalidatePath(`/fragrances/${updated.slug}`);
+  revalidatePath("/wishlist");
+
   return NextResponse.json(updated);
 }
 
@@ -41,5 +47,11 @@ export async function DELETE(request, { params }) {
   if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   await deleteProduct(id);
+
+  revalidatePath("/");
+  revalidatePath("/fragrances");
+  revalidatePath(`/fragrances/${existing.slug}`);
+  revalidatePath("/wishlist");
+
   return NextResponse.json({ success: true });
 }

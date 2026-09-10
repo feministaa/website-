@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getProducts, createProduct } from "@/lib/dataStore";
 import { isAdminAuthed } from "@/lib/auth";
 
@@ -62,6 +63,11 @@ export async function POST(request) {
     moodLabel: body.moodLabel || "",
     moodDescription: body.moodDescription || "",
   });
+
+  revalidatePath("/");
+  revalidatePath("/fragrances");
+  revalidatePath(`/fragrances/${newProduct.slug}`);
+  revalidatePath("/wishlist");
 
   return NextResponse.json(newProduct, { status: 201 });
 }
