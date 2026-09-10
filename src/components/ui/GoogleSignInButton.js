@@ -4,7 +4,7 @@ import { useState } from "react";
 import { supabaseBrowser } from "@/lib/supabase/browser";
 import styles from "./GoogleSignInButton.module.css";
 
-export default function GoogleSignInButton({ label = "Continue with Google" }) {
+export default function GoogleSignInButton({ label = "Continue with Google", next = "/account" }) {
   const [loading, setLoading] = useState(false);
 
   async function handleClick() {
@@ -12,7 +12,7 @@ export default function GoogleSignInButton({ label = "Continue with Google" }) {
     const supabase = supabaseBrowser();
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: `${window.location.origin}/auth/callback` },
+      options: { redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}` },
     });
     if (error) setLoading(false);
     // On success the browser navigates away to Google, so no further state change here.

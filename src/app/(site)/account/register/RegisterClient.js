@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import styles from "../account.module.css";
 import AnimateIn from "@/components/ui/AnimateIn";
 import GoogleSignInButton from "@/components/ui/GoogleSignInButton";
@@ -13,6 +13,9 @@ export default function RegisterClient() {
   const [loading, setLoading] = useState(false);
   const [pendingConfirmation, setPendingConfirmation] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const next = searchParams.get("next") || "/account";
+  const loginHref = next !== "/account" ? `/account/login?next=${encodeURIComponent(next)}` : "/account/login";
 
   function update(field, value) {
     setForm((f) => ({ ...f, [field]: value }));
@@ -36,7 +39,7 @@ export default function RegisterClient() {
         setPendingConfirmation(true);
         return;
       }
-      router.push("/account");
+      router.push(next);
       router.refresh();
     } catch (err) {
       setError(err.message);
@@ -56,7 +59,7 @@ export default function RegisterClient() {
           <p className={styles.authSub}>
             We&apos;ve sent a confirmation link to {form.email}. Click it to activate your account, then sign in.
           </p>
-          <Link href="/account/login" className="btn btn-primary btn-block" style={{ marginTop: 20 }}>
+          <Link href={loginHref} className="btn btn-primary btn-block" style={{ marginTop: 20 }}>
             Go to Sign In
           </Link>
         </AnimateIn>
@@ -71,9 +74,11 @@ export default function RegisterClient() {
           The Feminista Circle
         </span>
         <h1 className={styles.authTitle}>Create your account</h1>
-        <p className={styles.authSub}>Track orders, save your details and enjoy a faster checkout.</p>
+        <p className={styles.authSub}>
+          {next === "/checkout" ? "Create an account to continue to checkout." : "Track orders, save your details and enjoy a faster checkout."}
+        </p>
 
-        <GoogleSignInButton label="Sign up with Google" />
+        <GoogleSignInButton label="Sign up with Google" next={next} />
         <div className={styles.divider}>Or sign up with email</div>
 
         <form onSubmit={handleSubmit}>
@@ -119,7 +124,7 @@ export default function RegisterClient() {
         </form>
 
         <p className={styles.switchLine}>
-          Already have an account? <Link href="/account/login">Sign in</Link>
+          Already have an account? <Link href={loginHref}>Sign in</Link>
         </p>
       </AnimateIn>
     </main>

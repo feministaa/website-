@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import styles from "../account.module.css";
 import AnimateIn from "@/components/ui/AnimateIn";
 import GoogleSignInButton from "@/components/ui/GoogleSignInButton";
@@ -12,6 +12,9 @@ export default function LoginClient() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const next = searchParams.get("next") || "/account";
+  const registerHref = next !== "/account" ? `/account/register?next=${encodeURIComponent(next)}` : "/account/register";
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -27,7 +30,7 @@ export default function LoginClient() {
         const data = await res.json().catch(() => ({}));
         throw new Error(data.error || "Could not sign in.");
       }
-      router.push("/account");
+      router.push(next);
       router.refresh();
     } catch (err) {
       setError(err.message);
@@ -43,9 +46,11 @@ export default function LoginClient() {
           The Feminista Circle
         </span>
         <h1 className={styles.authTitle}>Welcome back</h1>
-        <p className={styles.authSub}>Sign in to view your orders and manage your details.</p>
+        <p className={styles.authSub}>
+          {next === "/checkout" ? "Sign in to continue to checkout." : "Sign in to view your orders and manage your details."}
+        </p>
 
-        <GoogleSignInButton label="Sign in with Google" />
+        <GoogleSignInButton label="Sign in with Google" next={next} />
         <div className={styles.divider}>Or sign in with email</div>
 
         <form onSubmit={handleSubmit}>
@@ -78,7 +83,7 @@ export default function LoginClient() {
         </form>
 
         <p className={styles.switchLine}>
-          New to Feminista? <Link href="/account/register">Create an account</Link>
+          New to Feminista? <Link href={registerHref}>Create an account</Link>
         </p>
       </AnimateIn>
     </main>

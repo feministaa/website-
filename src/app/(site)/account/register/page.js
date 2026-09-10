@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import RegisterClient from "./RegisterClient";
 
 export const metadata = {
@@ -7,5 +8,9 @@ export const metadata = {
 };
 
 export default function RegisterPage() {
-  return <RegisterClient />;
+  return (
+    <Suspense>
+      <RegisterClient />
+    </Suspense>
+  );
 }

@@ -8,14 +8,14 @@ import { formatINR } from "@/lib/format";
 import ScentBottle from "@/components/ui/ScentBottle";
 import AnimateIn from "@/components/ui/AnimateIn";
 
-export default function CheckoutClient() {
+export default function CheckoutClient({ user }) {
   const { items, subtotal, clearCart } = useCart();
   const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
+    name: user?.name || "",
+    email: user?.email || "",
+    phone: user?.phone || "",
     address: "",
-    city: "",
+    city: user?.city || "",
     pincode: "",
   });
   const [submitting, setSubmitting] = useState(false);

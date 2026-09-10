@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+import { getCurrentCustomer } from "@/lib/customerAuth";
 import CheckoutClient from "./CheckoutClient";
 
 export const metadata = {
@@ -6,6 +8,9 @@ export const metadata = {
   robots: { index: false, follow: true },
 };
 
-export default function CheckoutPage() {
-  return <CheckoutClient />;
+export default async function CheckoutPage() {
+  const user = await getCurrentCustomer();
+  if (!user) redirect("/account/login?next=/checkout");
+
+  return <CheckoutClient user={user} />;
 }
