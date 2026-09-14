@@ -20,7 +20,6 @@ export default function SignatureCollection({ products }) {
 
   return (
     <section className={styles.section}>
-      <div className={styles.pattern} aria-hidden="true" />
       <AnimateIn className={styles.panel}>
         <h2 className={styles.title}>
           Her, in

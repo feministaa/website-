@@ -9,15 +9,6 @@
   background: var(--bg);
 }
 
-.pattern {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image: repeating-linear-gradient(45deg, var(--line-soft) 0, var(--line-soft) 1px, transparent 1px, transparent 64px),
-    repeating-linear-gradient(-45deg, var(--line-soft) 0, var(--line-soft) 1px, transparent 1px, transparent 64px);
-  opacity: 0.6;
-}
-
 .panel {
   position: sticky;
   top: 140px;
