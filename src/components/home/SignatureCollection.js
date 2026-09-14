@@ -7,7 +7,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import styles from "./SignatureCollection.module.css";
-import AnimateIn from "@/components/ui/AnimateIn";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -20,8 +19,24 @@ export default function SignatureCollection({ products }) {
   useGSAP(
     () => {
       if (!rowRef.current || !sectionRef.current) return;
+      const cards = gsap.utils.toArray(rowRef.current.children);
       const distance = rowRef.current.scrollWidth - rowRef.current.clientWidth;
       if (distance <= 0) return;
+
+      function updateFocus() {
+        const center = window.innerWidth / 2;
+        cards.forEach((card) => {
+          const rect = card.getBoundingClientRect();
+          const cardCenter = rect.left + rect.width / 2;
+          const proximity = gsap.utils.clamp(0, 1, 1 - Math.abs(cardCenter - center) / (window.innerWidth / 1.6));
+          gsap.set(card, {
+            scale: 0.86 + proximity * 0.14,
+            opacity: 0.5 + proximity * 0.5,
+          });
+        });
+      }
+
+      updateFocus();
 
       const tween = gsap.to(rowRef.current, {
         x: -distance,
@@ -33,6 +48,7 @@ export default function SignatureCollection({ products }) {
           scrub: 1,
           pin: true,
           invalidateOnRefresh: true,
+          onUpdate: updateFocus,
         },
       });
 
@@ -43,18 +59,6 @@ export default function SignatureCollection({ products }) {
 
   return (
     <section className={styles.section} ref={sectionRef}>
-      <AnimateIn className={styles.panel}>
-        <h2 className={styles.title}>
-          Her, in
-          <br />
-          Three Acts
-        </h2>
-        <p className={styles.desc}>
-          Three expressions of modern femininity — Locken, Vers and Fresca. Each composed, matured and made entirely
-          her own.
-        </p>
-      </AnimateIn>
-
       <div className={styles.rowWrap}>
         <div className={styles.row} ref={rowRef}>
           {products.map((product) => (
