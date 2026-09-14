@@ -13,6 +13,8 @@ export default function OrdersTableClient({ orders }) {
   const [expanded, setExpanded] = useState(null);
   const [savingId, setSavingId] = useState(null);
   const [shippingId, setShippingId] = useState(null);
+  const [trackingId, setTrackingId] = useState(null);
+  const [tracking, setTracking] = useState({});
   const router = useRouter();
 
   async function handleStatusChange(id, status) {
@@ -31,6 +33,20 @@ export default function OrdersTableClient({ orders }) {
       // no-op: select simply won't reflect the failed change on next render
     } finally {
       setSavingId(null);
+    }
+  }
+
+  async function handleTrack(id) {
+    setTrackingId(id);
+    try {
+      const res = await fetch(`/api/orders/${id}/ship`);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Could not fetch tracking status.");
+      setTracking((prev) => ({ ...prev, [id]: data }));
+    } catch (err) {
+      alert(err.message);
+    } finally {
+      setTrackingId(null);
     }
   }
 
@@ -98,6 +114,20 @@ export default function OrdersTableClient({ orders }) {
                           {o.awbNumber}
                         </a>
                         <div style={{ fontSize: 11.5, color: "var(--ink-faint)" }}>{o.courierName || "—"}</div>
+                        {tracking[o.id] ? (
+                          <div style={{ fontSize: 11.5, color: "var(--ink-faint)", marginTop: 2 }}>
+                            Live: {tracking[o.id].status}
+                          </div>
+                        ) : (
+                          <button
+                            className={styles.expandBtn}
+                            style={{ marginTop: 2 }}
+                            disabled={trackingId === o.id}
+                            onClick={() => handleTrack(o.id)}
+                          >
+                            {trackingId === o.id ? "Checking…" : "Refresh Tracking"}
+                          </button>
+                        )}
                       </div>
                     ) : (
                       <button
