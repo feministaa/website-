@@ -195,14 +195,14 @@ h4 {
 }
 
 .btn-gold {
-  background: var(--gold);
-  color: var(--cream);
-  border-color: var(--gold);
-  box-shadow: 0 1px 2px rgba(124, 92, 44, 0.2);
+  background: linear-gradient(135deg, var(--gold-deep), var(--gold) 65%, var(--gold-light));
+  color: var(--black);
+  border-color: var(--gold-deep);
+  box-shadow: 0 1px 2px rgba(124, 92, 44, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 .btn-gold:hover {
-  background: var(--gold-deep);
+  background: linear-gradient(135deg, var(--gold-deep), var(--gold-deep) 65%, var(--gold));
   border-color: var(--gold-deep);
   transform: translateY(-2px);
   box-shadow: 0 14px 28px -10px rgba(124, 92, 44, 0.55);
