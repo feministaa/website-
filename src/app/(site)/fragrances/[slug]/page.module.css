@@ -44,12 +44,13 @@
 
 .mainImage {
   position: relative;
-  aspect-ratio: 4/3.4;
-  border-radius: 6px;
+  aspect-ratio: 3/4;
+  border-radius: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  box-shadow: 0 40px 90px -32px rgba(13, 12, 10, 0.32);
 }
 
 .thumbRow {

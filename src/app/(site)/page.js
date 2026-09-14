@@ -3,7 +3,6 @@ import SignatureCollection from "@/components/home/SignatureCollection";
 import HomeBanner from "@/components/home/HomeBanner";
 import AboutTeaser from "@/components/home/AboutTeaser";
 import DiscoverySet from "@/components/home/DiscoverySet";
-import FinishingTouch from "@/components/home/FinishingTouch";
 import HomeReels from "@/components/home/HomeReels";
 import HomeFAQ from "@/components/home/HomeFAQ";
 import { getProducts } from "@/lib/dataStore";
@@ -33,7 +32,6 @@ export default async function Home() {
       <AboutTeaser />
       <SignatureCollection products={collection} />
       <HomeBanner />
-      <FinishingTouch />
       <DiscoverySet product={discoverySet} />
       <HomeReels />
       <HomeFAQ />
