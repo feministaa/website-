@@ -31,8 +31,8 @@ export default async function Home() {
     <main>
       <Hero />
       <SignatureCollection products={collection} />
-      <AboutTeaser />
       <HomeBanner />
+      <AboutTeaser />
       <FinishingTouch />
       <DiscoverySet product={discoverySet} />
       <HomeReels />
