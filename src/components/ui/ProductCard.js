@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useState } from "react";
 import styles from "./ProductCard.module.css";
 import ScentBottle from "./ScentBottle";
+import Tilt from "./Tilt";
+import Magnetic from "./Magnetic";
 import { formatINR } from "@/lib/format";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
@@ -41,9 +43,11 @@ export default function ProductCard({ product, index = 0, minimal = false, tall 
         <span>{formatINR(product.price)}</span>
       </div>
       <div className={styles.actions}>
-        <button className="btn btn-outline" onClick={handleAdd}>
-          {product.comingSoon ? "Coming Soon" : hovering ? "Add to Cart" : "Shop Now"}
-        </button>
+        <Magnetic range={60} intensity={0.3}>
+          <button className="btn btn-outline" onClick={handleAdd}>
+            {product.comingSoon ? "Coming Soon" : hovering ? "Add to Cart" : "Shop Now"}
+          </button>
+        </Magnetic>
       </div>
     </div>
   );
@@ -55,7 +59,9 @@ export default function ProductCard({ product, index = 0, minimal = false, tall 
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
     >
-      <div
+      <Tilt
+        rotationFactor={6}
+        springOptions={{ stiffness: 260, damping: 20 }}
         className={`${styles.imageWrap} ${minimal ? styles.imageWrapMinimal : ""} ${tall ? styles.imageWrapTall : ""}`}
         style={{ background: `linear-gradient(160deg, ${product.accentSoft}55, var(--bg-alt))` }}
       >
@@ -97,7 +103,7 @@ export default function ProductCard({ product, index = 0, minimal = false, tall 
             </div>
           </>
         )}
-      </div>
+      </Tilt>
       {!minimal && metaContent}
     </Link>
   );
