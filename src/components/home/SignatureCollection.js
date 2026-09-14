@@ -3,23 +3,46 @@
 import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import styles from "./SignatureCollection.module.css";
 import AnimateIn from "@/components/ui/AnimateIn";
 
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
+
 export default function SignatureCollection({ products }) {
+  const sectionRef = useRef(null);
   const rowRef = useRef(null);
 
-  function scroll(direction) {
-    const row = rowRef.current;
-    if (!row) return;
-    const card = row.querySelector("a");
-    const gap = 24;
-    const amount = card ? card.getBoundingClientRect().width + gap : 400;
-    row.scrollBy({ left: direction * amount, behavior: "smooth" });
-  }
+  useGSAP(
+    () => {
+      if (!rowRef.current || !sectionRef.current) return;
+      const distance = rowRef.current.scrollWidth - rowRef.current.clientWidth;
+      if (distance <= 0) return;
+
+      const tween = gsap.to(rowRef.current, {
+        x: -distance,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: () => `+=${distance}`,
+          scrub: 1,
+          pin: true,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      return () => tween.scrollTrigger?.kill();
+    },
+    { scope: sectionRef, dependencies: [products] }
+  );
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} ref={sectionRef}>
       <AnimateIn className={styles.panel}>
         <h2 className={styles.title}>
           Her, in
@@ -30,22 +53,9 @@ export default function SignatureCollection({ products }) {
           Three expressions of modern femininity — Locken, Vers and Fresca. Each composed, matured and made entirely
           her own.
         </p>
-
-        <div className={styles.arrows}>
-          <button className={styles.arrowBtn} onClick={() => scroll(-1)} aria-label="Scroll left">
-            <svg width="16" height="12" viewBox="0 0 15 10" fill="none">
-              <path d="M15 5H1M1 5L5.5 0.5M1 5L5.5 9.5" stroke="currentColor" strokeWidth="1.3" />
-            </svg>
-          </button>
-          <button className={styles.arrowBtn} onClick={() => scroll(1)} aria-label="Scroll right">
-            <svg width="16" height="12" viewBox="0 0 15 10" fill="none">
-              <path d="M0 5H14M14 5L9.5 0.5M14 5L9.5 9.5" stroke="currentColor" strokeWidth="1.3" />
-            </svg>
-          </button>
-        </div>
       </AnimateIn>
 
-      <AnimateIn delay={0.1} className={styles.rowWrap}>
+      <div className={styles.rowWrap}>
         <div className={styles.row} ref={rowRef}>
           {products.map((product) => (
             <div key={product.id} className={styles.card}>
@@ -66,7 +76,7 @@ export default function SignatureCollection({ products }) {
             </div>
           ))}
         </div>
-      </AnimateIn>
+      </div>
     </section>
   );
 }

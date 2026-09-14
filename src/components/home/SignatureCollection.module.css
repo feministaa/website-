@@ -41,48 +41,12 @@
   z-index: 1;
   display: flex;
   gap: 24px;
-  overflow-x: auto;
   padding: 4px 48px 4px 0;
-  scroll-snap-type: x proximity;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-}
-
-.row::-webkit-scrollbar {
-  display: none;
 }
 
 .card {
   flex: 0 0 410px;
   aspect-ratio: 3/4.6;
-  scroll-snap-align: start;
-}
-
-.arrows {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  gap: 12px;
-  margin-top: 28px;
-}
-
-.arrowBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  color: var(--ink);
-  background: var(--bg);
-  transition: all 0.25s var(--ease);
-}
-
-.arrowBtn:hover {
-  border-color: var(--gold-deep);
-  color: var(--gold-deep);
-  transform: scale(1.06);
 }
 
 .cardLink {
