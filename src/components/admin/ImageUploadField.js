@@ -81,6 +81,14 @@ export function ImageGalleryField({ label, values, onChange }) {
     onChange(values.filter((_, idx) => idx !== i));
   }
 
+  function move(i, dir) {
+    const j = i + dir;
+    if (j < 0 || j >= values.length) return;
+    const next = [...values];
+    [next[i], next[j]] = [next[j], next[i]];
+    onChange(next);
+  }
+
   return (
     <div className={styles.field}>
       <label>{label}</label>
@@ -91,6 +99,24 @@ export function ImageGalleryField({ label, values, onChange }) {
             <button type="button" className={styles.thumbRemove} onClick={() => removeAt(i)} aria-label="Remove image">
               ×
             </button>
+            <div className={styles.thumbReorder}>
+              <button
+                type="button"
+                onClick={() => move(i, -1)}
+                disabled={i === 0}
+                aria-label="Move image earlier"
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                onClick={() => move(i, 1)}
+                disabled={i === values.length - 1}
+                aria-label="Move image later"
+              >
+                ›
+              </button>
+            </div>
           </div>
         ))}
         <button type="button" className={styles.addThumb} onClick={() => inputRef.current?.click()} disabled={uploading}>
