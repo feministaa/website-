@@ -42,7 +42,6 @@
   overflow: hidden;
   scroll-snap-align: start;
   background: var(--black);
-  box-shadow: 0 30px 60px -24px rgba(13, 12, 10, 0.3);
 }
 
 .media {

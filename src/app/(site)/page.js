@@ -30,9 +30,9 @@ export default async function Home() {
   return (
     <main>
       <Hero />
+      <AboutTeaser />
       <SignatureCollection products={collection} />
       <HomeBanner />
-      <AboutTeaser />
       <FinishingTouch />
       <DiscoverySet product={discoverySet} />
       <HomeReels />
