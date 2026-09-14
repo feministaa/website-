@@ -43,6 +43,10 @@ export default function OrdersTableClient({ orders }) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Could not fetch tracking status.");
       setTracking((prev) => ({ ...prev, [id]: data }));
+      if (data.orderStatus) {
+        setItems((prev) => prev.map((o) => (o.id === id ? { ...o, status: data.orderStatus } : o)));
+      }
+      router.refresh();
     } catch (err) {
       alert(err.message);
     } finally {

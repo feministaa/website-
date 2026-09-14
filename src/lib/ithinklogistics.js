@@ -22,7 +22,7 @@ function formatDate(date) {
 // Every fragrance ships as a small, well-padded parcel — these are reasonable
 // flat defaults for rate/label purposes, not exact per-SKU measurements.
 // Weight is in kilograms (the API rejects values above 150).
-const DEFAULT_WEIGHT_KG = 0.4;
+const DEFAULT_WEIGHT_KG = 1;
 const DEFAULT_DIMENSIONS_CM = { length: 15, width: 12, height: 10 };
 
 export async function createShipment(order) {
@@ -130,4 +130,17 @@ export async function trackShipment(awbNumber) {
     courier: shipment.logistic || "",
     expectedDelivery: shipment.expected_delivery_date || null,
   };
+}
+
+// Maps iThink's free-text courier status to our own order status enum
+// (pending/processing/shipped/delivered/cancelled). Returns null when the
+// courier status doesn't clearly map to one of ours, so callers can leave
+// the existing order status untouched.
+export function mapCourierStatusToOrderStatus(courierStatus) {
+  const s = (courierStatus || "").toLowerCase();
+  if (s.includes("undeliver") || s.includes("rto") || s.includes("cancel")) return "cancelled";
+  if (s.includes("delivered")) return "delivered";
+  if (s.includes("transit") || s.includes("out for delivery") || s.includes("picked")) return "shipped";
+  if (s.includes("manifest") || s.includes("pickup")) return "processing";
+  return null;
 }

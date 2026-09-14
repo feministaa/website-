@@ -149,6 +149,11 @@ export default function AccountDashboardClient({ user, orders }) {
                       </a>
                     </div>
                   )}
+                  {order.expectedDelivery && (
+                    <div style={{ color: "var(--ink-faint)", fontSize: 11.5, marginTop: 2 }}>
+                      Expected by {formatDate(order.expectedDelivery)}
+                    </div>
+                  )}
                 </div>
                 <div>{order.items.reduce((s, i) => s + i.qty, 0)} item(s)</div>
                 <div>{formatINR(order.total)}</div>

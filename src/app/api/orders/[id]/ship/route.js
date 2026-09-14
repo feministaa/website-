@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getOrders, updateOrder } from "@/lib/dataStore";
 import { isAdminAuthed } from "@/lib/auth";
-import { createShipment, trackShipment } from "@/lib/ithinklogistics";
+import { createShipment, trackShipment, mapCourierStatusToOrderStatus } from "@/lib/ithinklogistics";
 
 export const runtime = "nodejs";
 
@@ -41,5 +41,19 @@ export async function GET(request, { params }) {
   if (!order.awbNumber) return NextResponse.json({ error: "No shipment booked yet." }, { status: 400 });
 
   const tracking = await trackShipment(order.awbNumber);
-  return NextResponse.json(tracking);
+
+  const mappedStatus = mapCourierStatusToOrderStatus(tracking.status);
+  const hasRealDeliveryDate = tracking.expectedDelivery && !/^0000/.test(tracking.expectedDelivery);
+  const patch = {};
+  if (mappedStatus && mappedStatus !== order.status) patch.status = mappedStatus;
+  if (hasRealDeliveryDate && tracking.expectedDelivery !== order.expectedDelivery) {
+    patch.expected_delivery = tracking.expectedDelivery;
+  }
+  if (Object.keys(patch).length) await updateOrder(id, patch).catch(() => {});
+
+  return NextResponse.json({
+    ...tracking,
+    orderStatus: mappedStatus || order.status,
+    expectedDelivery: hasRealDeliveryDate ? tracking.expectedDelivery : order.expectedDelivery,
+  });
 }

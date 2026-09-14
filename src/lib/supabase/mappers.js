@@ -108,5 +108,6 @@ export function orderFromRow(row) {
     awbNumber: row.awb_number ?? null,
     courierName: row.courier_name ?? null,
     shipmentStatus: row.shipment_status ?? "not_shipped",
+    expectedDelivery: row.expected_delivery ?? null,
   };
 }
