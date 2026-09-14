@@ -23,73 +23,6 @@ const SOCIALS = [
   { href: "https://tiktok.com", label: "TikTok" },
 ];
 
-const ORBIT_FACES = [
-  "/images/testimonials/testimonial-1.jpg",
-  "/images/testimonials/testimonial-2.jpg",
-  "/images/testimonials/testimonial-3.jpg",
-  "/images/testimonials/testimonial-1.jpg",
-  "/images/testimonials/testimonial-2.jpg",
-];
-
-function OrbitGraphic() {
-  const innerDots = [
-    { angle: -35, size: 44 },
-    { angle: 150, size: 38 },
-  ];
-  const outerDots = [
-    { angle: 20, size: 40 },
-    { angle: 195, size: 36 },
-    { angle: 270, size: 46 },
-  ];
-  return (
-    <div className={styles.orbit}>
-      <span className={styles.orbitRing} style={{ width: 156, height: 156 }} />
-      <span className={styles.orbitRing} style={{ width: 264, height: 264 }} />
-      <span className={styles.orbitCenter}>
-        <Image src="/feminista-logo-black.png" alt="Feminista" width={54} height={29} />
-      </span>
-
-      <span className={styles.orbitGroupA}>
-        {innerDots.map((d, i) => {
-          const rad = (d.angle * Math.PI) / 180;
-          const x = Math.cos(rad) * 78;
-          const y = Math.sin(rad) * 78;
-          return (
-            <span
-              key={i}
-              className={styles.orbitSat}
-              style={{ transform: `translate(calc(${x}px - 50%), calc(${y}px - 50%))` }}
-            >
-              <span className={styles.orbitSatInnerA} style={{ width: d.size, height: d.size }}>
-                <Image src={ORBIT_FACES[i]} alt="Feminista customer" fill className={styles.orbitFace} />
-              </span>
-            </span>
-          );
-        })}
-      </span>
-
-      <span className={styles.orbitGroupB}>
-        {outerDots.map((d, i) => {
-          const rad = (d.angle * Math.PI) / 180;
-          const x = Math.cos(rad) * 132;
-          const y = Math.sin(rad) * 132;
-          return (
-            <span
-              key={i}
-              className={styles.orbitSat}
-              style={{ transform: `translate(calc(${x}px - 50%), calc(${y}px - 50%))` }}
-            >
-              <span className={styles.orbitSatInnerB} style={{ width: d.size, height: d.size }}>
-                <Image src={ORBIT_FACES[i + 2]} alt="Feminista customer" fill className={styles.orbitFace} />
-              </span>
-            </span>
-          );
-        })}
-      </span>
-    </div>
-  );
-}
-
 export default function Footer() {
   return (
     <footer className={styles.footer}>
@@ -104,7 +37,6 @@ export default function Footer() {
             Create an Account ↗
           </Link>
         </div>
-        <OrbitGraphic />
       </div>
 
       <div className={styles.lower}>

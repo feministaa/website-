@@ -13,10 +13,8 @@
 
 .ctaCard {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 24px;
+  display: flex;
+  justify-content: center;
   max-width: var(--container);
   margin: 0 auto 56px;
   border-radius: 24px;
@@ -29,6 +27,10 @@
 .ctaCopy {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .ctaTitle {
@@ -61,120 +63,6 @@
 .ctaBtn:hover {
   background: var(--gold-deep);
   transform: translateY(-1px);
-}
-
-.orbit {
-  position: relative;
-  width: 264px;
-  height: 264px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.orbitRing {
-  position: absolute;
-  border: 1px dashed var(--line);
-  border-radius: 50%;
-}
-
-.orbitCenter {
-  position: relative;
-  z-index: 1;
-  width: 88px;
-  height: 88px;
-  border-radius: 50%;
-  background: var(--bg-alt);
-  border: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@keyframes orbitSpin {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-@keyframes orbitSpinReverse {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(-360deg);
-  }
-}
-
-@keyframes orbitCounterSpin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(-360deg);
-  }
-}
-
-@keyframes orbitCounterSpinReverse {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.orbitGroupA,
-.orbitGroupB {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-}
-
-.orbitGroupA {
-  width: 156px;
-  height: 156px;
-  animation: orbitSpin 20s linear infinite;
-}
-
-.orbitGroupB {
-  width: 264px;
-  height: 264px;
-  animation: orbitSpinReverse 30s linear infinite;
-}
-
-.orbitSat {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-}
-
-.orbitSatInnerA,
-.orbitSatInnerB {
-  position: relative;
-  display: block;
-  border-radius: 50%;
-  overflow: hidden;
-  background: var(--surface);
-  border: 2px solid var(--surface);
-  box-shadow: 0 0 0 1px var(--line), 0 4px 14px -6px rgba(13, 12, 10, 0.35);
-}
-
-.orbitFace {
-  object-fit: cover;
-  object-position: center;
-}
-
-.orbitSatInnerA {
-  animation: orbitCounterSpin 20s linear infinite;
-}
-
-.orbitSatInnerB {
-  animation: orbitCounterSpinReverse 30s linear infinite;
 }
 
 .lower {
