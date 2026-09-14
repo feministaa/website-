@@ -9,6 +9,12 @@
   left: 0;
   right: 0;
   width: 100%;
+  transform: translateY(0);
+  transition: transform 0.4s var(--ease);
+}
+
+.chromeHidden {
+  transform: translateY(-100%);
 }
 
 .announce {

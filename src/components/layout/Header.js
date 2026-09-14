@@ -142,9 +142,11 @@ export default function Header() {
   const { count, openDrawer } = useCart();
   const { count: wishCount } = useWishlist();
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [products, setProducts] = useState([]);
   const chromeRef = useRef(null);
+  const lastScrollY = useRef(0);
   const isHome = pathname === "/";
   const transparent = isHome && !scrolled;
 
@@ -157,7 +159,17 @@ export default function Header() {
 
   useEffect(() => {
     function onScroll() {
-      setScrolled(window.scrollY > 10);
+      const y = window.scrollY;
+      setScrolled(y > 10);
+
+      if (y < 120) {
+        setHidden(false);
+      } else if (y > lastScrollY.current + 4) {
+        setHidden(true);
+      } else if (y < lastScrollY.current - 4) {
+        setHidden(false);
+      }
+      lastScrollY.current = y;
     }
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -180,7 +192,10 @@ export default function Header() {
 
   return (
     <>
-      <div ref={chromeRef} className={`${styles.chrome} ${isHome ? styles.chromeFixed : ""}`}>
+      <div
+        ref={chromeRef}
+        className={`${styles.chrome} ${isHome ? styles.chromeFixed : ""} ${isHome && hidden ? styles.chromeHidden : ""}`}
+      >
         {isHome && (
           <div className={`${styles.announce} ${scrolled ? styles.announceCollapsed : ""}`}>
             Complimentary shipping across India
