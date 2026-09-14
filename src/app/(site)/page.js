@@ -2,7 +2,6 @@ import Hero from "@/components/home/Hero";
 import SignatureCollection from "@/components/home/SignatureCollection";
 import HomeBanner from "@/components/home/HomeBanner";
 import AboutTeaser from "@/components/home/AboutTeaser";
-import DiscoverySet from "@/components/home/DiscoverySet";
 import HomeReels from "@/components/home/HomeReels";
 import HomeFAQ from "@/components/home/HomeFAQ";
 import { getProducts } from "@/lib/dataStore";
@@ -23,16 +22,13 @@ export const metadata = {
 
 export default async function Home() {
   const products = await getProducts();
-  const collection = products.filter((p) => p.family !== "set");
-  const discoverySet = products.find((p) => p.family === "set");
 
   return (
     <main>
       <Hero />
       <AboutTeaser />
-      <SignatureCollection products={collection} />
+      <SignatureCollection products={products} />
       <HomeBanner />
-      <DiscoverySet product={discoverySet} />
       <HomeReels />
       <HomeFAQ />
     </main>
