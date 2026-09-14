@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
-import { createOrder, upsertGuestCustomer, updateUser } from "@/lib/dataStore";
+import { createOrder, updateOrder, upsertGuestCustomer, updateUser } from "@/lib/dataStore";
 import { getCurrentCustomer } from "@/lib/customerAuth";
+import { createShipment } from "@/lib/ithinklogistics";
 
 export const runtime = "nodejs";
 
@@ -56,6 +57,23 @@ export async function POST(request) {
     razorpayPaymentId: razorpay_payment_id,
     paymentStatus: "paid",
   });
+
+  try {
+    const shipment = await createShipment(newOrder);
+    await updateOrder(newOrder.id, {
+      awb_number: shipment.awbNumber,
+      courier_name: shipment.courierName,
+      shipment_status: "created",
+    });
+    newOrder.awbNumber = shipment.awbNumber;
+    newOrder.courierName = shipment.courierName;
+    newOrder.shipmentStatus = "created";
+  } catch (err) {
+    // Payment already succeeded and the order is saved — a shipment booking
+    // failure shouldn't block the customer's confirmation. Admin can retry manually.
+    await updateOrder(newOrder.id, { shipment_status: "failed" }).catch(() => {});
+    console.error("iThink Logistics shipment creation failed:", err.message);
+  }
 
   return NextResponse.json(newOrder, { status: 201 });
 }

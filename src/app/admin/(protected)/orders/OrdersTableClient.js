@@ -12,6 +12,7 @@ export default function OrdersTableClient({ orders }) {
   const [items, setItems] = useState(orders);
   const [expanded, setExpanded] = useState(null);
   const [savingId, setSavingId] = useState(null);
+  const [shippingId, setShippingId] = useState(null);
   const router = useRouter();
 
   async function handleStatusChange(id, status) {
@@ -33,6 +34,21 @@ export default function OrdersTableClient({ orders }) {
     }
   }
 
+  async function handleShip(id) {
+    setShippingId(id);
+    try {
+      const res = await fetch(`/api/orders/${id}/ship`, { method: "POST" });
+      const updated = await res.json();
+      if (!res.ok) throw new Error(updated.error || "Could not create shipment.");
+      setItems((prev) => prev.map((o) => (o.id === updated.id ? updated : o)));
+      router.refresh();
+    } catch (err) {
+      alert(err.message);
+    } finally {
+      setShippingId(null);
+    }
+  }
+
   return (
     <div className={tableStyles.panel}>
       <div style={{ overflowX: "auto" }}>
@@ -45,6 +61,7 @@ export default function OrdersTableClient({ orders }) {
               <th>Items</th>
               <th>Total</th>
               <th>Payment</th>
+              <th>Shipping</th>
               <th>Status</th>
               <th>Placed</th>
               <th></th>
@@ -68,6 +85,29 @@ export default function OrdersTableClient({ orders }) {
                     >
                       {o.paymentStatus}
                     </span>
+                  </td>
+                  <td>
+                    {o.shipmentStatus === "created" ? (
+                      <div>
+                        <a
+                          href={`https://www.ithinklogistics.co.in/postship/tracking/${o.awbNumber}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ fontSize: 12.5, color: "var(--gold-deep)" }}
+                        >
+                          {o.awbNumber}
+                        </a>
+                        <div style={{ fontSize: 11.5, color: "var(--ink-faint)" }}>{o.courierName || "—"}</div>
+                      </div>
+                    ) : (
+                      <button
+                        className={styles.expandBtn}
+                        disabled={shippingId === o.id}
+                        onClick={() => handleShip(o.id)}
+                      >
+                        {shippingId === o.id ? "Booking…" : o.shipmentStatus === "failed" ? "Retry Ship" : "Ship Now"}
+                      </button>
+                    )}
                   </td>
                   <td>
                     <select
@@ -95,7 +135,7 @@ export default function OrdersTableClient({ orders }) {
                 </tr>
                 {expanded === o.id && (
                   <tr>
-                    <td colSpan={9} className={styles.detailCell}>
+                    <td colSpan={10} className={styles.detailCell}>
                       <div className={styles.detailBlock}>
                         <div style={{ marginBottom: 8 }}>
                           <strong>Address:</strong> {o.address || "—"}
@@ -116,7 +156,7 @@ export default function OrdersTableClient({ orders }) {
             ))}
             {items.length === 0 && (
               <tr>
-                <td colSpan={9} style={{ textAlign: "center", padding: "40px 0", color: "var(--ink-faint)" }}>
+                <td colSpan={10} style={{ textAlign: "center", padding: "40px 0", color: "var(--ink-faint)" }}>
                   No orders yet.
                 </td>
               </tr>

@@ -137,6 +137,18 @@ export default function AccountDashboardClient({ user, orders }) {
                 <div>
                   <div className={styles.orderId}>{order.id}</div>
                   <div style={{ color: "var(--ink-faint)", fontSize: 12 }}>{formatDate(order.date)}</div>
+                  {order.awbNumber && (
+                    <div style={{ fontSize: 11.5, marginTop: 2 }}>
+                      <a
+                        href={`https://www.ithinklogistics.co.in/postship/tracking/${order.awbNumber}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: "var(--gold-deep)" }}
+                      >
+                        Track Order {order.courierName ? `(${order.courierName})` : ""}
+                      </a>
+                    </div>
+                  )}
                 </div>
                 <div>{order.items.reduce((s, i) => s + i.qty, 0)} item(s)</div>
                 <div>{formatINR(order.total)}</div>

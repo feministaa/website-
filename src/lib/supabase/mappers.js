@@ -105,5 +105,8 @@ export function orderFromRow(row) {
     paymentStatus: row.payment_status ?? "unpaid",
     razorpayOrderId: row.razorpay_order_id ?? null,
     razorpayPaymentId: row.razorpay_payment_id ?? null,
+    awbNumber: row.awb_number ?? null,
+    courierName: row.courier_name ?? null,
+    shipmentStatus: row.shipment_status ?? "not_shipped",
   };
 }
