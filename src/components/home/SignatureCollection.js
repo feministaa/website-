@@ -41,20 +41,16 @@ function Slide({ product }) {
         </Link>
       ) : (
         <div className={styles.shopCard}>
-          <div className={styles.shopInfo}>
-            <span className={styles.shopName}>{product.name}</span>
-            <span className={styles.shopSize}>{size.label} · Eau de Parfum</span>
-          </div>
           <div className={styles.shopPrice}>
             {product.compareAtPrice && <span className={styles.shopCompareAt}>{formatINR(product.compareAtPrice)}</span>}
             <span>{formatINR(size.price)}</span>
           </div>
-          <div className={styles.shopActions}>
+          <div className={styles.shopQty}>
             <QuantitySelector value={qty} onChange={setQty} />
-            <button className={styles.shopAddBtn} onClick={handleAdd}>
-              Add to Cart
-            </button>
           </div>
+          <button className={styles.shopAddBtn} onClick={handleAdd}>
+            Add to Cart
+          </button>
         </div>
       )}
     </div>
