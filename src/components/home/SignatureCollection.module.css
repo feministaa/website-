@@ -1,96 +1,72 @@
 .section {
-  background: var(--bg);
-  padding: 40px 0;
-}
-
-.row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 64px;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 56px 24px;
-}
-
-.rowReverse .imageCol {
-  order: 2;
-}
-
-.rowReverse .contentCol {
-  order: 1;
-}
-
-.imageCol {
   position: relative;
-  aspect-ratio: 4/5;
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 40px 90px -34px rgba(13, 12, 10, 0.3);
-}
-
-.imageLink {
-  position: absolute;
-  inset: 0;
-  display: block;
-}
-
-.image {
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.9s var(--ease);
-}
-
-.imageLink:hover .image {
-  transform: scale(1.05);
-}
-
-.contentCol {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  background: var(--black);
+}
+
+.slide {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.slideImage {
+  object-fit: cover;
+  object-position: center 30%;
+  transition: transform 1.4s var(--ease);
+}
+
+.slide:hover .slideImage {
+  transform: scale(1.04);
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(9, 9, 9, 0.85) 0%, rgba(9, 9, 9, 0.1) 45%, rgba(9, 9, 9, 0.25) 100%);
+}
+
+.slideCopy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 10px;
-  max-width: 420px;
+  padding: 0 24px 72px;
+  color: var(--cream);
 }
 
-.tagline {
+.slideTagline {
   font-size: 12.5px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--gold-deep);
+  color: rgba(241, 233, 230, 0.82);
 }
 
-.name {
-  font-size: clamp(36px, 4.4vw, 56px);
-  line-height: 1.05;
+.slideName {
+  font-family: var(--font-serif);
+  font-size: clamp(48px, 8vw, 108px);
+  line-height: 1;
 }
 
 .discover {
-  margin-top: 10px;
-  font-size: 12.5px;
+  margin-top: 6px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   padding-bottom: 4px;
-  border-bottom: 1px solid var(--line);
-  color: var(--ink);
+  border-bottom: 1px solid rgba(241, 233, 230, 0.6);
   transition: border-color 0.3s var(--ease);
 }
 
-.discover:hover {
-  border-color: var(--ink);
-}
-
-@media (max-width: 900px) {
-  .row {
-    grid-template-columns: 1fr;
-    gap: 28px;
-    padding: 32px 24px;
-  }
-  .rowReverse .imageCol,
-  .rowReverse .contentCol {
-    order: 0;
-  }
-  .contentCol {
-    max-width: none;
-  }
+.slide:hover .discover {
+  border-color: var(--cream);
 }
