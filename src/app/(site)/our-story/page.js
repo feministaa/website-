@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import AnimateIn from "@/components/ui/AnimateIn";
 import ProductCard from "@/components/ui/ProductCard";
+import HomeBanner from "@/components/home/HomeBanner";
 import { getProducts } from "@/lib/dataStore";
 
 export const metadata = {
@@ -119,6 +120,8 @@ export default async function OurStoryPage() {
           </div>
         </AnimateIn>
       </section>
+
+      <HomeBanner />
 
       <section className={styles.inspired}>
         <AnimateIn className={styles.header}>

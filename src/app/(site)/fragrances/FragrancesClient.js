@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import AnimateIn from "@/components/ui/AnimateIn";
+import FragrancesHero from "./FragrancesHero";
 import { useCart } from "@/context/CartContext";
 
 const FILTERS = [
@@ -40,37 +41,7 @@ export default function FragrancesClient({ products }) {
 
   return (
     <main>
-      <nav className={styles.crumb} aria-label="Breadcrumb">
-        <Link href="/">Home</Link>
-        <span>/</span>
-        <span>All Fragrances</span>
-      </nav>
-
-      <section className={styles.hero}>
-        <AnimateIn className={styles.heroCopy}>
-          <h1 className={styles.heroTitle}>All Fragrances</h1>
-          <p className={styles.heroSub}>
-            Feminista is known for composing modern, expressive fragrances built on patience and craft. Our full
-            collection is presented here, including{" "}
-            <Link href="/fragrances/locken" className={styles.heroLink}>
-              Locken
-            </Link>
-            ,{" "}
-            <Link href="/fragrances/vers" className={styles.heroLink}>
-              Vers
-            </Link>
-            ,{" "}
-            <Link href="/fragrances/fresca" className={styles.heroLink}>
-              Fresca
-            </Link>{" "}
-            and the{" "}
-            <button className={styles.heroLink} onClick={() => setFilter("set")}>
-              Discovery Set
-            </button>
-            .
-          </p>
-        </AnimateIn>
-      </section>
+      <FragrancesHero products={products} />
 
       {query && (
         <div className="container" style={{ paddingTop: 30 }}>

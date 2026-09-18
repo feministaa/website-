@@ -7,8 +7,8 @@ export default function HomeBanner() {
   return (
     <section className={styles.section}>
       <Image
-        src="/images/banner-hero-silk.jpg"
-        alt="Feminista Eau de Parfum on silk"
+        src="/images/hero-cat-giftbox.png"
+        alt="Feminista Locken with gift box"
         fill
         className={styles.image}
       />

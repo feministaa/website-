@@ -1,0 +1,267 @@
+.pinWrap {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(120% 90% at 50% 40%, #1a1512 0%, #0d0b0a 55%, #060505 100%);
+  overflow: hidden;
+  perspective: 1200px;
+}
+
+.stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 160px 40px rgba(0, 0, 0, 0.75);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) minmax(380px, 620px) minmax(200px, 1fr);
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "heading bottle notes"
+    "heading bottle notes"
+    "description price buy";
+  gap: 12px 32px;
+  padding: 64px 56px;
+  will-change: opacity, transform;
+}
+
+.heading {
+  grid-area: heading;
+  align-self: start;
+  justify-self: start;
+  text-align: left;
+  color: #f6f4f3;
+}
+
+.description {
+  grid-area: description;
+  align-self: end;
+  justify-self: start;
+  max-width: 280px;
+  text-align: left;
+}
+
+.notesPanel {
+  grid-area: notes;
+  align-self: start;
+  justify-self: end;
+  text-align: right;
+}
+
+.priceRow {
+  grid-area: price;
+  align-self: end;
+  justify-self: center;
+  text-align: center;
+  padding-bottom: 4px;
+}
+
+.buyWrap {
+  grid-area: buy;
+  align-self: end;
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.bottleStage {
+  grid-area: bottle;
+  align-self: center;
+  justify-self: center;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.sideLabel {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #eb9d1b;
+  margin-bottom: 10px;
+}
+
+.sideText {
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: rgba(246, 244, 243, 0.7);
+}
+
+.discoverLink {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #eb9d1b;
+  transition: color 0.3s var(--ease);
+}
+
+.discoverLink:hover,
+.discoverLink:focus-visible {
+  color: #f6f4f3;
+}
+
+.notesList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 7px;
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+}
+
+.notesList li {
+  list-style: none;
+  padding: 5px 12px;
+  border: 1px solid rgba(246, 244, 243, 0.25);
+  border-radius: 999px;
+  color: rgba(246, 244, 243, 0.85);
+}
+
+.priceText {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 22px;
+  font-weight: 600;
+  color: #f6f4f3;
+  font-variant-numeric: tabular-nums;
+}
+
+.priceCompareAt {
+  font-size: 12px;
+  font-weight: 400;
+  text-decoration: line-through;
+  color: rgba(246, 244, 243, 0.5);
+  margin-right: 8px;
+}
+
+.shopQty {
+  display: flex;
+  align-items: center;
+  color: #f6f4f3;
+}
+
+.shopAddBtn {
+  padding-bottom: 5px;
+  background: transparent;
+  color: #f6f4f3;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(246, 244, 243, 0.5);
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.shopAddBtn:hover {
+  color: #eb9d1b;
+  border-color: #eb9d1b;
+}
+
+.bottleWrap {
+  position: relative;
+  width: min(58vw, 460px);
+  height: min(70vw, 560px);
+  transform-style: preserve-3d;
+}
+
+.bottle {
+  object-fit: contain;
+  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.55));
+}
+
+.bottle3d {
+  position: absolute;
+  inset: -20%;
+  cursor: grab;
+}
+
+.eyebrow {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #eb9d1b;
+  margin-bottom: 8px;
+}
+
+.name {
+  font-family: var(--font-serif);
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 400;
+  color: #f6f4f3;
+}
+
+@media (max-width: 760px) {
+  .pinWrap {
+    height: auto;
+  }
+
+  .stage {
+    height: auto;
+    perspective: none;
+  }
+
+  .layer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 1 !important;
+    padding: 56px 24px;
+    gap: 24px;
+  }
+
+  .bottleStage {
+    order: 1;
+  }
+
+  .heading {
+    order: 2;
+    text-align: center;
+  }
+
+  .priceRow {
+    order: 3;
+  }
+
+  .buyWrap {
+    order: 4;
+  }
+
+  .notesPanel {
+    order: 5;
+    text-align: center;
+  }
+
+  .notesList {
+    justify-content: center;
+  }
+
+  .description {
+    order: 6;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .bottleWrap {
+    width: 56vw;
+    height: 68vw;
+  }
+}

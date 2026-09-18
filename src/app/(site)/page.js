@@ -1,10 +1,12 @@
 import Hero from "@/components/home/Hero";
-import SignatureCollection from "@/components/home/SignatureCollection";
 import HomeBanner from "@/components/home/HomeBanner";
+import CinematicShowcase from "@/components/home/CinematicShowcase";
 import AboutTeaser from "@/components/home/AboutTeaser";
-import DiscoverySetShowcase from "@/components/home/DiscoverySetShowcase";
+import WorldGrid from "@/components/home/WorldGrid";
+import GiftReveal from "@/components/home/GiftReveal";
+import FindYourEssence from "@/components/home/FindYourEssence";
 import HomeReels from "@/components/home/HomeReels";
-import HomeFAQ from "@/components/home/HomeFAQ";
+import NewsletterBanner from "@/components/home/NewsletterBanner";
 import { getProducts } from "@/lib/dataStore";
 
 export const metadata = {
@@ -23,18 +25,31 @@ export const metadata = {
 
 export default async function Home() {
   const products = await getProducts();
-  const collection = products.filter((p) => p.family !== "set");
-  const discoverySet = products.find((p) => p.family === "set");
 
   return (
     <main>
       <Hero />
-      <AboutTeaser />
-      <SignatureCollection products={collection} />
-      <DiscoverySetShowcase product={discoverySet} />
+      <CinematicShowcase products={products.filter((p) => p.family !== "set")} />
+      <AboutTeaser
+        stacked
+        eyebrow="About Us"
+        heading="House of Feminista"
+        description={
+          <>
+            Created for her. <em>Never</em> adapted to her. Feminista was born from a belief that femininity has no
+            single definition. Each fragrance is composed slowly, matured with patience, and made to reveal a
+            different side of her with every wear.
+          </>
+        }
+        image="/images/products/fresca-spray.jpg"
+        image2="/images/products/fresca-spray.jpg"
+      />
       <HomeBanner />
+      <FindYourEssence products={products} />
+      <WorldGrid />
+      <GiftReveal />
       <HomeReels />
-      <HomeFAQ />
+      <NewsletterBanner />
     </main>
   );
 }

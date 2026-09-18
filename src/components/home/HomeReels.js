@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./HomeReels.module.css";
 
 const REELS = [
@@ -14,6 +14,7 @@ const REELS = [
 
 function ReelCard({ reel }) {
   const videoRef = useRef(null);
+  const [muted, setMuted] = useState(true);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -34,11 +35,29 @@ function ReelCard({ reel }) {
         autoPlay
         playsInline
         loop
-        muted
+        muted={muted}
         preload="auto"
       />
-      <div className={styles.scrim} />
-      <span className={styles.caption}>{reel.caption}</span>
+      <button
+        type="button"
+        className={styles.muteBtn}
+        aria-label={muted ? "Unmute video" : "Mute video"}
+        onClick={() => setMuted((m) => !m)}
+      >
+        {muted ? (
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M11 5 6 9H2v6h4l5 4V5z" />
+            <line x1="23" y1="9" x2="17" y2="15" />
+            <line x1="17" y1="9" x2="23" y2="15" />
+          </svg>
+        ) : (
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M11 5 6 9H2v6h4l5 4V5z" />
+            <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+            <path d="M18.5 5.5a9 9 0 0 1 0 13" />
+          </svg>
+        )}
+      </button>
     </div>
   );
 }
@@ -47,15 +66,12 @@ export default function HomeReels() {
   return (
     <section className={`section ${styles.section}`}>
       <div className={styles.header}>
-        <span className="eyebrow">In Motion</span>
-        <h2 className={styles.title}>The Ritual, Filmed</h2>
+        <h2 className={styles.title}>Vibe with Us</h2>
       </div>
       <div className={styles.row}>
-        <div className={styles.spacer} aria-hidden="true" />
         {REELS.map((reel) => (
           <ReelCard key={reel.id} reel={reel} />
         ))}
-        <div className={styles.spacer} aria-hidden="true" />
       </div>
     </section>
   );

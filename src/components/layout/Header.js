@@ -65,7 +65,7 @@ function SearchBar({ mobile = false, onNavigate, products }) {
   }
 
   return (
-    <div ref={boxRef} style={{ position: "relative", width: "100%", maxWidth: mobile ? "none" : 280 }}>
+    <div ref={boxRef} style={{ position: "relative", width: "100%", maxWidth: mobile ? "none" : 230 }}>
       <form className={styles.searchWrap} style={mobile ? { maxWidth: "none" } : undefined} onSubmit={handleSubmit}>
         <input
           className={styles.searchInput}
@@ -196,11 +196,6 @@ export default function Header() {
         ref={chromeRef}
         className={`${styles.chrome} ${isHome ? styles.chromeFixed : ""} ${isHome && hidden ? styles.chromeHidden : ""}`}
       >
-        {isHome && (
-          <div className={`${styles.announce} ${scrolled ? styles.announceCollapsed : ""}`}>
-            Complimentary shipping across India
-          </div>
-        )}
         <header className={`${styles.header} ${scrolled ? styles.headerScrolled : ""} ${transparent ? styles.headerTransparent : ""}`}>
         <div className={styles.topRow}>
           <SearchBar products={products} />

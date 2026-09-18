@@ -1,25 +1,24 @@
 :root {
   --wine: #6d1f3a;
-  --gold: #eb9d1b;
+  --gold: #6d1f3a;
   --noir: #090909;
-  --sand: #e2b795;
-  --ivory: #f1e9e6;
+  --sand: #ece8e6;
+  --ivory: #f6f4f3;
 
   --bg: #ffffff;
-  --bg-alt: #ecdcd0;
-  --bg-deep: #e2b795;
+  --bg-alt: #f5f2f1;
+  --bg-deep: #efe6e9;
   --surface: #ffffff;
   --ink: #090909;
-  --ink-soft: #4a3b38;
-  --ink-faint: #8a7570;
-  --line: #e3d4c8;
-  --line-soft: #ece1d8;
-  --gold: #eb9d1b;
-  --gold-light: #f2b64a;
-  --gold-pale: #f6d9a4;
-  --gold-deep: #b97812;
+  --ink-soft: #3d3538;
+  --ink-faint: #8a8386;
+  --line: #e3dcde;
+  --line-soft: #eee8ea;
+  --gold-light: #8f3d5c;
+  --gold-pale: #f3e2e8;
+  --gold-deep: #4a1527;
   --black: #090909;
-  --cream: #f1e9e6;
+  --cream: #f7f5f4;
   --danger: #6d1f3a;
   --success: #4c6b4f;
 
@@ -252,21 +251,15 @@ select:focus-visible {
 }
 
 /* Scrollbar */
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 ::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--gold-pale);
-  border-radius: 8px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--gold-light);
+  width: 0;
+  height: 0;
+  display: none;
 }
 
 .sr-only {
