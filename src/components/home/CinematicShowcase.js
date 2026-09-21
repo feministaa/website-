@@ -24,7 +24,7 @@ const MODELS = {
   fresca: LOCKEN_MODEL,
 };
 
-function Slide({ product, layerRef, bottleRef, pointerRef }) {
+function Slide({ product, layerRef, bottleRef, pointerRef, active }) {
   const [qty, setQty] = useState(1);
   const { addToCart } = useCart();
   const { showToast } = useToast();
@@ -65,7 +65,7 @@ function Slide({ product, layerRef, bottleRef, pointerRef }) {
       <div className={styles.bottleStage}>
         <div className={styles.bottleWrap} ref={bottleRef}>
           {MODELS[product.slug] ? (
-            <Bottle3D url={MODELS[product.slug]} className={styles.bottle3d} pointer={pointerRef} />
+            <Bottle3D url={MODELS[product.slug]} className={styles.bottle3d} pointer={pointerRef} active={active} />
           ) : (
             <Image
               src={product.cardImage || product.images?.[0]}
@@ -110,6 +110,10 @@ export default function CinematicShowcase({ products }) {
   const layerRefs = useRef([]);
   const bottleRefs = useRef([]);
   const pointerRef = useRef({ x: 0, y: 0 });
+  // 3 simultaneous WebGL canvases render continuously by default — real, ongoing GPU work for
+  // the whole homepage visit even after scrolling past this section. Track whether the section
+  // is anywhere near the viewport so Bottle3D can fully stop its render loop once it's not.
+  const [sectionActive, setSectionActive] = useState(true);
   layerRefs.current = [];
   bottleRefs.current = [];
 
@@ -117,6 +121,11 @@ export default function CinematicShowcase({ products }) {
     () => {
       const stage = stageRef.current;
       if (!stage || products.length < 1) return;
+
+      const io = new IntersectionObserver(([entry]) => setSectionActive(entry.isIntersecting), {
+        rootMargin: "200px 0px",
+      });
+      io.observe(pinWrapRef.current);
 
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const layers = layerRefs.current;
@@ -203,11 +212,15 @@ export default function CinematicShowcase({ products }) {
         stage.addEventListener("pointermove", handlePointerMove);
         return () => {
           stage.removeEventListener("pointermove", handlePointerMove);
+          io.disconnect();
           mm.revert();
         };
       }
 
-      return () => mm.revert();
+      return () => {
+        io.disconnect();
+        mm.revert();
+      };
     },
     { scope: pinWrapRef, dependencies: [products] }
   );
@@ -222,6 +235,7 @@ export default function CinematicShowcase({ products }) {
             layerRef={(el) => (layerRefs.current[i] = el)}
             bottleRef={(el) => (bottleRefs.current[i] = el)}
             pointerRef={pointerRef}
+            active={sectionActive}
           />
         ))}
       </div>

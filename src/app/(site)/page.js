@@ -3,7 +3,6 @@ import HomeBanner from "@/components/home/HomeBanner";
 import CinematicShowcase from "@/components/home/CinematicShowcase";
 import AboutTeaser from "@/components/home/AboutTeaser";
 import WorldGrid from "@/components/home/WorldGrid";
-import GiftReveal from "@/components/home/GiftReveal";
 import FindYourEssence from "@/components/home/FindYourEssence";
 import HomeReels from "@/components/home/HomeReels";
 import NewsletterBanner from "@/components/home/NewsletterBanner";
@@ -47,7 +46,6 @@ export default async function Home() {
       <HomeBanner />
       <FindYourEssence products={products} />
       <WorldGrid />
-      <GiftReveal />
       <HomeReels />
       <NewsletterBanner />
     </main>

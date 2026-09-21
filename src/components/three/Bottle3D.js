@@ -46,7 +46,7 @@ function Model({ url, pointer, reduceMotion }) {
   );
 }
 
-export default function Bottle3D({ url, className, pointer: externalPointer }) {
+export default function Bottle3D({ url, className, pointer: externalPointer, active = true }) {
   const localPointer = useRef({ x: 0, y: 0 });
   const pointer = externalPointer || localPointer;
   const reduceMotion =
@@ -72,8 +72,9 @@ export default function Bottle3D({ url, className, pointer: externalPointer }) {
     <div className={className} onPointerMove={externalPointer ? undefined : handlePointerMove}>
       <Canvas
         camera={{ position: [0, 0, 3.4], fov: 32 }}
-        dpr={[1, 2]}
-        gl={{ alpha: true, antialias: true }}
+        dpr={1}
+        gl={{ alpha: false, antialias: false, powerPreference: "low-power" }}
+        frameloop={active ? "always" : "never"}
         onCreated={({ gl }) => {
           // Let the browser auto-restore the context instead of leaving the canvas permanently blank
           // (transient GPU resets, backgrounded mobile tabs, or too many WebGL contexts on the page).
@@ -89,7 +90,7 @@ export default function Bottle3D({ url, className, pointer: externalPointer }) {
         <directionalLight position={[-4, -1, -3]} intensity={0.5} />
         <Suspense fallback={null}>
           <Model url={url} pointer={pointer} reduceMotion={reduceMotion} />
-          <Environment preset="apartment" environmentIntensity={0.6} />
+          <Environment preset="apartment" environmentIntensity={0.6} resolution={64} />
         </Suspense>
       </Canvas>
     </div>

@@ -43,7 +43,6 @@ export default function FindYourEssence({ products }) {
             </div>
             <div className={styles.cardText}>
               <span className={styles.cardName}>{product.name}</span>
-              <span className={styles.cardFamily}>{product.family}</span>
             </div>
           </Link>
         ))}
