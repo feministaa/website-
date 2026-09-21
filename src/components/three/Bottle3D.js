@@ -36,7 +36,7 @@ function Model({ url, pointer, reduceMotion }) {
   });
 
   return (
-    <Bounds fit clip observe margin={1.3}>
+    <Bounds fit clip observe margin={4.6}>
       <Center>
         <group ref={group}>
           <primitive object={cleanedScene} />
@@ -80,10 +80,10 @@ export default function Bottle3D({ url, className, pointer: externalPointer }) {
           gl.domElement.addEventListener("webglcontextlost", (e) => e.preventDefault());
         }}
       >
-        {/* Transmissive glass needs something real behind it to refract — a transparent canvas
-            gives it nothing, which washes the glass out to white instead of showing the golden
-            liquid through it. Match the dark stage backdrop so it blends in seamlessly. */}
-        <color attach="background" args={["#120f0d"]} />
+        {/* This background is now the section's actual full-bleed backdrop (not just behind the
+            bottle) — the glass also needs something real here to refract, so removing it would
+            both bring back a mismatched box AND wash the glass out to white. */}
+        <color attach="background" args={["#0d0b0a"]} />
         <ambientLight intensity={0.7} />
         <directionalLight position={[3, 4, 5]} intensity={1.6} />
         <directionalLight position={[-4, -1, -3]} intensity={0.5} />

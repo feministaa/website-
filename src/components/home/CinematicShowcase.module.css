@@ -45,6 +45,8 @@
   justify-self: start;
   text-align: left;
   color: #f6f4f3;
+  position: relative;
+  z-index: 2;
 }
 
 .description {
@@ -53,6 +55,8 @@
   justify-self: start;
   max-width: 280px;
   text-align: left;
+  position: relative;
+  z-index: 2;
 }
 
 .notesPanel {
@@ -60,6 +64,8 @@
   align-self: start;
   justify-self: end;
   text-align: right;
+  position: relative;
+  z-index: 2;
 }
 
 .priceRow {
@@ -68,6 +74,8 @@
   justify-self: center;
   text-align: center;
   padding-bottom: 4px;
+  position: relative;
+  z-index: 2;
 }
 
 .buyWrap {
@@ -77,13 +85,14 @@
   display: flex;
   align-items: center;
   gap: 14px;
+  position: relative;
+  z-index: 2;
 }
 
 .bottleStage {
-  grid-area: bottle;
-  align-self: center;
-  justify-self: center;
-  position: relative;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   transform-style: preserve-3d;
 }
 
@@ -175,9 +184,8 @@
 }
 
 .bottleWrap {
-  position: relative;
-  width: min(58vw, 460px);
-  height: min(70vw, 560px);
+  position: absolute;
+  inset: 0;
   transform-style: preserve-3d;
 }
 
