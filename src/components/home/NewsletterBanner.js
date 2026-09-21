@@ -7,7 +7,7 @@ export default function NewsletterBanner() {
   return (
     <section className={styles.section}>
       <Image
-        src="/images/products/locken-ingredients.jpg"
+        src="/images/products/locken-newsletter.png"
         alt="Locken botanicals by Feminista"
         fill
         className={styles.image}

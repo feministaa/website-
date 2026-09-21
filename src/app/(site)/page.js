@@ -41,8 +41,8 @@ export default async function Home() {
             different side of her with every wear.
           </>
         }
-        image="/images/products/fresca-spray.jpg"
-        image2="/images/products/fresca-spray.jpg"
+        image="/images/products/locken-silk-horizontal.png"
+        image2="/images/products/locken-touch.jpg"
       />
       <HomeBanner />
       <FindYourEssence products={products} />

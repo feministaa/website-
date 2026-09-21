@@ -6,7 +6,7 @@ export default function FindYourEssence({ products }) {
   return (
     <section className={styles.section}>
       <Image
-        src="/images/collection-banner-silhouette.png"
+        src="/images/collection-banner-silhouette.webp"
         alt="A woman in flowing dark fabric"
         fill
         className={styles.bgImage}

@@ -7,7 +7,7 @@ export default function HomeBanner() {
   return (
     <section className={styles.section}>
       <Image
-        src="/images/hero-cat-giftbox.png"
+        src="/images/art-of-180-lab.webp"
         alt="Feminista Locken with gift box"
         fill
         className={styles.image}
