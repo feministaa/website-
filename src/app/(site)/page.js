@@ -33,7 +33,7 @@ export default async function Home() {
       <AboutTeaser
         stacked
         eyebrow="About Us"
-        heading="House of Feminista"
+        heading="Who is she"
         description={
           <>
             Created for her. <em>Never</em> adapted to her. Feminista was born from a belief that femininity has no
