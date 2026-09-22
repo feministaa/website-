@@ -9,18 +9,9 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background: radial-gradient(120% 90% at 50% 40%, #1a1512 0%, #0d0b0a 55%, #060505 100%);
+  background: #d7d8df;
   overflow: hidden;
   perspective: 1200px;
-}
-
-.stage::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  box-shadow: inset 0 0 160px 40px rgba(0, 0, 0, 0.75);
-  pointer-events: none;
-  z-index: 3;
 }
 
 .layer {
@@ -37,6 +28,11 @@
   gap: 12px 32px;
   padding: 64px 56px;
   will-change: opacity, transform;
+  /* The middle "bottle" cell is intentionally empty (the Spline iframe sits behind it), but this
+     div still spans the whole slide — without this, its empty area would swallow every pointer
+     event before it reaches the iframe, killing the Spline scene's own cursor interaction. Only
+     the actual content blocks re-enable pointer events on themselves below. */
+  pointer-events: none;
 }
 
 .heading {
@@ -44,9 +40,10 @@
   align-self: start;
   justify-self: start;
   text-align: left;
-  color: #f6f4f3;
+  color: var(--ink);
   position: relative;
   z-index: 2;
+  pointer-events: auto;
 }
 
 .description {
@@ -57,6 +54,7 @@
   text-align: left;
   position: relative;
   z-index: 2;
+  pointer-events: auto;
 }
 
 .notesPanel {
@@ -66,6 +64,7 @@
   text-align: right;
   position: relative;
   z-index: 2;
+  pointer-events: auto;
 }
 
 .priceRow {
@@ -76,6 +75,7 @@
   padding-bottom: 4px;
   position: relative;
   z-index: 2;
+  pointer-events: auto;
 }
 
 .buyWrap {
@@ -87,13 +87,39 @@
   gap: 14px;
   position: relative;
   z-index: 2;
+  pointer-events: auto;
 }
 
-.bottleStage {
+.sharedBottle {
+  /* Contained, not full-bleed — a cross-origin iframe covering the whole pinned section would
+     swallow scroll-wheel input entirely (the browser delivers it to the iframe's own page, and
+     being a different origin, ours has no way to get it back), breaking scroll for the section.
+     Keeping it to a centered box leaves the rest of the slide as normal scrollable page. */
   position: absolute;
-  inset: 0;
-  z-index: 0;
-  transform-style: preserve-3d;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(72vw, 920px);
+  height: min(58vw, 700px);
+  z-index: 1;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.bottleHint {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.55;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 6px 14px;
+  border-radius: 999px;
+  pointer-events: none;
 }
 
 .sideLabel {
@@ -101,14 +127,15 @@
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #eb9d1b;
+  color: var(--wine);
   margin-bottom: 10px;
 }
 
 .sideText {
   font-size: 13.5px;
   line-height: 1.75;
-  color: rgba(246, 244, 243, 0.7);
+  color: var(--ink);
+  opacity: 0.75;
 }
 
 .discoverLink {
@@ -117,13 +144,13 @@
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #eb9d1b;
+  color: var(--wine);
   transition: color 0.3s var(--ease);
 }
 
 .discoverLink:hover,
 .discoverLink:focus-visible {
-  color: #f6f4f3;
+  color: var(--ink);
 }
 
 .notesList {
@@ -138,9 +165,9 @@
 .notesList li {
   list-style: none;
   padding: 5px 12px;
-  border: 1px solid rgba(246, 244, 243, 0.25);
+  border: 1px solid rgba(9, 9, 9, 0.2);
   border-radius: 999px;
-  color: rgba(246, 244, 243, 0.85);
+  color: var(--ink);
 }
 
 .priceText {
@@ -148,7 +175,7 @@
   font-family: var(--font-sans);
   font-size: 22px;
   font-weight: 600;
-  color: #f6f4f3;
+  color: var(--ink);
   font-variant-numeric: tabular-nums;
 }
 
@@ -156,48 +183,39 @@
   font-size: 12px;
   font-weight: 400;
   text-decoration: line-through;
-  color: rgba(246, 244, 243, 0.5);
+  color: rgba(9, 9, 9, 0.5);
   margin-right: 8px;
 }
 
 .shopQty {
   display: flex;
   align-items: center;
-  color: #f6f4f3;
+  color: var(--ink);
 }
 
 .shopAddBtn {
   padding-bottom: 5px;
   background: transparent;
-  color: #f6f4f3;
+  color: var(--ink);
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   white-space: nowrap;
-  border-bottom: 1px solid rgba(246, 244, 243, 0.5);
+  border-bottom: 1px solid rgba(9, 9, 9, 0.4);
   transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
 }
 
 .shopAddBtn:hover {
-  color: #eb9d1b;
-  border-color: #eb9d1b;
-}
-
-.bottleWrap {
-  position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
-}
-
-.bottle {
-  object-fit: contain;
-  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.55));
+  color: var(--wine);
+  border-color: var(--wine);
 }
 
 .bottle3d {
   position: absolute;
-  inset: -20%;
-  cursor: grab;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 .eyebrow {
@@ -205,7 +223,7 @@
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #eb9d1b;
+  color: var(--wine);
   margin-bottom: 8px;
 }
 
@@ -213,7 +231,7 @@
   font-family: var(--font-serif);
   font-size: clamp(30px, 4vw, 48px);
   font-weight: 400;
-  color: #f6f4f3;
+  color: var(--ink);
 }
 
 @media (max-width: 760px) {
@@ -234,10 +252,6 @@
     opacity: 1 !important;
     padding: 56px 24px;
     gap: 24px;
-  }
-
-  .bottleStage {
-    order: 1;
   }
 
   .heading {
@@ -266,10 +280,5 @@
     order: 6;
     text-align: center;
     max-width: 100%;
-  }
-
-  .bottleWrap {
-    width: 56vw;
-    height: 68vw;
   }
 }

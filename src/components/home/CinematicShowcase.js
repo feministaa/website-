@@ -2,11 +2,9 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import Bottle3D from "@/components/three/Bottle3D";
 import QuantitySelector from "@/components/ui/QuantitySelector";
 import { formatINR } from "@/lib/format";
 import { useCart } from "@/context/CartContext";
@@ -15,16 +13,13 @@ import styles from "./CinematicShowcase.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Products with a real 3D model reuse Bottle3D (cursor-driven rotation) instead of the flat photo.
-// Vers and Fresca reuse the Locken model as a placeholder until their own scans are ready.
-const LOCKEN_MODEL = "/models/locken-bottle-v2.glb";
-const MODELS = {
-  locken: LOCKEN_MODEL,
-  vers: LOCKEN_MODEL,
-  fresca: LOCKEN_MODEL,
-};
+// All three products currently show the same placeholder Spline scene, so it's loaded once as a
+// shared background instead of once per slide (that was loading the same heavy scene 3x at
+// once — real load-time cost for identical content). Once each product has its own real scene,
+// this can go back to being per-slide so the bottle itself slides with the product transition.
+const SPLINE_SCENE = "https://my.spline.design/3dbottlehomeanimation-6ZopeHu37nbQfXKcnQfbjd6v/";
 
-function Slide({ product, layerRef, bottleRef, pointerRef, active }) {
+function Slide({ product, layerRef }) {
   const [qty, setQty] = useState(1);
   const { addToCart } = useCart();
   const { showToast } = useToast();
@@ -62,23 +57,6 @@ function Slide({ product, layerRef, bottleRef, pointerRef, active }) {
         </div>
       )}
 
-      <div className={styles.bottleStage}>
-        <div className={styles.bottleWrap} ref={bottleRef}>
-          {MODELS[product.slug] ? (
-            <Bottle3D url={MODELS[product.slug]} className={styles.bottle3d} pointer={pointerRef} active={active} />
-          ) : (
-            <Image
-              src={product.cardImage || product.images?.[0]}
-              alt={product.name}
-              fill
-              className={styles.bottle}
-              sizes="(max-width: 760px) 60vw, 320px"
-              priority
-            />
-          )}
-        </div>
-      </div>
-
       <div className={styles.priceRow}>
         {product.comingSoon || !size ? (
           <span className={styles.priceText}>Coming Soon</span>
@@ -106,30 +84,19 @@ function Slide({ product, layerRef, bottleRef, pointerRef, active }) {
 
 export default function CinematicShowcase({ products }) {
   const pinWrapRef = useRef(null);
-  const stageRef = useRef(null);
   const layerRefs = useRef([]);
-  const bottleRefs = useRef([]);
-  const pointerRef = useRef({ x: 0, y: 0 });
-  // 3 simultaneous WebGL canvases render continuously by default — real, ongoing GPU work for
-  // the whole homepage visit even after scrolling past this section. Track whether the section
-  // is anywhere near the viewport so Bottle3D can fully stop its render loop once it's not.
-  const [sectionActive, setSectionActive] = useState(true);
   layerRefs.current = [];
-  bottleRefs.current = [];
+  // The Spline embed is a cross-origin iframe — while it has pointer events, it swallows
+  // scroll-wheel input entirely (our page can never get it back). Keep it inert by default so
+  // scroll always works, even with the cursor over the bottle, and only "activate" it (for
+  // cursor-driven rotation) once the visitor deliberately clicks in. Leaving deactivates again.
+  const [bottleActive, setBottleActive] = useState(false);
 
   useGSAP(
     () => {
-      const stage = stageRef.current;
-      if (!stage || products.length < 1) return;
+      if (products.length < 1) return;
 
-      const io = new IntersectionObserver(([entry]) => setSectionActive(entry.isIntersecting), {
-        rootMargin: "200px 0px",
-      });
-      io.observe(pinWrapRef.current);
-
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const layers = layerRefs.current;
-      const bottles = bottleRefs.current;
 
       gsap.set(layers, { xPercent: 100, opacity: 0 });
       gsap.set(layers[0], { xPercent: 0, opacity: 1 });
@@ -145,7 +112,7 @@ export default function CinematicShowcase({ products }) {
           let cursor = 0;
           products.forEach((_, i) => {
             if (i < products.length - 1) {
-              // Outgoing bottle exits left, incoming bottle enters from the right — same beat, one continuous move.
+              // Outgoing content exits left, incoming content enters from the right — same beat, one continuous move.
               tl.to(layers[i], { xPercent: -100, opacity: 0, duration: SLIDE, ease: "sine.inOut" }, cursor + HOLD);
               tl.fromTo(
                 layers[i + 1],
@@ -174,69 +141,31 @@ export default function CinematicShowcase({ products }) {
         return () => scrollTween?.kill();
       });
 
-      if (!reduceMotion) {
-        bottles.forEach((bottle, i) => {
-          if (!bottle) return;
-          gsap.to(bottle, {
-            y: -14,
-            duration: 3.2 + i * 0.4,
-            ease: "sine.inOut",
-            repeat: -1,
-            yoyo: true,
-          });
-        });
-
-        // 3D slides rotate themselves toward the cursor inside the canvas — skip the CSS tilt for those.
-        const quickSetters = bottles.map((bottle, i) =>
-          bottle && !MODELS[products[i]?.slug]
-            ? {
-                x: gsap.quickTo(bottle, "rotateY", { duration: 0.7, ease: "power3.out" }),
-                y: gsap.quickTo(bottle, "rotateX", { duration: 0.7, ease: "power3.out" }),
-              }
-            : null
-        );
-
-        function handlePointerMove(e) {
-          const rect = stage.getBoundingClientRect();
-          const px = (e.clientX - rect.left) / rect.width - 0.5;
-          const py = (e.clientY - rect.top) / rect.height - 0.5;
-          pointerRef.current.x = px * 2;
-          pointerRef.current.y = py * -2;
-          quickSetters.forEach((setter) => {
-            if (!setter) return;
-            setter.x(px * 22);
-            setter.y(py * -16);
-          });
-        }
-
-        stage.addEventListener("pointermove", handlePointerMove);
-        return () => {
-          stage.removeEventListener("pointermove", handlePointerMove);
-          io.disconnect();
-          mm.revert();
-        };
-      }
-
-      return () => {
-        io.disconnect();
-        mm.revert();
-      };
+      return () => mm.revert();
     },
     { scope: pinWrapRef, dependencies: [products] }
   );
 
   return (
     <section className={styles.pinWrap} ref={pinWrapRef}>
-      <div className={styles.stage} ref={stageRef}>
-        {products.map((product, i) => (
-          <Slide
-            key={product.id}
-            product={product}
-            layerRef={(el) => (layerRefs.current[i] = el)}
-            bottleRef={(el) => (bottleRefs.current[i] = el)}
-            pointerRef={pointerRef}
-            active={sectionActive}
+      <div className={styles.stage}>
+        <div
+          className={styles.sharedBottle}
+          onClick={() => setBottleActive(true)}
+          onMouseLeave={() => setBottleActive(false)}
+        >
+          <iframe
+            src={SPLINE_SCENE}
+            title="Interactive Feminista bottle"
+            className={styles.bottle3d}
+            style={{ pointerEvents: bottleActive ? "auto" : "none" }}
+            loading="lazy"
+            frameBorder="0"
           />
+          {!bottleActive && <span className={styles.bottleHint}>Click to interact</span>}
+        </div>
+        {products.map((product, i) => (
+          <Slide key={product.id} product={product} layerRef={(el) => (layerRefs.current[i] = el)} />
         ))}
       </div>
     </section>
