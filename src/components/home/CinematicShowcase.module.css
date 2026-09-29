@@ -162,6 +162,35 @@
   font-variant-numeric: tabular-nums;
 }
 
+.sizeRow {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.sizeBtn {
+  padding: 6px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.sizeBtn:hover {
+  border-color: #fff;
+}
+
+.sizeBtnActive {
+  background: #fff;
+  border-color: #fff;
+  color: var(--ink);
+}
+
 .priceCompareAt {
   font-size: 12px;
   font-weight: 400;

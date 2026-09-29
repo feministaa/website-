@@ -5,6 +5,8 @@ import AboutTeaser from "@/components/home/AboutTeaser";
 import WorldGrid from "@/components/home/WorldGrid";
 import FindYourEssence from "@/components/home/FindYourEssence";
 import HomeReels from "@/components/home/HomeReels";
+import TrustStrip from "@/components/home/TrustStrip";
+import DiscoveryFeature from "@/components/home/DiscoveryFeature";
 import { getProducts } from "@/lib/dataStore";
 
 export const metadata = {
@@ -28,6 +30,7 @@ export default async function Home() {
     <main>
       <Hero />
       <CinematicShowcase products={products.filter((p) => p.family !== "set")} />
+      <TrustStrip />
       <AboutTeaser
         stacked
         eyebrow="About Us"
@@ -42,6 +45,7 @@ export default async function Home() {
         image="/images/products/locken-hand-float.png"
         image2="/images/products/fresca-hand-hold.png"
       />
+      <DiscoveryFeature product={products.find((p) => p.family === "set")} />
       <HomeBanner />
       <FindYourEssence products={products} />
       <WorldGrid />

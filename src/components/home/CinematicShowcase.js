@@ -27,7 +27,9 @@ function Slide({ product, layerRef, priority }) {
   const [qty, setQty] = useState(1);
   const { addToCart } = useCart();
   const { showToast } = useToast();
-  const size = product.sizes?.[product.sizes.length - 1];
+  // Default to the largest size, but always show it and let the visitor switch before adding.
+  const [sizeIdx, setSizeIdx] = useState((product.sizes?.length || 1) - 1);
+  const size = product.sizes?.[sizeIdx];
   const topNotes = product.notes?.top || [];
 
   const backdrop = BACKGROUNDS[product.slug];
@@ -81,10 +83,28 @@ function Slide({ product, layerRef, priority }) {
         {product.comingSoon || !size ? (
           <span className={styles.priceText}>Coming Soon</span>
         ) : (
-          <span className={styles.priceText}>
-            {product.compareAtPrice && <span className={styles.priceCompareAt}>{formatINR(product.compareAtPrice)}</span>}
-            {formatINR(size.price)}
-          </span>
+          <>
+            <span className={styles.priceText}>
+              {product.compareAtPrice && <span className={styles.priceCompareAt}>{formatINR(product.compareAtPrice)}</span>}
+              {formatINR(size.price)}
+            </span>
+            {product.sizes.length > 1 && (
+              <div className={styles.sizeRow} role="radiogroup" aria-label={`${product.name} size`}>
+                {product.sizes.map((s, i) => (
+                  <button
+                    key={s.label}
+                    type="button"
+                    role="radio"
+                    aria-checked={i === sizeIdx}
+                    className={`${styles.sizeBtn} ${i === sizeIdx ? styles.sizeBtnActive : ""}`}
+                    onClick={() => setSizeIdx(i)}
+                  >
+                    {s.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </>
         )}
       </div>
 
@@ -94,7 +114,7 @@ function Slide({ product, layerRef, priority }) {
             <QuantitySelector value={qty} onChange={setQty} variant="minimal" />
           </div>
           <button className={styles.shopAddBtn} onClick={handleAdd}>
-            Add to Cart
+            Add {size.label} to Cart
           </button>
         </div>
       )}
