@@ -67,9 +67,9 @@
     "compareAtPrice": null,
     "accent": "#c98a93",
     "accentSoft": "#f3d9dc",
-    "comingSoon": true,
-    "cardImage": "/images/products/vers-smoke.png",
-    "images": ["/images/products/vers-smoke.png"],
+    "comingSoon": false,
+    "cardImage": "/images/products/vers-pink-box.webp",
+    "images": ["/images/products/vers-pink-box.webp", "/images/products/vers-smoke.png"],
     "sizes": [
       { "label": "50 ml", "price": 5200 },
       { "label": "100 ml", "price": 8000 }
@@ -119,6 +119,7 @@
     "bannerImage": "/images/banner-fresca-campaign.jpg",
     "images": [
       "/images/products/fresca-bouquet.jpg",
+      "/images/products/fresca-vanilla.webp",
       "/images/products/fresca-marble.jpg",
       "/images/products/fresca-spray.jpg",
       "/images/products/fresca-splash.jpg",

@@ -5,7 +5,6 @@ import AboutTeaser from "@/components/home/AboutTeaser";
 import WorldGrid from "@/components/home/WorldGrid";
 import FindYourEssence from "@/components/home/FindYourEssence";
 import HomeReels from "@/components/home/HomeReels";
-import NewsletterBanner from "@/components/home/NewsletterBanner";
 import { getProducts } from "@/lib/dataStore";
 
 export const metadata = {
@@ -40,14 +39,13 @@ export default async function Home() {
             different side of her with every wear.
           </>
         }
-        image="/images/products/locken-silk-horizontal.png"
-        image2="/images/products/locken-touch.jpg"
+        image="/images/products/locken-hand-float.png"
+        image2="/images/products/fresca-hand-hold.png"
       />
       <HomeBanner />
       <FindYourEssence products={products} />
       <WorldGrid />
       <HomeReels />
-      <NewsletterBanner />
     </main>
   );
 }

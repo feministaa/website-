@@ -112,8 +112,10 @@
   gap: 14px;
   width: 100%;
   max-width: 1600px;
-  min-height: 920px;
   margin: 80px auto;
+  /* No bottom padding from the global .section: the next banner's 80px margin is the only gap,
+     matching the 80px below that banner. */
+  padding-bottom: 0;
   text-align: left;
   background: #ffffff;
   border-radius: 14px;
@@ -143,14 +145,20 @@
 .gridImageRow {
   position: relative;
   flex: 1;
+  min-height: 260px;
   border-radius: 14px;
   overflow: hidden;
-  background: var(--bg-alt);
+  background: #3a0310;
+}
+
+.gridImageRow .image {
+  object-fit: contain;
 }
 
 .gridRight {
   position: relative;
-  height: 100%;
+  aspect-ratio: 1 / 1;
+  align-self: start;
   border-radius: 14px;
   overflow: hidden;
   background: var(--bg-alt);
@@ -192,6 +200,6 @@
   }
 
   .gridRight {
-    height: 320px;
+    width: 100%;
   }
 }

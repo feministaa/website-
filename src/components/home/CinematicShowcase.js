@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -13,18 +14,22 @@ import styles from "./CinematicShowcase.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// All three products currently show the same placeholder Spline scene, so it's loaded once as a
-// shared background instead of once per slide (that was loading the same heavy scene 3x at
-// once — real load-time cost for identical content). Once each product has its own real scene,
-// this can go back to being per-slide so the bottle itself slides with the product transition.
-const SPLINE_SCENE = "https://my.spline.design/3dbottlehomeanimation-6ZopeHu37nbQfXKcnQfbjd6v/";
+// Each product's notes, staged as a full-bleed backdrop. It lives inside the slide layer so it
+// slides in and out together with that product's content. Art is 16:9 so it fills the slide cleanly.
+const BACKGROUNDS = {
+  locken: "/images/showcase/locken-bg.webp",
+  vers: "/images/showcase/vers-bg.webp",
+  fresca: "/images/showcase/fresca-wide-bg.webp",
+};
 
-function Slide({ product, layerRef }) {
+function Slide({ product, layerRef, priority }) {
   const [qty, setQty] = useState(1);
   const { addToCart } = useCart();
   const { showToast } = useToast();
   const size = product.sizes?.[product.sizes.length - 1];
   const topNotes = product.notes?.top || [];
+
+  const backdrop = BACKGROUNDS[product.slug];
 
   function handleAdd() {
     if (!size) return;
@@ -34,6 +39,12 @@ function Slide({ product, layerRef }) {
 
   return (
     <div className={styles.layer} ref={layerRef}>
+      {backdrop && (
+        <div className={styles.backdrop}>
+          <Image src={backdrop} alt="" fill sizes="100vw" priority={priority} className={styles.backdropImg} />
+        </div>
+      )}
+
       <div className={styles.heading}>
         <span className={styles.eyebrow}>{product.tagline}</span>
         <h2 className={styles.name}>{product.name}</h2>
@@ -86,11 +97,6 @@ export default function CinematicShowcase({ products }) {
   const pinWrapRef = useRef(null);
   const layerRefs = useRef([]);
   layerRefs.current = [];
-  // The Spline embed is a cross-origin iframe — while it has pointer events, it swallows
-  // scroll-wheel input entirely (our page can never get it back). Keep it inert by default so
-  // scroll always works, even with the cursor over the bottle, and only "activate" it (for
-  // cursor-driven rotation) once the visitor deliberately clicks in. Leaving deactivates again.
-  const [bottleActive, setBottleActive] = useState(false);
 
   useGSAP(
     () => {
@@ -98,8 +104,10 @@ export default function CinematicShowcase({ products }) {
 
       const layers = layerRefs.current;
 
-      gsap.set(layers, { xPercent: 100, opacity: 0 });
-      gsap.set(layers[0], { xPercent: 0, opacity: 1 });
+      // `x: 0` explicitly: GSAP otherwise reads a leftover inline translate as a pixel offset and adds it
+      // on top of xPercent, pushing the waiting slides a full screen further right (a gap mid-transition).
+      gsap.set(layers, { x: 0, xPercent: 100 });
+      gsap.set(layers[0], { xPercent: 0 });
 
       let scrollTween;
       const mm = gsap.matchMedia();
@@ -112,14 +120,10 @@ export default function CinematicShowcase({ products }) {
           let cursor = 0;
           products.forEach((_, i) => {
             if (i < products.length - 1) {
-              // Outgoing content exits left, incoming content enters from the right — same beat, one continuous move.
-              tl.to(layers[i], { xPercent: -100, opacity: 0, duration: SLIDE, ease: "sine.inOut" }, cursor + HOLD);
-              tl.fromTo(
-                layers[i + 1],
-                { xPercent: 100, opacity: 0 },
-                { xPercent: 0, opacity: 1, duration: SLIDE, ease: "sine.inOut" },
-                cursor + HOLD
-              );
+              // Outgoing slide exits left while the next enters from the right, edge to edge, so the
+              // three backdrops read as one continuous strip.
+              tl.to(layers[i], { xPercent: -100, duration: SLIDE, ease: "sine.inOut" }, cursor + HOLD);
+              tl.fromTo(layers[i + 1], { x: 0, xPercent: 100 }, { x: 0, xPercent: 0, duration: SLIDE, ease: "sine.inOut" }, cursor + HOLD);
               cursor += HOLD + SLIDE;
             }
           });
@@ -149,23 +153,13 @@ export default function CinematicShowcase({ products }) {
   return (
     <section className={styles.pinWrap} ref={pinWrapRef}>
       <div className={styles.stage}>
-        <div
-          className={styles.sharedBottle}
-          onClick={() => setBottleActive(true)}
-          onMouseLeave={() => setBottleActive(false)}
-        >
-          <iframe
-            src={SPLINE_SCENE}
-            title="Interactive Feminista bottle"
-            className={styles.bottle3d}
-            style={{ pointerEvents: bottleActive ? "auto" : "none" }}
-            loading="lazy"
-            frameBorder="0"
-          />
-          {!bottleActive && <span className={styles.bottleHint}>Click to interact</span>}
-        </div>
         {products.map((product, i) => (
-          <Slide key={product.id} product={product} layerRef={(el) => (layerRefs.current[i] = el)} />
+          <Slide
+            key={product.id}
+            product={product}
+            priority={i === 0}
+            layerRef={(el) => (layerRefs.current[i] = el)}
+          />
         ))}
       </div>
     </section>

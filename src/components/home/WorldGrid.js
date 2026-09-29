@@ -7,7 +7,7 @@ export default function WorldGrid() {
     <section className={styles.section}>
       <div className={styles.left}>
         <Image
-          src="/images/products/locken-staircase.jpg"
+          src="/images/products/locken-staircase-backless.webp"
           alt="A woman in black, holding a Feminista bottle behind her back"
           fill
           className={styles.leftImage}
@@ -34,8 +34,8 @@ export default function WorldGrid() {
       <div className={styles.middle}>
         <div className={styles.middleTop}>
           <Image
-            src="/images/products/fresca-spray.jpg"
-            alt="Fresca by Feminista, being sprayed"
+            src="/images/products/trio-light-play.webp"
+            alt="Locken, Vers and Fresca by Feminista, lying in slanted light"
             fill
             className={styles.middleImage}
             sizes="(max-width: 900px) 100vw, 24vw"
@@ -43,8 +43,8 @@ export default function WorldGrid() {
         </div>
         <div className={styles.middleBottom}>
           <Image
-            src="/images/products/fresca-splash.jpg"
-            alt="Fresca by Feminista, with a water splash"
+            src="/images/products/ingredients-amber-vanilla.webp"
+            alt="Amber crystals, vanilla pod and cinnamon bark on black"
             fill
             className={styles.middleImage}
             sizes="(max-width: 900px) 100vw, 24vw"
@@ -55,8 +55,8 @@ export default function WorldGrid() {
       <div className={styles.right}>
         <div className={styles.rightTop}>
           <Image
-            src="/images/hero-cat-giftbox.png"
-            alt="Feminista Locken with gift box"
+            src="/images/story-cat-legs.webp"
+            alt="Black cat beside legs in black heels on red"
             fill
             className={styles.rightTopImage}
             sizes="(max-width: 900px) 100vw, 34vw"

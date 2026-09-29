@@ -8,7 +8,6 @@ import ScentBottle from "@/components/ui/ScentBottle";
 import ProductCard from "@/components/ui/ProductCard";
 import AnimateIn from "@/components/ui/AnimateIn";
 import QuantitySelector from "@/components/ui/QuantitySelector";
-import { AccordionItem } from "@/components/ui/Accordion";
 import { formatINR } from "@/lib/format";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
@@ -71,7 +70,9 @@ export default function PDPClient({ product, related }) {
   return (
     <main>
       <div className={styles.top}>
-        <AnimateIn className={styles.gallery}>
+        {/* Desktop: a tall hero that stays pinned, beside a column of the remaining shots that scrolls
+            past it. Mobile: every image in one swipeable row. */}
+        <div className={styles.gallery}>
           <div
             className={styles.mainImage}
             style={{ background: `linear-gradient(160deg, ${product.accentSoft}66, var(--bg-alt))` }}
@@ -79,23 +80,36 @@ export default function PDPClient({ product, related }) {
             {product.family === "set" && !product.images?.length ? (
               <ScentBottle isSet size={280} />
             ) : (
-              <Image src={heroImage} alt={product.name} fill className={styles.productPhoto} priority />
+              <Image
+                src={heroImage}
+                alt={product.name}
+                fill
+                className={styles.productPhoto}
+                sizes="(max-width: 900px) 88vw, 34vw"
+                priority
+              />
             )}
           </div>
           {restImages.length > 0 && (
-            <div className={styles.thumbRow}>
+            <div className={styles.imageStack}>
               {restImages.map((src, i) => (
                 <div
                   key={src}
-                  className={styles.thumb}
+                  className={styles.stackImage}
                   style={{ background: `linear-gradient(160deg, ${product.accentSoft}66, var(--bg-alt))` }}
                 >
-                  <Image src={src} alt={`${product.name} ${i + 2}`} fill className={styles.productPhoto} />
+                  <Image
+                    src={src}
+                    alt={`${product.name} ${i + 2}`}
+                    fill
+                    className={styles.productPhoto}
+                    sizes="(max-width: 900px) 88vw, 34vw"
+                  />
                 </div>
               ))}
             </div>
           )}
-        </AnimateIn>
+        </div>
 
         <AnimateIn delay={0.15} className={styles.info}>
           <div className={styles.expression}>{product.expression}</div>
@@ -191,53 +205,75 @@ export default function PDPClient({ product, related }) {
             </div>
           </div>
 
-          <div className={styles.notesPreview}>
-            <div className={styles.fieldLabel}>Opens With</div>
-            <div className={styles.noteTags}>
-              {product.notes.top.map((n) => (
-                <span key={n} className={styles.noteTag}>
-                  {n}
-                </span>
-              ))}
-            </div>
-          </div>
         </AnimateIn>
       </div>
 
-      <div className={styles.details}>
-        <div className={styles.accordionWrap}>
-          <AccordionItem title="Product Overview" defaultOpen>
-            {product.overview.map((block) => (
-              <div key={block.title} style={{ marginBottom: 14 }}>
-                <strong style={{ display: "block", marginBottom: 4, color: "var(--ink)" }}>{block.title}</strong>
-                {block.body}
-              </div>
+      {product.overview?.length > 0 && (
+        <section className={styles.story}>
+          <AnimateIn className={styles.storyIntro}>
+            <span className={styles.sectionEyebrow}>The Story</span>
+            <h2 className={styles.storyTitle}>{product.tagline || product.name}</h2>
+          </AnimateIn>
+          <ol className={styles.storyChapters}>
+            {product.overview.map((block, i) => (
+              <AnimateIn as="li" key={block.title} delay={i * 0.08} className={styles.chapter}>
+                <span className={styles.chapterNum}>{String(i + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3 className={styles.chapterTitle}>{block.title}</h3>
+                  <p className={styles.chapterBody}>{block.body}</p>
+                </div>
+              </AnimateIn>
             ))}
-          </AccordionItem>
-          <AccordionItem title="Fragrance Notes">
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
-              <div>
-                <strong style={{ color: "var(--ink)" }}>Top Notes</strong>
-                <p>{product.notes.top.join(" · ")}</p>
+          </ol>
+        </section>
+      )}
+
+      <section className={styles.composition}>
+        <AnimateIn className={styles.compositionHead}>
+          <span className={styles.sectionEyebrow}>The Composition</span>
+          <h2 className={styles.compositionTitle}>
+            {product.name}, <em>note by note</em>
+          </h2>
+        </AnimateIn>
+        <div className={styles.tiers}>
+          {[
+            { label: "Top Notes", sub: "The opening", notes: product.notes.top },
+            { label: "Heart Notes", sub: "The heart", notes: product.notes.heart },
+            { label: "Base Notes", sub: "The trail", notes: product.notes.base },
+          ].map((tier, i) => (
+            <AnimateIn key={tier.label} delay={i * 0.1} className={styles.tier}>
+              <div className={styles.tierHead}>
+                <span className={styles.tierNum}>{String(i + 1).padStart(2, "0")}</span>
+                <span className={styles.tierLabel}>{tier.label}</span>
               </div>
-              <div>
-                <strong style={{ color: "var(--ink)" }}>Heart Notes</strong>
-                <p>{product.notes.heart.join(" · ")}</p>
-              </div>
-              <div>
-                <strong style={{ color: "var(--ink)" }}>Base Notes</strong>
-                <p>{product.notes.base.join(" · ")}</p>
-              </div>
-            </div>
-          </AccordionItem>
-          <AccordionItem title="Ingredients">{product.ingredients}</AccordionItem>
-          <AccordionItem title="How to Wear">{product.howToWear}</AccordionItem>
-          <AccordionItem title="Shipping & Returns">
-            Complimentary shipping across India, delivered in 2–4 business days. Unopened items may be returned within 14
-            days of delivery for a full refund.
-          </AccordionItem>
+              <p className={styles.tierSub}>{tier.sub}</p>
+              <ul className={styles.tierNotes}>
+                {tier.notes.map((n) => (
+                  <li key={n}>{n}</li>
+                ))}
+              </ul>
+            </AnimateIn>
+          ))}
         </div>
-      </div>
+      </section>
+
+      <section className={styles.care}>
+        {[
+          { title: "How to Wear", body: product.howToWear },
+          { title: "Ingredients", body: product.ingredients, small: true },
+          {
+            title: "Shipping & Returns",
+            body: "Complimentary shipping across India, delivered in 2–4 business days. Unopened items may be returned within 14 days of delivery for a full refund.",
+          },
+        ]
+          .filter((card) => card.body)
+          .map((card, i) => (
+            <AnimateIn key={card.title} delay={i * 0.08} className={styles.careCard}>
+              <h3 className={styles.careTitle}>{card.title}</h3>
+              <p className={`${styles.careBody} ${card.small ? styles.careBodySmall : ""}`}>{card.body}</p>
+            </AnimateIn>
+          ))}
+      </section>
 
       <div
         className={styles.storyBanner}

@@ -71,8 +71,8 @@ export default async function OurStoryPage() {
         <AnimateIn delay={0.1} className={styles.storyMedia}>
           <div className={styles.storyImgBox}>
             <Image
-              src="/images/products/locken-silk.jpg"
-              alt="A Feminista Locken bottle resting on silk"
+              src="/images/story/fresca-lab-dropper.png"
+              alt="Fresca being composed with a dropper in the Feminista lab"
               fill
               className={styles.storyImg}
               sizes="(max-width: 900px) 100vw, 50vw"
@@ -91,8 +91,8 @@ export default async function OurStoryPage() {
         <AnimateIn delay={0.1} className={styles.storyMedia}>
           <div className={styles.storyImgBox}>
             <Image
-              src="/images/banner-gold-liquid.jpg"
-              alt="The golden liquid at the heart of a Feminista composition"
+              src="/images/story/vers-notes-sketch.webp"
+              alt="An illustration of Vers and its notes"
               fill
               className={styles.storyImg}
               sizes="(max-width: 900px) 100vw, 50vw"
@@ -111,8 +111,8 @@ export default async function OurStoryPage() {
         <AnimateIn delay={0.1} className={styles.storyMedia}>
           <div className={styles.storyImgBox}>
             <Image
-              src="/images/products/locken-ingredients.jpg"
-              alt="The rare botanicals and naturals matured into every Feminista fragrance"
+              src="/images/story/locken-ingredients-flatlay.webp"
+              alt="Locken surrounded by orchid, orange, vanilla and cinnamon"
               fill
               className={styles.storyImg}
               sizes="(max-width: 900px) 100vw, 50vw"
