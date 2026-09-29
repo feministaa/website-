@@ -5,6 +5,7 @@ import AnimateIn from "@/components/ui/AnimateIn";
 import ProductCard from "@/components/ui/ProductCard";
 import HomeBanner from "@/components/home/HomeBanner";
 import { getProducts } from "@/lib/dataStore";
+import PhilosophyPillars from "./PhilosophyPillars";
 
 export const metadata = {
   title: "Our Story — Feminista",
@@ -21,14 +22,17 @@ export const metadata = {
 const PILLARS = [
   {
     title: "Femininity",
+    image: "/images/story-cat-legs.webp",
     body: "Femininity has no single definition. It can be soft and commanding, graceful and fearless, intimate and entirely individual.",
   },
   {
     title: "Presence",
+    image: "/images/products/locken-stairs-woman.webp",
     body: "Each composition is thoughtfully balanced to complement her presence — not define it. Fragrance should not introduce her. It should leave her remembered.",
   },
   {
     title: "Craftsmanship",
+    image: "/images/story/fresca-lab-dropper.png",
     body: "Crafted with carefully selected ingredients and matured with patience, every fragrance unfolds slowly, revealing depth and character.",
   },
 ];
@@ -135,23 +139,7 @@ export default async function OurStoryPage() {
         </div>
       </section>
 
-      <section className={styles.pillars}>
-        <AnimateIn className={styles.header}>
-          <span className="eyebrow">Our Philosophy</span>
-          <h2 className={styles.headerTitle}>What Feminista Stands For</h2>
-        </AnimateIn>
-        <div className={styles.pillarsList}>
-          {PILLARS.map((p, i) => (
-            <AnimateIn key={p.title} delay={i * 0.08} className={styles.pillarRow}>
-              <span className={styles.pillarIndex}>{String(i + 1).padStart(2, "0")}</span>
-              <div className={styles.pillarText}>
-                <h3 className={styles.pillarTitle}>{p.title}</h3>
-                <p className={styles.pillarBody}>{p.body}</p>
-              </div>
-            </AnimateIn>
-          ))}
-        </div>
-      </section>
+      <PhilosophyPillars pillars={PILLARS} />
     </main>
   );
 }

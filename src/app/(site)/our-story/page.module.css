@@ -46,13 +46,16 @@
 }
 
 .storyRow {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 90px 24px;
+  /* Creed-style split: photo fills exactly half the page (32px from the edge), text centred in the other half. */
+  padding: 40px 32px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 72px;
+}
+
+.storyText {
+  padding: 0 40px;
+  text-align: center;
 }
 
 .storyRowReverse .storyText {
@@ -67,7 +70,8 @@
   color: var(--ink-soft);
   line-height: 1.9;
   font-size: 16.5px;
-  max-width: 420px;
+  max-width: 560px;
+  margin: 0 auto;
 }
 
 .storyImgBox {
@@ -106,87 +110,14 @@
   gap: 28px;
 }
 
-.pillars {
-  background: var(--bg);
-  padding: 120px 24px;
-}
-
-.pillarsList {
-  max-width: 920px;
-  margin: 0 auto;
-}
-
-.pillarRow {
-  position: relative;
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 40px;
-  padding: 56px 0;
-  border-top: 1px solid var(--line);
-  transition: padding-left 0.4s var(--ease);
-  overflow: hidden;
-}
-
-.pillarRow:last-child {
-  border-bottom: 1px solid var(--line);
-}
-
-.pillarRow::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--gold-deep);
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 0.5s var(--ease);
-}
-
-.pillarRow:hover {
-  padding-left: 24px;
-}
-
-.pillarRow:hover::before {
-  transform: scaleY(1);
-}
-
-.pillarIndex {
-  font-family: var(--font-serif);
-  font-size: 68px;
-  line-height: 1;
-  color: var(--gold-pale);
-  transition: color 0.4s var(--ease);
-}
-
-.pillarRow:hover .pillarIndex {
-  color: var(--gold-deep);
-}
-
-.pillarText {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding-top: 10px;
-}
-
-.pillarTitle {
-  font-size: 27px;
-}
-
-.pillarBody {
-  font-size: 15px;
-  line-height: 1.85;
-  color: var(--ink-soft);
-  max-width: 520px;
-}
-
 @media (max-width: 900px) {
   .storyRow {
     grid-template-columns: 1fr;
     gap: 32px;
-    padding: 56px 24px;
+    padding: 40px 16px;
+  }
+  .storyText {
+    padding: 0 8px;
   }
   .storyRowReverse .storyText,
   .storyRowReverse .storyMedia {
@@ -198,19 +129,5 @@
   .inspiredGrid {
     grid-template-columns: 1fr;
     max-width: 420px;
-  }
-  .pillarRow {
-    grid-template-columns: 60px 1fr;
-    gap: 18px;
-    padding: 32px 0;
-  }
-  .pillarIndex {
-    font-size: 40px;
-  }
-  .pillarText {
-    grid-column: 2;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
   }
 }

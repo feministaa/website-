@@ -15,11 +15,12 @@ import styles from "./CinematicShowcase.module.css";
 gsap.registerPlugin(ScrollTrigger);
 
 // Each product's notes, staged as a full-bleed backdrop. It lives inside the slide layer so it
-// slides in and out together with that product's content. Art is 16:9 so it fills the slide cleanly.
+// slides in and out together with that product's content, cropped to fill the slide. `position` sets
+// which part of a non-widescreen image survives the crop (default: centre).
 const BACKGROUNDS = {
-  locken: "/images/showcase/locken-bg.webp",
-  vers: "/images/showcase/vers-bg.webp",
-  fresca: "/images/showcase/fresca-wide-bg.webp",
+  locken: { src: "/images/showcase/locken-driftwood-bg.webp" },
+  vers: { src: "/images/showcase/vers-stone-bg.webp" },
+  fresca: { src: "/images/showcase/fresca-true-bg.webp" },
 };
 
 function Slide({ product, layerRef, priority }) {
@@ -41,7 +42,15 @@ function Slide({ product, layerRef, priority }) {
     <div className={styles.layer} ref={layerRef}>
       {backdrop && (
         <div className={styles.backdrop}>
-          <Image src={backdrop} alt="" fill sizes="100vw" priority={priority} className={styles.backdropImg} />
+          <Image
+            src={backdrop.src}
+            alt=""
+            fill
+            sizes="100vw"
+            priority={priority}
+            className={styles.backdropImg}
+            style={backdrop.position ? { objectPosition: backdrop.position } : undefined}
+          />
         </div>
       )}
 

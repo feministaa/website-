@@ -41,7 +41,7 @@ export default function FragrancesClient({ products }) {
 
   return (
     <main>
-      <FragrancesHero products={products} />
+      <FragrancesHero />
 
       {query && (
         <div className="container" style={{ paddingTop: 30 }}>

@@ -7,7 +7,7 @@ export default function WorldGrid() {
     <section className={styles.section}>
       <div className={styles.left}>
         <Image
-          src="/images/products/locken-staircase-backless.webp"
+          src="/images/products/locken-stairs-woman.webp"
           alt="A woman in black, holding a Feminista bottle behind her back"
           fill
           className={styles.leftImage}
