@@ -155,9 +155,11 @@
     flex-direction: column;
   }
 
+  /* Phones: the photo's subject sits in its left half, so show that part as a tall portrait. */
   .section .bgImage {
     position: relative !important;
-    height: 420px;
+    height: 115vw !important;
+    object-position: 22% center;
   }
 
   .panel {

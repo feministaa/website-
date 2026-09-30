@@ -90,17 +90,20 @@
 }
 
 @media (max-width: 900px) {
+  .intro {
+    padding-bottom: 40px;
+  }
+  /* Phones: photo first, its paragraph directly beneath. */
   .storyRow {
     grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 40px 16px;
+    gap: 24px;
+    padding: 24px 16px 40px;
+  }
+  .storyMedia {
+    order: -1;
   }
   .storyText {
     padding: 0 8px;
-  }
-  .storyRowReverse .storyText,
-  .storyRowReverse .storyMedia {
-    order: initial;
   }
   .storyText p {
     max-width: none;

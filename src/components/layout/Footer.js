@@ -126,8 +126,8 @@ export default function Footer() {
           ))}
         </div>
         <div className={styles.bottomLinks}>
-          <span>Privacy Policy</span>
-          <span>Terms of Service</span>
+          <Link href="/privacy-policy">Privacy Policy</Link>
+          <Link href="/returns">Returns</Link>
         </div>
       </AnimateIn>
     </footer>

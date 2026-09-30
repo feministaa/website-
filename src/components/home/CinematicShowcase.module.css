@@ -220,41 +220,61 @@
     perspective: none;
   }
 
+  /* Phones: each fragrance is its own tall slide, copy gathered at the bottom over a dark fade. */
   .layer {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    opacity: 1 !important;
-    padding: 56px 24px;
-    gap: 24px;
+    justify-content: flex-end;
+    align-items: flex-start;
+    min-height: 92vh;
+    min-height: 92svh;
+    padding: 48px 20px 40px;
+    gap: 18px;
+    text-align: left;
+  }
+
+  /* Photo fills the top of the slide and fades into noir, where the copy sits. */
+  .layer {
+    background: var(--noir);
+  }
+
+  .backdrop {
+    bottom: auto;
+    height: 60%;
+  }
+
+  .backdrop::after {
+    background: linear-gradient(to bottom, rgba(9, 9, 9, 0) 55%, var(--noir) 100%);
   }
 
   .heading {
-    order: 2;
-    text-align: center;
-  }
-
-  .priceRow {
-    order: 3;
-  }
-
-  .buyWrap {
-    order: 4;
-  }
-
-  .notesPanel {
-    order: 5;
-    text-align: center;
-  }
-
-  .notesList {
-    justify-content: center;
+    order: 1;
+    text-align: left;
   }
 
   .description {
-    order: 6;
-    text-align: center;
+    order: 2;
     max-width: 100%;
+    text-align: left;
+  }
+
+  .notesPanel {
+    order: 3;
+    justify-self: auto;
+    text-align: left;
+  }
+
+  .notesList {
+    justify-content: flex-start;
+  }
+
+  .priceRow {
+    order: 4;
+  }
+
+  .buyWrap {
+    order: 5;
+    justify-self: auto;
   }
 }

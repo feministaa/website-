@@ -10,6 +10,9 @@ export default async function sitemap() {
     { path: "/fragrances", priority: 0.9, changeFrequency: "weekly" },
     { path: "/the-art-of-180", priority: 0.7, changeFrequency: "monthly" },
     { path: "/our-story", priority: 0.7, changeFrequency: "monthly" },
+    { path: "/contact", priority: 0.4, changeFrequency: "yearly" },
+    { path: "/returns", priority: 0.3, changeFrequency: "yearly" },
+    { path: "/privacy-policy", priority: 0.3, changeFrequency: "yearly" },
   ].map((route) => ({
     url: `${siteUrl}${route.path}`,
     lastModified: new Date(),

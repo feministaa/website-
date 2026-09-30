@@ -108,15 +108,17 @@ export default function CinematicShowcase({ products }) {
 
       const layers = layerRefs.current;
 
-      // `x: 0` explicitly: GSAP otherwise reads a leftover inline translate as a pixel offset and adds it
-      // on top of xPercent, pushing the waiting slides a full screen further right (a gap mid-transition).
-      gsap.set(layers, { x: 0, xPercent: 100 });
-      gsap.set(layers[0], { xPercent: 0 });
-
       let scrollTween;
       const mm = gsap.matchMedia();
 
+      // Desktop only: slides stack and slide in sideways. On phones they simply stack vertically, and
+      // matchMedia reverts these offsets when the viewport drops below the breakpoint.
       mm.add("(min-width: 761px)", () => {
+        // `x: 0` explicitly: GSAP otherwise reads a leftover inline translate as a pixel offset and adds it
+        // on top of xPercent, pushing the waiting slides a full screen further right (a gap mid-transition).
+        gsap.set(layers, { x: 0, xPercent: 100 });
+        gsap.set(layers[0], { xPercent: 0 });
+
         if (products.length > 1) {
           const HOLD = 0.55;
           const SLIDE = 0.45;
