@@ -1,80 +1,73 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 import styles from "./HomeReels.module.css";
 
 const REELS = [
-  { id: "r3", poster: "/images/reels/reel-3.jpg", video: "/videos/reels/reel-3.mp4", caption: "Behind the scenes" },
-  { id: "r4", poster: "/images/reels/reel-4.jpg", video: "/videos/reels/reel-4.mp4", caption: "A closer look" },
-  { id: "r5", poster: "/images/reels/reel-5.jpg", video: "/videos/reels/reel-5.mp4", caption: "In her words" },
-  { id: "r6", poster: "/images/reels/reel-6.jpg", video: "/videos/reels/reel-6.mp4", caption: "The Feminista house" },
-  { id: "r1", poster: "/images/reels/reel-1.jpg", video: "/videos/reels/reel-1.mp4", caption: "Locken, unboxed" },
-  { id: "r2", poster: "/images/reels/reel-2.jpg", video: "/videos/reels/reel-2.mp4", caption: "The morning ritual" },
+  { id: "r3", poster: "/images/reels/reel-3.jpg", video: "/videos/reels/reel-3.mp4" },
+  { id: "r4", poster: "/images/reels/reel-4.jpg", video: "/videos/reels/reel-4.mp4" },
+  { id: "r5", poster: "/images/reels/reel-5.jpg", video: "/videos/reels/reel-5.mp4" },
+  { id: "r6", poster: "/images/reels/reel-6.jpg", video: "/videos/reels/reel-6.mp4" },
+  { id: "r1", poster: "/images/reels/reel-1.jpg", video: "/videos/reels/reel-1.mp4" },
+  { id: "r2", poster: "/images/reels/reel-2.jpg", video: "/videos/reels/reel-2.mp4" },
 ];
 
-function ReelCard({ reel }) {
-  const videoRef = useRef(null);
-  const [muted, setMuted] = useState(true);
+const FADE_UP = {
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 20 } },
+};
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    const tryPlay = () => video.play().catch(() => {});
-    tryPlay();
-    video.addEventListener("loadeddata", tryPlay);
-    return () => video.removeEventListener("loadeddata", tryPlay);
-  }, []);
-
-  return (
-    <div className={styles.card}>
-      <video
-        ref={videoRef}
-        className={styles.media}
-        src={reel.video}
-        poster={reel.poster}
-        autoPlay
-        playsInline
-        loop
-        muted={muted}
-        preload="auto"
-      />
-      <button
-        type="button"
-        className={styles.muteBtn}
-        aria-label={muted ? "Unmute video" : "Mute video"}
-        onClick={() => setMuted((m) => !m)}
-      >
-        {muted ? (
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M11 5 6 9H2v6h4l5 4V5z" />
-            <line x1="23" y1="9" x2="17" y2="15" />
-            <line x1="17" y1="9" x2="23" y2="15" />
-          </svg>
-        ) : (
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M11 5 6 9H2v6h4l5 4V5z" />
-            <path d="M15.5 8.5a5 5 0 0 1 0 7" />
-            <path d="M18.5 5.5a9 9 0 0 1 0 13" />
-          </svg>
-        )}
-      </button>
-    </div>
-  );
-}
-
+// Heading above a slow marquee of tilted, muted, looping reel videos. The strip is rendered twice and
+// moves by exactly one copy's width, so the loop is seamless.
 export default function HomeReels() {
+  const strip = [...REELS, ...REELS];
+
   return (
-    <section className={`section ${styles.section}`}>
-      <div className={styles.header}>
-        <span className={styles.eyebrow}>Worn by the Spotlight</span>
-        <h2 className={styles.title}>
+    <section className={styles.section}>
+      <motion.div
+        className={styles.head}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.4 }}
+        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
+      >
+        <motion.h2 variants={FADE_UP} className={styles.title}>
           For the women who <em>need no introduction</em>
-        </h2>
-      </div>
-      <div className={styles.row}>
-        {REELS.map((reel) => (
-          <ReelCard key={reel.id} reel={reel} />
-        ))}
+        </motion.h2>
+        <motion.p variants={FADE_UP} className={styles.text}>
+          Worn on stages, sets and red carpets across India.
+        </motion.p>
+        <motion.div variants={FADE_UP}>
+          <Link href="/fragrances" className={styles.cta}>
+            Shop the collection
+          </Link>
+        </motion.div>
+      </motion.div>
+
+      <div className={styles.marquee}>
+        {/* CSS keyframes drive the loop (see .strip), so it keeps running regardless of JS timing. */}
+        <div className={styles.strip}>
+          {strip.map((reel, i) => (
+            <div
+              key={`${reel.id}-${i}`}
+              className={styles.card}
+              style={{ rotate: `${i % 2 === 0 ? -2 : 3}deg` }}
+              aria-hidden={i >= REELS.length || undefined}
+            >
+              <video
+                className={styles.video}
+                src={reel.video}
+                poster={reel.poster}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

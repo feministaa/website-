@@ -1,0 +1,76 @@
+.column {
+  width: 100%;
+  max-width: 360px;
+}
+
+.track {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 20px;
+  animation: testimonials-scroll 18s linear infinite;
+}
+
+.column:hover .track {
+  animation-play-state: paused;
+}
+
+/* Two copies of the list plus bottom padding: moving up by half lands exactly on the start. */
+@keyframes testimonials-scroll {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}
+
+.card {
+  margin: 0;
+  padding: 36px 32px;
+  background: var(--surface);
+  border: 1px solid rgba(9, 9, 9, 0.08);
+  border-radius: 14px;
+}
+
+.text {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--noir);
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--noir);
+}
+
+.role {
+  display: block;
+  font-size: 12px;
+  color: var(--noir-60);
+}

@@ -6,6 +6,7 @@ import WorldGrid from "@/components/home/WorldGrid";
 import FindYourEssence from "@/components/home/FindYourEssence";
 import HomeReels from "@/components/home/HomeReels";
 import DiscoveryFeature from "@/components/home/DiscoveryFeature";
+import Testimonials from "@/components/home/Testimonials";
 import { getProducts } from "@/lib/dataStore";
 
 export const metadata = {
@@ -48,6 +49,7 @@ export default async function Home() {
       <FindYourEssence products={products} />
       <WorldGrid />
       <HomeReels />
+      <Testimonials />
     </main>
   );
 }
