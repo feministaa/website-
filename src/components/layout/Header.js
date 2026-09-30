@@ -147,7 +147,8 @@ export default function Header() {
   const [products, setProducts] = useState([]);
   const chromeRef = useRef(null);
   const lastScrollY = useRef(0);
-  const isHome = pathname === "/";
+  // Pages that open on a full-screen video hero: the header floats over it, transparent until scrolled.
+  const isHome = pathname === "/" || pathname === "/fragrances";
   const transparent = isHome && !scrolled;
 
   useEffect(() => {

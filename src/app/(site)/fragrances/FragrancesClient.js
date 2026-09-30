@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import AnimateIn from "@/components/ui/AnimateIn";
-import FragrancesHero from "./FragrancesHero";
+import Hero from "@/components/home/Hero";
 import { useCart } from "@/context/CartContext";
 
 // Page-specific art that overrides a product's own card image.
@@ -37,7 +37,7 @@ export default function FragrancesClient({ products }) {
 
   return (
     <main>
-      <FragrancesHero />
+      <Hero />
 
       {query && (
         <div className="container" style={{ paddingTop: 30 }}>
