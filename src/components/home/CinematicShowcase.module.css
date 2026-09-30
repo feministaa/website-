@@ -9,7 +9,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background: #2a0a10;
+  background: var(--noir);
   overflow: hidden;
   perspective: 1200px;
 }
@@ -44,8 +44,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to bottom, rgba(20, 4, 8, 0.45) 0%, rgba(20, 4, 8, 0) 30%, rgba(20, 4, 8, 0) 60%, rgba(20, 4, 8, 0.6) 100%),
-    linear-gradient(to right, rgba(20, 4, 8, 0.35) 0%, rgba(20, 4, 8, 0) 35%, rgba(20, 4, 8, 0) 65%, rgba(20, 4, 8, 0.35) 100%);
+    linear-gradient(to bottom, rgba(9, 9, 9, 0.45) 0%, rgba(9, 9, 9, 0) 30%, rgba(9, 9, 9, 0) 60%, rgba(9, 9, 9, 0.6) 100%),
+    linear-gradient(to right, rgba(9, 9, 9, 0.35) 0%, rgba(9, 9, 9, 0) 35%, rgba(9, 9, 9, 0) 65%, rgba(9, 9, 9, 0.35) 100%);
 }
 
 .backdropImg {
@@ -109,7 +109,7 @@
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #f3d9a4;
+  color: var(--gold-80);
   margin-bottom: 10px;
 }
 
@@ -126,7 +126,7 @@
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #f3d9a4;
+  color: var(--gold-80);
   transition: color 0.3s var(--ease);
 }
 
@@ -162,35 +162,6 @@
   font-variant-numeric: tabular-nums;
 }
 
-.sizeRow {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.sizeBtn {
-  padding: 6px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  border-radius: 999px;
-  background: transparent;
-  color: #fff;
-  font-size: 11.5px;
-  letter-spacing: 0.06em;
-  cursor: pointer;
-  transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
-}
-
-.sizeBtn:hover {
-  border-color: #fff;
-}
-
-.sizeBtnActive {
-  background: #fff;
-  border-color: #fff;
-  color: var(--ink);
-}
-
 .priceCompareAt {
   font-size: 12px;
   font-weight: 400;
@@ -218,8 +189,8 @@
 }
 
 .shopAddBtn:hover {
-  color: #f3d9a4;
-  border-color: #f3d9a4;
+  color: var(--gold-80);
+  border-color: var(--gold-80);
 }
 
 
@@ -228,7 +199,7 @@
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #f3d9a4;
+  color: var(--gold-80);
   margin-bottom: 8px;
 }
 

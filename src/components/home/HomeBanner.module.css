@@ -20,7 +20,8 @@
 .scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(9, 9, 9, 0.85) 0%, rgba(9, 9, 9, 0.1) 45%, rgba(9, 9, 9, 0.2) 100%);
+  /* Light art: a soft ivory lift on the left keeps dark copy crisp. */
+  background: linear-gradient(90deg, rgba(241, 233, 230, 0.45) 0%, rgba(241, 233, 230, 0.15) 40%, rgba(241, 233, 230, 0) 60%);
 }
 
 .copy {
@@ -33,14 +34,14 @@
   max-width: 520px;
   gap: 10px;
   padding: 0 24px 0 64px;
-  color: var(--cream);
+  color: var(--noir);
 }
 
 .tagline {
   font-size: 12.5px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(241, 233, 230, 0.82);
+  color: var(--wine);
 }
 
 .title {
@@ -55,13 +56,14 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   padding-bottom: 4px;
-  border-bottom: 1px solid rgba(241, 233, 230, 0.6);
-  color: var(--cream);
+  border-bottom: 1px solid var(--noir);
+  color: var(--noir);
   transition: border-color 0.3s var(--ease);
 }
 
 .discover:hover {
-  border-color: var(--cream);
+  border-color: var(--wine);
+  color: var(--wine);
 }
 
 @media (max-width: 900px) {
@@ -69,7 +71,7 @@
     min-height: 70vh;
   }
   .scrim {
-    background: linear-gradient(0deg, rgba(9, 9, 9, 0.8) 0%, rgba(9, 9, 9, 0.35) 55%, rgba(9, 9, 9, 0.15) 100%);
+    background: linear-gradient(0deg, rgba(241, 233, 230, 0.7) 0%, rgba(241, 233, 230, 0.2) 50%, rgba(241, 233, 230, 0) 75%);
   }
   .copy {
     padding: 0 24px 48px;

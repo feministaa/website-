@@ -114,7 +114,7 @@ export default function CheckoutClient({ user }) {
       <main className={styles.wrap}>
         <AnimateIn className={styles.confirmWrap}>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <ScentBottle accent="#eb9d1b" accentSoft="#f6d9a4" size={120} />
+            <ScentBottle accent="#eb9d1b" accentSoft="var(--gold-40)" size={120} />
           </div>
           <h1 className={styles.confirmTitle}>Thank you, {confirmedOrder.customerName.split(" ")[0]}</h1>
           <p style={{ color: "var(--ink-soft)", marginBottom: 8 }}>

@@ -24,7 +24,7 @@
   aspect-ratio: 3 / 4;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 40px 80px -30px rgba(13, 12, 10, 0.3);
+  box-shadow: 0 40px 80px -30px rgba(9, 9, 9, 0.3);
   margin-bottom: 36px;
 }
 
@@ -297,14 +297,14 @@
   position: relative;
   padding: 110px clamp(16px, 6vw, 112px) 120px;
   background:
-    radial-gradient(ellipse at 15% 0%, rgba(143, 61, 92, 0.45), transparent 55%),
-    linear-gradient(160deg, #4a1527 0%, #2a0a14 100%);
+    radial-gradient(ellipse at 15% 0%, rgba(109, 31, 58, 0.45), transparent 55%),
+    linear-gradient(160deg, var(--wine) 0%, var(--noir) 100%);
   color: var(--cream);
   overflow: hidden;
 }
 
 .compositionHead .sectionEyebrow {
-  color: #e6c38f;
+  color: var(--gold-80);
 }
 
 .compositionTitle {
@@ -318,7 +318,7 @@
 
 .compositionTitle em {
   font-style: italic;
-  color: #e6c38f;
+  color: var(--gold-80);
 }
 
 .tiers {
@@ -329,7 +329,7 @@
 
 .tier {
   padding-top: 28px;
-  border-top: 1px solid rgba(230, 195, 143, 0.4);
+  border-top: 1px solid rgba(235, 157, 27, 0.4);
 }
 
 .tierHead {
@@ -342,7 +342,7 @@
 .tierNum {
   font-family: var(--font-serif);
   font-size: 15px;
-  color: #e6c38f;
+  color: var(--gold-80);
 }
 
 .tierLabel {
@@ -355,7 +355,7 @@
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 15px;
-  color: rgba(247, 245, 244, 0.6);
+  color: rgba(241, 233, 230, 0.6);
   margin-bottom: 26px;
 }
 
@@ -379,7 +379,7 @@
 .tierNotes li:not(:last-child)::after {
   content: "·";
   margin: 0 12px;
-  color: #e6c38f;
+  color: var(--gold-80);
 }
 
 /* ---------- Care cards ---------- */
@@ -436,7 +436,7 @@
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  background: linear-gradient(0deg, rgba(10, 9, 7, 0.55), rgba(10, 9, 7, 0.35)),
+  background: linear-gradient(0deg, rgba(9, 9, 9, 0.55), rgba(9, 9, 9, 0.35)),
     url("/images/banner-crystal-bottle.jpg") center 40% / cover no-repeat;
 }
 
@@ -464,7 +464,7 @@
 .storyBannerText {
   font-size: 15px;
   line-height: 1.75;
-  color: rgba(251, 248, 242, 0.88);
+  color: rgba(241, 233, 230, 0.88);
   margin-bottom: 28px;
 }
 

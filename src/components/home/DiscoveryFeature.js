@@ -3,38 +3,37 @@ import Image from "next/image";
 import { formatINR } from "@/lib/format";
 import styles from "./DiscoveryFeature.module.css";
 
-// The low-commitment first purchase: all three fragrances in travel sizes.
+// Full-width campaign banner for the Discovery Set; the copy sits on the open wine wall on the left.
 export default function DiscoveryFeature({ product }) {
   if (!product) return null;
-  const size = product.sizes?.[0];
+  const price = product.sizes?.[0]?.price;
 
   return (
     <section className={styles.section}>
-      <div className={styles.media}>
+      <div className={styles.banner}>
         <Image
-          src={product.cardImage || product.images?.[0]}
-          alt={product.name}
+          src="/images/discovery-set-banner.webp"
+          alt="The Feminista Discovery Set case beside three travel sprays"
           fill
           className={styles.img}
-          sizes="(max-width: 900px) 100vw, 50vw"
+          sizes="100vw"
         />
-      </div>
-      <div className={styles.copy}>
-        <span className={styles.eyebrow}>New to Feminista?</span>
-        <h2 className={styles.title}>
-          Begin with <em>all three</em>
-        </h2>
-        <p className={styles.text}>
-          Locken, Vers and Fresca in travel sizes — wear each for a few days and find the one that feels like you.
-        </p>
-        {size && (
-          <p className={styles.price}>
-            {size.label} · {formatINR(size.price)}
+        <div className={styles.scrim} aria-hidden="true" />
+
+        <div className={styles.copy}>
+          <span className={styles.eyebrow}>The Discovery Set</span>
+          <h2 className={styles.title}>Locken, Vers and Fresca, together.</h2>
+          <p className={styles.text}>
+            Three travel sprays in one leather case. Try each for a few days before choosing your bottle.
           </p>
-        )}
-        <Link href={`/fragrances/${product.slug}`} className={styles.cta}>
-          Shop the Discovery Set
-        </Link>
+
+          <div className={styles.buy}>
+            <Link href={`/fragrances/${product.slug}`} className={styles.cta}>
+              Shop the Discovery Set
+            </Link>
+            {price && <span className={styles.price}>{formatINR(price)}</span>}
+          </div>
+        </div>
       </div>
     </section>
   );

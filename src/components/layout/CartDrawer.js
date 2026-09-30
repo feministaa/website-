@@ -16,7 +16,7 @@ export default function CartDrawer() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          style={{ position: "fixed", inset: 0, background: "rgba(13,12,10,0.42)", zIndex: 300 }}
+          style={{ position: "fixed", inset: 0, background: "rgba(9, 9, 9,0.42)", zIndex: 300 }}
           onClick={closeDrawer}
         >
           <motion.aside

@@ -49,7 +49,7 @@ export function ToastProvider({ children }) {
                 fontSize: 12.5,
                 letterSpacing: "0.05em",
                 borderRadius: 2,
-                boxShadow: "0 12px 30px rgba(0,0,0,0.25)",
+                boxShadow: "0 12px 30px rgba(9,9,9,0.25)",
               }}
             >
               {t.message}

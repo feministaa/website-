@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -9,23 +9,19 @@ import AnimateIn from "@/components/ui/AnimateIn";
 import FragrancesHero from "./FragrancesHero";
 import { useCart } from "@/context/CartContext";
 
-const FILTERS = [
-  { key: "all", label: "All Fragrances" },
-  { key: "magnetic", label: "Magnetic" },
-  { key: "intimate", label: "Intimate" },
-  { key: "luminous", label: "Luminous" },
-  { key: "set", label: "Discovery Set" },
-];
+// Page-specific art that overrides a product's own card image.
+const ROW_IMAGES = {
+  "discovery-set": "/images/products/discovery-set-wine.webp",
+};
 
 export default function FragrancesClient({ products }) {
-  const [filter, setFilter] = useState("all");
   const searchParams = useSearchParams();
   const router = useRouter();
   const query = searchParams.get("q") || "";
   const { addToCart } = useCart();
 
   const visible = useMemo(() => {
-    let list = filter === "all" ? products : products.filter((p) => p.family === filter);
+    let list = products;
     if (query.trim()) {
       const q = query.trim().toLowerCase();
       list = list.filter(
@@ -37,7 +33,7 @@ export default function FragrancesClient({ products }) {
       );
     }
     return list;
-  }, [products, filter, query]);
+  }, [products, query]);
 
   return (
     <main>
@@ -57,24 +53,10 @@ export default function FragrancesClient({ products }) {
         </div>
       )}
 
-      <div className={styles.toolbar}>
-        <div className={styles.filters}>
-          {FILTERS.map((f) => (
-            <button
-              key={f.key}
-              className={`${styles.filterBtn} ${filter === f.key ? styles.filterActive : ""}`}
-              onClick={() => setFilter(f.key)}
-            >
-              {f.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
       {visible.length === 0 ? (
-        <p className={styles.empty}>No fragrances match {query ? `"${query}"` : "this filter"} yet.</p>
+        <p className={styles.empty}>No fragrances match &ldquo;{query}&rdquo; yet.</p>
       ) : (
-        <div className={styles.rowsList}>
+        <div id="collection" className={styles.rowsList}>
           {visible.map((product, i) => (
             <div
               key={product.id}
@@ -84,7 +66,7 @@ export default function FragrancesClient({ products }) {
               <div className={styles.productMedia}>
                 <div className={styles.productImgBox}>
                   <Image
-                    src={product.cardImage || product.images?.[0]}
+                    src={ROW_IMAGES[product.slug] || product.cardImage || product.images?.[0]}
                     alt={product.name}
                     fill
                     className={styles.productImg}

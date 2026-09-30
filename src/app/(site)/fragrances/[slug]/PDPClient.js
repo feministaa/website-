@@ -15,7 +15,8 @@ import { useToast } from "@/context/ToastContext";
 import { useRouter } from "next/navigation";
 
 export default function PDPClient({ product, related }) {
-  const [sizeIdx, setSizeIdx] = useState(product.sizes.length - 1);
+  // Each fragrance is sold as one variant (the last entry); no size choice is shown.
+  const sizeIdx = product.sizes.length - 1;
   const [qty, setQty] = useState(1);
   const gallery = product.images?.length ? product.images : ["/images/products/locken-real.jpg"];
   const [heroImage, ...restImages] = gallery;
@@ -28,7 +29,7 @@ export default function PDPClient({ product, related }) {
 
   function handleAddToCart() {
     addToCart(product, size, qty);
-    showToast(`${product.name} (${size.label}) added to your bag`);
+    showToast(`${product.name} added to your bag`);
   }
 
   function handleQuickCheckout() {
@@ -117,7 +118,7 @@ export default function PDPClient({ product, related }) {
           <div className={styles.ratingRow}>
             <span className={styles.stars}>
               {Array.from({ length: 5 }).map((_, i) => (
-                <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill={i < Math.round(product.rating) ? "#c9a153" : "#e4ddcb"}>
+                <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill={i < Math.round(product.rating) ? "var(--gold)" : "var(--sand-60)"}>
                   <path d="M12 2l2.9 6.6L22 9.2l-5 4.9L18.2 21 12 17.4 5.8 21 7 14.1l-5-4.9 7.1-0.6L12 2z" />
                 </svg>
               ))}
@@ -134,19 +135,6 @@ export default function PDPClient({ product, related }) {
               </span>
             )}
             {formatINR(size.price)}
-          </div>
-
-          <div className={styles.fieldLabel}>Size</div>
-          <div className={styles.sizeRow}>
-            {product.sizes.map((s, i) => (
-              <button
-                key={s.label}
-                className={`${styles.sizeBtn} ${sizeIdx === i ? styles.sizeBtnActive : ""}`}
-                onClick={() => setSizeIdx(i)}
-              >
-                {s.label}
-              </button>
-            ))}
           </div>
 
           <div className={styles.fieldLabel}>Quantity</div>
@@ -279,7 +267,7 @@ export default function PDPClient({ product, related }) {
         className={styles.storyBanner}
         style={
           product.bannerImage
-            ? { backgroundImage: `linear-gradient(0deg, rgba(10,9,7,0.25), rgba(10,9,7,0.05)), url(${product.bannerImage})` }
+            ? { backgroundImage: `linear-gradient(0deg, rgba(9, 9, 9,0.25), rgba(9, 9, 9,0.05)), url(${product.bannerImage})` }
             : undefined
         }
       >

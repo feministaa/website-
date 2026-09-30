@@ -5,7 +5,6 @@ import AboutTeaser from "@/components/home/AboutTeaser";
 import WorldGrid from "@/components/home/WorldGrid";
 import FindYourEssence from "@/components/home/FindYourEssence";
 import HomeReels from "@/components/home/HomeReels";
-import TrustStrip from "@/components/home/TrustStrip";
 import DiscoveryFeature from "@/components/home/DiscoveryFeature";
 import { getProducts } from "@/lib/dataStore";
 
@@ -30,7 +29,6 @@ export default async function Home() {
     <main>
       <Hero />
       <CinematicShowcase products={products.filter((p) => p.family !== "set")} />
-      <TrustStrip />
       <AboutTeaser
         stacked
         eyebrow="About Us"

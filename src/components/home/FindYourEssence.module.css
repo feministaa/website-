@@ -5,7 +5,7 @@
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
-  background: #5e1020;
+  background: var(--wine);
 }
 
 .bgImage {

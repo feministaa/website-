@@ -7,7 +7,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import QuantitySelector from "@/components/ui/QuantitySelector";
-import { formatINR } from "@/lib/format";
 import { useCart } from "@/context/CartContext";
 import { useToast } from "@/context/ToastContext";
 import styles from "./CinematicShowcase.module.css";
@@ -27,9 +26,8 @@ function Slide({ product, layerRef, priority }) {
   const [qty, setQty] = useState(1);
   const { addToCart } = useCart();
   const { showToast } = useToast();
-  // Default to the largest size, but always show it and let the visitor switch before adding.
-  const [sizeIdx, setSizeIdx] = useState((product.sizes?.length || 1) - 1);
-  const size = product.sizes?.[sizeIdx];
+  // Each fragrance is sold as a single variant; use it without showing a size or price on the banner.
+  const size = product.sizes?.[product.sizes.length - 1];
   const topNotes = product.notes?.top || [];
 
   const backdrop = BACKGROUNDS[product.slug];
@@ -37,7 +35,7 @@ function Slide({ product, layerRef, priority }) {
   function handleAdd() {
     if (!size) return;
     addToCart(product, size, qty);
-    showToast(`${product.name} (${size.label}) added to your bag`);
+    showToast(`${product.name} added to your bag`);
   }
 
   return (
@@ -79,34 +77,11 @@ function Slide({ product, layerRef, priority }) {
         </div>
       )}
 
-      <div className={styles.priceRow}>
-        {product.comingSoon || !size ? (
+      {product.comingSoon && (
+        <div className={styles.priceRow}>
           <span className={styles.priceText}>Coming Soon</span>
-        ) : (
-          <>
-            <span className={styles.priceText}>
-              {product.compareAtPrice && <span className={styles.priceCompareAt}>{formatINR(product.compareAtPrice)}</span>}
-              {formatINR(size.price)}
-            </span>
-            {product.sizes.length > 1 && (
-              <div className={styles.sizeRow} role="radiogroup" aria-label={`${product.name} size`}>
-                {product.sizes.map((s, i) => (
-                  <button
-                    key={s.label}
-                    type="button"
-                    role="radio"
-                    aria-checked={i === sizeIdx}
-                    className={`${styles.sizeBtn} ${i === sizeIdx ? styles.sizeBtnActive : ""}`}
-                    onClick={() => setSizeIdx(i)}
-                  >
-                    {s.label}
-                  </button>
-                ))}
-              </div>
-            )}
-          </>
-        )}
-      </div>
+        </div>
+      )}
 
       {!product.comingSoon && size && (
         <div className={styles.buyWrap}>
@@ -114,7 +89,7 @@ function Slide({ product, layerRef, priority }) {
             <QuantitySelector value={qty} onChange={setQty} variant="minimal" />
           </div>
           <button className={styles.shopAddBtn} onClick={handleAdd}>
-            Add {size.label} to Cart
+            Add to Cart
           </button>
         </div>
       )}

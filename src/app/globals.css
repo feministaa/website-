@@ -1,26 +1,48 @@
 :root {
+  /* Feminista brand kit: five colours, each with 80/60/40/20% tints (mixed with white). */
   --wine: #6d1f3a;
-  --gold: #6d1f3a;
+  --wine-80: #8a4c61;
+  --wine-60: #a77989;
+  --wine-40: #c5a5b0;
+  --wine-20: #e2d2d8;
+  --gold: #eb9d1b;
+  --gold-80: #efb149;
+  --gold-60: #f3c476;
+  --gold-40: #f7d8a4;
+  --gold-20: #fbebd1;
   --noir: #090909;
-  --sand: #ece8e6;
-  --ivory: #f6f4f3;
+  --noir-80: #3a3a3a;
+  --noir-60: #6b6b6b;
+  --noir-40: #9d9d9d;
+  --noir-20: #cecece;
+  --sand: #e2b795;
+  --sand-80: #e8c5aa;
+  --sand-60: #eed4bf;
+  --sand-40: #f3e2d5;
+  --sand-20: #f9f1ea;
+  --ivory: #f1e9e6;
+  --ivory-60: #f7f2f0;
+  --ivory-40: #f9f6f5;
 
+  /* Semantic roles built only from the kit. */
   --bg: #ffffff;
-  --bg-alt: #f5f2f1;
-  --bg-deep: #efe6e9;
+  --bg-alt: var(--ivory);
+  --bg-deep: var(--sand-40);
   --surface: #ffffff;
-  --ink: #090909;
-  --ink-soft: #3d3538;
-  --ink-faint: #8a8386;
-  --line: #e3dcde;
-  --line-soft: #eee8ea;
-  --gold-light: #8f3d5c;
-  --gold-pale: #f3e2e8;
-  --gold-deep: #4a1527;
-  --black: #090909;
-  --cream: #f7f5f4;
-  --danger: #6d1f3a;
-  --success: #4c6b4f;
+  --ink: var(--noir);
+  --ink-soft: var(--noir-80);
+  --ink-faint: var(--noir-60);
+  --line: var(--wine-20);
+  --line-soft: var(--ivory);
+  --black: var(--noir);
+  --cream: var(--ivory-40);
+  --danger: var(--wine);
+  --success: var(--wine-80);
+
+  /* Legacy names: these have always meant wine accents across the site. */
+  --gold-light: var(--wine-80);
+  --gold-pale: var(--wine-20);
+  --gold-deep: var(--wine);
 
   --font-serif: var(--font-playfair), "Playfair Display", Georgia, serif;
   --font-sans: var(--font-raleway), "Raleway", "Helvetica Neue", Arial, sans-serif;
@@ -170,14 +192,14 @@ h4 {
   background: var(--black);
   color: var(--cream);
   border-color: var(--black);
-  box-shadow: 0 1px 2px rgba(13, 12, 10, 0.15);
+  box-shadow: 0 1px 2px rgba(9, 9, 9, 0.15);
 }
 
 .btn-primary:hover {
   background: var(--gold-deep);
   border-color: var(--gold-deep);
   transform: translateY(-2px);
-  box-shadow: 0 14px 28px -10px rgba(124, 92, 44, 0.55);
+  box-shadow: 0 14px 28px -10px rgba(235, 157, 27, 0.55);
 }
 
 .btn-outline {
@@ -190,21 +212,21 @@ h4 {
   background: var(--ink);
   color: var(--cream);
   transform: translateY(-2px);
-  box-shadow: 0 14px 28px -12px rgba(13, 12, 10, 0.4);
+  box-shadow: 0 14px 28px -12px rgba(9, 9, 9, 0.4);
 }
 
 .btn-gold {
-  background: linear-gradient(135deg, var(--gold-deep), var(--gold) 65%, var(--gold-light));
-  color: var(--black);
-  border-color: var(--gold-deep);
-  box-shadow: 0 1px 2px rgba(124, 92, 44, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  background: var(--wine);
+  color: var(--cream);
+  border-color: var(--wine);
 }
 
 .btn-gold:hover {
-  background: linear-gradient(135deg, var(--gold-deep), var(--gold-deep) 65%, var(--gold));
-  border-color: var(--gold-deep);
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--noir);
   transform: translateY(-2px);
-  box-shadow: 0 14px 28px -10px rgba(124, 92, 44, 0.55);
+  box-shadow: 0 14px 28px -12px rgba(235, 157, 27, 0.5);
 }
 
 .btn-ghost {
@@ -221,7 +243,7 @@ h4 {
 .btn-light {
   background: transparent;
   color: var(--cream);
-  border-color: rgba(251, 248, 242, 0.6);
+  border-color: rgba(241, 233, 230, 0.6);
 }
 
 .btn-light:hover {

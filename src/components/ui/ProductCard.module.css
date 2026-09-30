@@ -19,7 +19,7 @@
 
 .card:hover .imageWrap {
   transform: translateY(-6px);
-  box-shadow: 0 26px 50px -20px rgba(13, 12, 10, 0.28);
+  box-shadow: 0 26px 50px -20px rgba(9, 9, 9, 0.28);
   border-color: var(--gold-pale);
 }
 

@@ -7,8 +7,8 @@ export default function HomeBanner() {
   return (
     <section className={styles.section}>
       <Image
-        src="/images/art-of-180-lab.webp"
-        alt="Feminista Locken with gift box"
+        src="/images/art-of-180-locken-loom.webp"
+        alt="Feminista Locken on folded linen beside a hand spindle"
         fill
         className={styles.image}
       />

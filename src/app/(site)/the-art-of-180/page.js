@@ -2,7 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./page.module.css";
 import AnimateIn from "@/components/ui/AnimateIn";
-import HeroVisual from "./HeroVisual";
+import { getProducts } from "@/lib/dataStore";
+import PhaseCarousel from "./PhaseCarousel";
 
 export const metadata = {
   title: "The Art of 180 — Feminista",
@@ -16,138 +17,108 @@ export const metadata = {
   },
 };
 
-const STEPS = [
+// One banner per phase, shown in the carousel. Maturation carries the 180-day highlight.
+const PHASES = [
   {
     title: "Selection",
-    sub: "Ingredient Sourcing",
-    body: "Rare, pure materials — sourced for character, not convenience.",
+    body: "Rare, pure materials, sourced for character rather than convenience.",
+    image: "/images/products/ingredients-amber-vanilla.webp",
+    alt: "Amber, vanilla and cinnamon on black",
   },
   {
     title: "Composition",
-    sub: "Blending",
-    body: "Top, heart and base notes, balanced into harmony.",
+    body: "Top, heart and base notes, balanced by hand into a single accord.",
+    image: "/images/products/locken-ingredients.jpg",
+    alt: "Botanicals and fruit arranged in low light",
   },
   {
     title: "Maturation",
-    sub: "180-Day Resting Period",
-    body: "Nearly 180 days of rest — softened, deepened, complete.",
+    highlight: "180 days of rest",
+    body: "The composition is left alone until the notes soften, deepen and settle into each other.",
+    image: "/images/showcase/locken-driftwood-bg.webp",
+    alt: "Locken resting on weathered driftwood among almonds and coffee",
   },
   {
     title: "Evaluation",
-    sub: "Refinement",
-    body: "Refined and adjusted until the balance feels right.",
+    body: "Assessed and refined until the balance feels right. If it is not ready, it waits longer.",
+    image: "/images/art-of-180-lab.webp",
+    alt: "A gloved hand at work beside a bottle of Feminista Locken",
   },
   {
     title: "Bottling",
-    sub: "Final Finishing",
-    body: "Filtered, bottled and finished entirely by hand.",
+    body: "Filtered, bottled and finished by hand. Only then does it leave the House.",
+    image: "/images/products/trio-light-play.webp",
+    alt: "Locken, Vers and Fresca lying in slanted light",
   },
 ];
 
-const PHILOSOPHY = [
-  { title: "Composed with intention.", body: "Every note has a purpose." },
-  { title: "Matured without haste.", body: "Time brings the composition into harmony." },
-  { title: "Finished only when complete.", body: "Nothing leaves the house before it is ready." },
-];
+export default async function ArtOf180Page() {
+  const products = (await getProducts()).filter((p) => p.family !== "set").slice(0, 3);
 
-export default function ArtOf180Page() {
   return (
-    <main>
+    <main className={styles.page}>
       <section className={styles.hero}>
-        <HeroVisual />
-        <div className={styles.heroScrim} />
-        <AnimateIn className={styles.heroCopy}>
-          <span className={styles.heroKicker}>The Art of 180</span>
-          <h1 className={styles.heroTitle}>Time is our rarest ingredient</h1>
-          <p className={styles.heroSub}>
-            Every Feminista fragrance is given nearly 180 days to mature — so you experience its truest self.
-          </p>
-          <Link href="#process" className="btn btn-light">
-            Explore the Process
-          </Link>
-        </AnimateIn>
-      </section>
-
-      <div className={styles.intro} id="process">
-        <span className={styles.introWatermark} aria-hidden="true">
-          180
-        </span>
-        <AnimateIn className={styles.introInner}>
-          <span className={styles.introKicker}>Crafted Slowly. Remembered Long After.</span>
-          <h2 className={styles.introTitle}>The Art of 180 is our signature craftsmanship ritual</h2>
-          <p className={styles.introBody}>Composition, time and precision, working in patient harmony.</p>
-        </AnimateIn>
-      </div>
-
-      <div className={styles.processTrack}>
-        {STEPS.map((step, i) => (
-          <AnimateIn key={step.title} delay={i * 0.08} className={styles.processRow}>
-            <span className={styles.processIndex}>{String(i + 1).padStart(2, "0")}</span>
-            <h3 className={styles.processTitle}>{step.title}</h3>
-            <span className={styles.processSub}>{step.sub}</span>
-            <p className={styles.processBody}>{step.body}</p>
-          </AnimateIn>
-        ))}
-      </div>
-
-      <AnimateIn className={styles.plate}>
         <Image
-          src="/images/products/locken-ingredients.jpg"
-          alt="The rare botanicals matured into every Feminista fragrance"
+          src="/images/art-of-180-locken-loom.webp"
+          alt="Feminista Locken on folded linen beside a hand spindle"
           fill
-          className={styles.plateImg}
+          priority
+          className={styles.cover}
           sizes="100vw"
         />
-      </AnimateIn>
-
-      <section className={styles.philosophy}>
-        <AnimateIn className={styles.header}>
-          <span className="eyebrow" style={{ color: "var(--gold-light)" }}>
-            Brand Philosophy
-          </span>
-          <h2 className={styles.philosophyTitle}>The beauty of becoming</h2>
+        <div className={styles.heroShade} />
+        <AnimateIn className={styles.heroCopy}>
+          <span className={styles.label}>The Art of 180</span>
+          <h1 className={styles.heroTitle}>Time is our rarest ingredient</h1>
         </AnimateIn>
-        <div className={styles.philosophyList}>
-          {PHILOSOPHY.map((p, i) => (
-            <AnimateIn key={p.title} delay={i * 0.1} className={styles.philosophyRow}>
-              <h3 className={styles.philosophyRowTitle}>{p.title}</h3>
-              <p className={styles.philosophyRowBody}>{p.body}</p>
-            </AnimateIn>
-          ))}
-        </div>
       </section>
 
-      <section className={styles.quoteBand}>
+      <section className={styles.interlude}>
         <AnimateIn>
-          <span className={styles.quoteMark} aria-hidden="true">
-            &ldquo;
-          </span>
-          <p className={styles.quoteLine}>Some things only time can perfect.</p>
+          <p className={styles.interludeText}>Nearly six months. One composition. No shortcuts.</p>
         </AnimateIn>
       </section>
 
-      <section className={styles.closing}>
-        <AnimateIn className={styles.header}>
-          <h2 className={styles.closingTitle}>Three expressions, shaped by patience</h2>
-          <div className={styles.actList}>
-            <div>
-              <strong className={styles.actName}>Locken</strong>
-              <p className={styles.actExpr}>The Magnetic</p>
-            </div>
-            <div>
-              <strong className={styles.actName}>Vers</strong>
-              <p className={styles.actExpr}>The Intimate</p>
-            </div>
-            <div>
-              <strong className={styles.actName}>Fresca</strong>
-              <p className={styles.actExpr}>The Luminous</p>
-            </div>
-          </div>
-          <Link href="/fragrances" className="btn btn-primary">
-            Discover the Collection
-          </Link>
+      <PhaseCarousel phases={PHASES} />
+
+      <section className={styles.quote}>
+        <AnimateIn>
+          <p className={styles.quoteText}>Some things only time can perfect.</p>
         </AnimateIn>
       </section>
+
+      {products.length > 0 && (
+        <section className={styles.closing}>
+          <AnimateIn className={styles.closingHead}>
+            <span className={styles.label}>The collection</span>
+            <h2 className={styles.closingTitle}>Three expressions, shaped by patience</h2>
+          </AnimateIn>
+          <div className={styles.cards}>
+            {products.map((p, i) => (
+              <AnimateIn key={p.id} delay={i * 0.08}>
+                <Link href={`/fragrances/${p.slug}`} className={styles.card}>
+                  <div className={styles.cardMedia}>
+                    <Image
+                      src={p.cardImage || p.images?.[0]}
+                      alt={p.name}
+                      fill
+                      className={styles.cardImg}
+                      sizes="(max-width: 900px) 100vw, 30vw"
+                    />
+                  </div>
+                  <span className={styles.cardExpr}>{p.expression}</span>
+                  <span className={styles.cardName}>{p.name}</span>
+                </Link>
+              </AnimateIn>
+            ))}
+          </div>
+          <div className={styles.closingCta}>
+            <Link href="/fragrances" className={styles.cta}>
+              Discover the collection
+            </Link>
+          </div>
+        </section>
+      )}
     </main>
   );
 }

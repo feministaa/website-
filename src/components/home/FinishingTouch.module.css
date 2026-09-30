@@ -100,7 +100,7 @@
   height: 100%;
   border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: 0 30px 60px -28px rgba(13, 12, 10, 0.35);
+  box-shadow: 0 30px 60px -28px rgba(9, 9, 9, 0.35);
 }
 
 .cardImage {

@@ -63,7 +63,7 @@
 
 .title em {
   font-style: italic;
-  color: #eb9d1b;
+  color: var(--gold);
 }
 
 .description {
@@ -75,7 +75,7 @@
 
 .description em {
   font-style: italic;
-  color: #eb9d1b;
+  color: var(--gold);
 }
 
 .footer {
@@ -148,7 +148,8 @@
   min-height: 260px;
   border-radius: 14px;
   overflow: hidden;
-  background: #3a0310;
+  /* Matches the near-black edges of the contained Locken photo. */
+  background: var(--noir);
 }
 
 .gridImageRow .image {

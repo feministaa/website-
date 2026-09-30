@@ -70,7 +70,7 @@
   border-radius: 10px;
   overflow: hidden;
   background: var(--bg-alt);
-  box-shadow: 0 30px 60px rgba(28, 20, 16, 0.18);
+  box-shadow: 0 30px 60px rgba(9, 9, 9, 0.18);
 }
 
 .video {

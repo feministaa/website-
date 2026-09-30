@@ -2,9 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./page.module.css";
 import AnimateIn from "@/components/ui/AnimateIn";
-import ProductCard from "@/components/ui/ProductCard";
 import HomeBanner from "@/components/home/HomeBanner";
-import { getProducts } from "@/lib/dataStore";
 import PhilosophyPillars from "./PhilosophyPillars";
 
 export const metadata = {
@@ -37,9 +35,7 @@ const PILLARS = [
   },
 ];
 
-export default async function OurStoryPage() {
-  const products = await getProducts();
-  const collection = products.filter((p) => p.family !== "set").slice(0, 3);
+export default function OurStoryPage() {
 
   return (
     <main>
@@ -126,18 +122,6 @@ export default async function OurStoryPage() {
       </section>
 
       <HomeBanner />
-
-      <section className={styles.inspired}>
-        <AnimateIn className={styles.header}>
-          <span className="eyebrow">Be Inspired</span>
-          <h2 className={styles.headerTitle}>Discover the Collection</h2>
-        </AnimateIn>
-        <div className={styles.inspiredGrid}>
-          {collection.map((p, i) => (
-            <ProductCard key={p.id} product={p} index={i} tall />
-          ))}
-        </div>
-      </section>
 
       <PhilosophyPillars pillars={PILLARS} />
     </main>
