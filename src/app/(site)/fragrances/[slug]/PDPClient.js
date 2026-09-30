@@ -175,7 +175,7 @@ export default function PDPClient({ product, related }) {
                 <circle cx="7" cy="19" r="1.6" />
                 <circle cx="17.5" cy="19" r="1.6" />
               </svg>
-              <span>Free shipping across India</span>
+              <span>Shipping across India</span>
             </div>
             <div className={styles.trustItem}>
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
@@ -202,17 +202,14 @@ export default function PDPClient({ product, related }) {
             <span className={styles.sectionEyebrow}>The Story</span>
             <h2 className={styles.storyTitle}>{product.tagline || product.name}</h2>
           </AnimateIn>
-          <ol className={styles.storyChapters}>
+          <div className={styles.storyProse}>
             {product.overview.map((block, i) => (
-              <AnimateIn as="li" key={block.title} delay={i * 0.08} className={styles.chapter}>
-                <span className={styles.chapterNum}>{String(i + 1).padStart(2, "0")}</span>
-                <div>
-                  <h3 className={styles.chapterTitle}>{block.title}</h3>
-                  <p className={styles.chapterBody}>{block.body}</p>
-                </div>
+              <AnimateIn key={block.title} delay={i * 0.08} className={styles.proseBlock}>
+                <h3 className={styles.proseTitle}>{block.title}</h3>
+                <p className={styles.proseBody}>{block.body}</p>
               </AnimateIn>
             ))}
-          </ol>
+          </div>
         </section>
       )}
 
