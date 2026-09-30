@@ -7,6 +7,7 @@ import FindYourEssence from "@/components/home/FindYourEssence";
 import HomeReels from "@/components/home/HomeReels";
 import DiscoveryFeature from "@/components/home/DiscoveryFeature";
 import Testimonials from "@/components/home/Testimonials";
+import StackedBanners from "@/components/ui/StackedBanners";
 import { getProducts } from "@/lib/dataStore";
 
 export const metadata = {
@@ -44,9 +45,11 @@ export default async function Home() {
         image="/images/products/locken-hand-float.png"
         image2="/images/products/fresca-hand-hold.png"
       />
-      <DiscoveryFeature product={products.find((p) => p.family === "set")} />
-      <HomeBanner fullScreen />
-      <FindYourEssence products={products} />
+      <StackedBanners>
+        <DiscoveryFeature product={products.find((p) => p.family === "set")} />
+        <HomeBanner fullScreen />
+        <FindYourEssence products={products} />
+      </StackedBanners>
       <WorldGrid />
       <HomeReels />
       <Testimonials />

@@ -1,0 +1,6 @@
+@media (min-width: 901px) {
+  .item {
+    position: sticky;
+    top: 0;
+  }
+}
