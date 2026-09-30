@@ -46,8 +46,8 @@
 }
 
 .storyRow {
-  /* Half-and-half split, held to a 1280px frame so the photos stay around 580px square. */
-  max-width: 1280px;
+  /* Half-and-half split, held to a 1400px frame so the photos sit around 640px square. */
+  max-width: 1400px;
   margin: 0 auto;
   padding: 40px 32px;
   display: grid;

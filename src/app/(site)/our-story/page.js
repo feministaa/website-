@@ -121,7 +121,7 @@ export default function OurStoryPage() {
         </AnimateIn>
       </section>
 
-      <HomeBanner />
+      <HomeBanner fullScreen />
 
       <PhilosophyPillars pillars={PILLARS} />
     </main>

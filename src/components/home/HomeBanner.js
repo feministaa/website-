@@ -3,9 +3,13 @@ import Image from "next/image";
 import styles from "./HomeBanner.module.css";
 import AnimateIn from "@/components/ui/AnimateIn";
 
-export default function HomeBanner() {
+// `fullScreen` makes it an edge-to-edge, full-height banner (used on Our Story).
+export default function HomeBanner({ fullScreen = false }) {
   return (
-    <section className={styles.section}>
+    <section
+      className={`${styles.section} ${fullScreen ? styles.fullScreen : ""}`}
+      data-hide-header={fullScreen || undefined}
+    >
       <Image
         src="/images/art-of-180-locken-loom.webp"
         alt="Feminista Locken on folded linen beside a hand spindle"

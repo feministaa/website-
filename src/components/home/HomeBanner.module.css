@@ -12,6 +12,15 @@
   overflow: hidden;
 }
 
+.fullScreen {
+  max-width: none;
+  margin: 0;
+  min-height: 0;
+  height: 100vh;
+  height: 100svh;
+  border-radius: 0;
+}
+
 .image {
   object-fit: cover;
   object-position: 70% center;

@@ -45,7 +45,7 @@ export default async function Home() {
         image2="/images/products/fresca-hand-hold.png"
       />
       <DiscoveryFeature product={products.find((p) => p.family === "set")} />
-      <HomeBanner />
+      <HomeBanner fullScreen />
       <FindYourEssence products={products} />
       <WorldGrid />
       <HomeReels />
