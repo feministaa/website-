@@ -6,7 +6,7 @@ export default function FindYourEssence({ products }) {
   const fragrances = products.filter((p) => p.family !== "set");
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} data-hide-header>
       <Image
         src="/images/collection-banner-cat.webp"
         alt="A woman in a fur coat seated beside a black cat"

@@ -155,7 +155,7 @@ export default function CinematicShowcase({ products }) {
   );
 
   return (
-    <section className={styles.pinWrap} ref={pinWrapRef}>
+    <section className={styles.pinWrap} ref={pinWrapRef} data-hide-header>
       <div className={styles.stage}>
         {products.map((product, i) => (
           <Slide

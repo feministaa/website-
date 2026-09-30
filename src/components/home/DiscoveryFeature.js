@@ -9,7 +9,7 @@ export default function DiscoveryFeature({ product }) {
   const price = product.sizes?.[0]?.price;
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} data-hide-header>
       <div className={styles.banner}>
         <Image
           src="/images/discovery-set-banner.webp"

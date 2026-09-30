@@ -1,7 +1,9 @@
 .section {
   position: relative;
   width: 100%;
-  min-height: 900px;
+  /* At least a full screen; grows if the cards need more room on short displays. */
+  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   justify-content: flex-end;
   overflow: hidden;

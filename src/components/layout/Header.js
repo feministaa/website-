@@ -162,7 +162,16 @@ export default function Header() {
       const y = window.scrollY;
       setScrolled(y > 10);
 
-      if (y < 120) {
+      // Full-screen sections (marked data-hide-header) keep the header away while they fill the top of
+      // the viewport, so scrolling back up through them never covers the image.
+      const underFullScreen = [...document.querySelectorAll("[data-hide-header]")].some((el) => {
+        const r = el.getBoundingClientRect();
+        return r.top <= 1 && r.bottom > 1;
+      });
+
+      if (underFullScreen) {
+        setHidden(true);
+      } else if (y < 120) {
         setHidden(false);
       } else if (y > lastScrollY.current + 4) {
         setHidden(true);
