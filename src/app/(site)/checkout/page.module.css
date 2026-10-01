@@ -81,6 +81,8 @@
 }
 
 .lineImg {
+  position: relative;
+  overflow: hidden;
   width: 46px;
   height: 54px;
   border-radius: 3px;

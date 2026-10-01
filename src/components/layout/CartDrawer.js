@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCart } from "@/context/CartContext";
-import ScentBottle from "@/components/ui/ScentBottle";
+import CartThumb from "@/components/ui/CartThumb";
 import { formatINR } from "@/lib/format";
 
 export default function CartDrawer() {
@@ -76,15 +76,16 @@ export default function CartDrawer() {
                         alignItems: "center",
                         justifyContent: "center",
                         flexShrink: 0,
+                        position: "relative",
+                        overflow: "hidden",
                       }}
                     >
-                      <ScentBottle accent={item.accent} accentSoft={item.accentSoft} size={56} isSet={item.family === "set"} />
+                      <CartThumb item={item} size={56} />
                     </div>
                     <div style={{ flex: 1 }}>
                       <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
                         <div>
                           <div style={{ fontSize: 15.5, fontFamily: "var(--font-serif)" }}>{item.name}</div>
-                          <div style={{ fontSize: 12, color: "var(--ink-faint)" }}>{item.size}</div>
                         </div>
                         <button
                           onClick={() => removeFromCart(item.productId, item.size)}

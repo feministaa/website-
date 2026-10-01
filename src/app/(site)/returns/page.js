@@ -1,49 +1,26 @@
 import Link from "next/link";
-import LegalPage from "@/components/ui/LegalPage";
+import PolicyPage from "@/components/ui/PolicyPage";
 import { SUPPORT_EMAIL } from "@/data/site";
 
 export const metadata = {
-  title: "Returns & Exchanges — Feminista",
-  description: "Unopened Feminista fragrances may be returned within 14 days of delivery for a full refund.",
+  title: "Returns & Refunds — Feminista",
+  description: "All Feminista sales are final. Damaged or incorrect orders are replaced when reported within 48 hours.",
   alternates: { canonical: "/returns" },
 };
 
-const contact = SUPPORT_EMAIL ? (
-  <>
-    write to us at <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
-  </>
-) : (
-  <>
-    contact us from your <Link href="/account">account</Link>
-  </>
-);
+const email = <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>;
 
 const SECTIONS = [
   {
-    id: "window",
-    title: "The 14-day window",
-    body: (
-      <p>
-        You may return any Feminista fragrance within <strong>14 days of delivery</strong> for a full refund to your
-        original payment method, provided it meets the conditions below.
-      </p>
-    ),
-  },
-  {
-    id: "conditions",
-    title: "What can be returned",
+    id: "final",
+    title: "All sales are final",
     body: (
       <>
-        <p>For hygiene and quality reasons, we can only accept items that are:</p>
-        <ul>
-          <li>Unopened, with the original seal and cellophane intact.</li>
-          <li>Unused and in their original box and packaging.</li>
-          <li>Accompanied by the order number.</li>
-        </ul>
         <p>
-          Opened or used fragrances, and Discovery Sets whose vials have been opened, cannot be returned unless they
-          arrived damaged or faulty.
+          Fragrance is a personal product. To protect every customer, a bottle cannot be resold once it has left the
+          House, so <strong>we do not accept returns or offer refunds</strong> on any order, opened or unopened.
         </p>
+        <p>Please review your order carefully before you check out.</p>
       </>
     ),
   },
@@ -52,44 +29,33 @@ const SECTIONS = [
     title: "Damaged or incorrect orders",
     body: (
       <p>
-        If your order arrives damaged, leaking or incorrect, please {contact} within 48 hours of delivery with your order
-        number and a photo of the item and packaging. We will send a replacement or issue a full refund, at no cost to
-        you.
+        If your order arrives damaged, leaking or is not what you ordered, we will send a replacement at no cost. Write
+        to us at {email} within <strong>48 hours of delivery</strong>.
+      </p>
+    ),
+    cards: [
+      { title: "Your order number", text: "So we can find your order right away." },
+      { title: "Photos of the item", text: "Showing the bottle and the issue clearly." },
+      { title: "Photos of the packaging", text: "The outer box, as it arrived." },
+    ],
+  },
+  {
+    id: "cancellations",
+    title: "Cancellations",
+    body: (
+      <p>
+        Orders cannot be cancelled once they have been dispatched. If you need to change something before then, write to
+        us at {email} as soon as possible and we will do our best to help.
       </p>
     ),
   },
   {
-    id: "how",
-    title: "How to start a return",
-    body: (
-      <>
-        <p>To start a return, {contact} with your order number and the item you would like to return.</p>
-        <p>
-          We will confirm whether the item is eligible and share the return instructions. Please do not send an item back
-          before your return has been confirmed.
-        </p>
-      </>
-    ),
-  },
-  {
-    id: "refunds",
-    title: "Refunds",
+    id: "choosing",
+    title: "Not sure which is yours?",
     body: (
       <p>
-        Once the returned item reaches us and passes inspection, we will refund the full product price to your original
-        payment method. Depending on your bank, it may take a further 5–7 business days for the amount to appear in your
-        account.
-      </p>
-    ),
-  },
-  {
-    id: "exchanges",
-    title: "Exchanges",
-    body: (
-      <p>
-        We do not offer direct exchanges. If you would prefer a different fragrance, return the unopened item for a
-        refund and place a new order. If you are unsure which fragrance is yours, the{" "}
-        <Link href="/fragrances/discovery-set">Discovery Set</Link> lets you try all three first.
+        The <Link href="/fragrances/discovery-set">Discovery Set</Link> holds Locken, Vers and Fresca in travel sizes, so
+        you can wear each one before choosing a full bottle.
       </p>
     ),
   },
@@ -97,10 +63,16 @@ const SECTIONS = [
 
 export default function ReturnsPage() {
   return (
-    <LegalPage
-      title="Returns & Exchanges"
-      intro="We want every Feminista fragrance to arrive exactly as it should. If something isn't right, here is how returns work."
+    <PolicyPage
+      label="Customer Care"
+      title="Returns & Refunds"
+      intro="Every fragrance is checked, sealed and packed with care before it reaches you."
+      notice={{
+        label: "Important",
+        text: "As fragrance is a personal product, all sales are final. We do not offer returns or refunds.",
+      }}
       sections={SECTIONS}
+      contactLine="If your order arrives damaged, write to us within 48 hours of delivery and we will make it right."
     />
   );
 }

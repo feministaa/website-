@@ -21,9 +21,8 @@ const COLUMNS = [
     links: [
       { href: "/contact", label: "Contact Us" },
       { href: "/shipping", label: "Shipping & Delivery" },
-      { href: "/returns", label: "Returns & Exchanges" },
+      { href: "/returns", label: "Returns & Refunds" },
       { href: "/account", label: "Track Your Order" },
-      { href: "/faq", label: "FAQs" },
     ],
   },
   {
@@ -80,7 +79,7 @@ export default function Footer() {
             Be the first to know about new compositions, private launches and stories from the house of Feminista.
           </p>
           <Link href="/account/register" className={styles.ctaBtn}>
-            Create an Account ↗
+            Create an Account
           </Link>
         </div>
       </AnimateIn>

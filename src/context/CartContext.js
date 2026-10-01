@@ -24,6 +24,19 @@ export function CartProvider({ children }) {
     setHydrated(true);
   }, []);
 
+  // Once per visit, refresh every line's photo from the live product list (the product page's first
+  // image), so saved bags always match what is set in the admin.
+  useEffect(() => {
+    if (!hydrated) return;
+    fetch("/api/products")
+      .then((res) => res.json())
+      .then((products) => {
+        const byId = new Map(products.map((p) => [p.id, p.images?.[0] || p.cardImage || null]));
+        setItems((prev) => prev.map((i) => ({ ...i, image: byId.get(i.productId) || i.image || null })));
+      })
+      .catch(() => {});
+  }, [hydrated]);
+
   useEffect(() => {
     if (!hydrated) return;
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
@@ -50,6 +63,7 @@ export function CartProvider({ children }) {
           accent: product.accent,
           accentSoft: product.accentSoft,
           family: product.family,
+          image: product.images?.[0] || product.cardImage || null,
           qty,
         },
       ];

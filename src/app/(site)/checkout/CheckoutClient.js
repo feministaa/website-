@@ -6,6 +6,7 @@ import styles from "./page.module.css";
 import { useCart } from "@/context/CartContext";
 import { formatINR } from "@/lib/format";
 import ScentBottle from "@/components/ui/ScentBottle";
+import CartThumb from "@/components/ui/CartThumb";
 import AnimateIn from "@/components/ui/AnimateIn";
 
 export default function CheckoutClient({ user }) {
@@ -206,12 +207,12 @@ export default function CheckoutClient({ user }) {
           {items.map((item) => (
             <div key={`${item.productId}-${item.size}`} className={styles.line}>
               <div className={styles.lineImg} style={{ background: `linear-gradient(160deg, ${item.accentSoft}55, var(--bg-alt))` }}>
-                <ScentBottle accent={item.accent} accentSoft={item.accentSoft} size={30} isSet={item.family === "set"} />
+                <CartThumb item={item} size={30} />
               </div>
               <div style={{ flex: 1 }}>
                 <div>{item.name}</div>
                 <div style={{ color: "var(--ink-faint)", fontSize: 12 }}>
-                  {item.size} × {item.qty}
+                  Qty {item.qty}
                 </div>
               </div>
               <div>{formatINR(item.price * item.qty)}</div>

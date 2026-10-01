@@ -3,7 +3,7 @@
 import { useState } from "react";
 import styles from "./page.module.css";
 
-const TOPICS = ["An order", "Returns", "Choosing a fragrance", "Gifting", "Something else"];
+const TOPICS = ["An order", "Damaged or incorrect order", "Choosing a fragrance", "Gifting", "Something else"];
 
 // There is no mail service behind the site, so sending opens the visitor's email app with the message
 // already addressed and written.

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import styles from "./page.module.css";
 import ScentBottle from "@/components/ui/ScentBottle";
+import CartThumb from "@/components/ui/CartThumb";
 import AnimateIn from "@/components/ui/AnimateIn";
 import { useCart } from "@/context/CartContext";
 import { formatINR } from "@/lib/format";
@@ -38,12 +39,12 @@ export default function CartClient() {
           {items.map((item) => (
             <div key={`${item.productId}-${item.size}`} className={styles.row}>
               <div className={styles.imgBox} style={{ background: `linear-gradient(160deg, ${item.accentSoft}55, var(--bg-alt))` }}>
-                <ScentBottle accent={item.accent} accentSoft={item.accentSoft} size={64} isSet={item.family === "set"} />
+                <CartThumb item={item} size={64} />
               </div>
               <div>
                 <div className={styles.name}>{item.name}</div>
                 <div className={styles.meta}>
-                  {item.expression} · {item.size}
+                  {item.expression}
                 </div>
                 <div className={styles.rowControls}>
                   <div style={{ display: "inline-flex", alignItems: "center", border: "1px solid var(--line)", borderRadius: 2 }}>

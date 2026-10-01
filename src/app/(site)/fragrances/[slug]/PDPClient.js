@@ -140,7 +140,7 @@ export default function PDPClient({ product, related }) {
           <div className={styles.fieldLabel}>Quantity</div>
           <div className={styles.qtyRow}>
             <QuantitySelector value={qty} onChange={setQty} />
-            <span className={styles.stockNote}>In stock · Ships in 2–4 days</span>
+            <span className={styles.stockNote}>In stock · Ships within 7 days</span>
           </div>
 
           <div className={styles.actionRow}>
@@ -179,10 +179,10 @@ export default function PDPClient({ product, related }) {
             </div>
             <div className={styles.trustItem}>
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-                <path d="M3 12a9 9 0 1 1 2.64 6.36" />
-                <path d="M3 21v-5h5" />
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v5l3.5 2" />
               </svg>
-              <span>14-day easy returns</span>
+              <span>Delivered within 7 days</span>
             </div>
             <div className={styles.trustItem}>
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
@@ -248,7 +248,7 @@ export default function PDPClient({ product, related }) {
           { title: "Ingredients", body: product.ingredients, small: true },
           {
             title: "Shipping & Returns",
-            body: "Complimentary shipping across India, delivered in 2–4 business days. Unopened items may be returned within 14 days of delivery for a full refund.",
+            body: "Shipped across India and delivered within 7 days. As fragrances cannot be resold once dispatched, all sales are final; if your order arrives damaged, write to us within 48 hours for a replacement.",
           },
         ]
           .filter((card) => card.body)

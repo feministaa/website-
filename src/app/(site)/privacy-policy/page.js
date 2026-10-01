@@ -59,7 +59,7 @@ const SECTIONS = [
     title: "How we use your information",
     body: (
       <ul>
-        <li>To process, ship and deliver your orders, and to handle returns.</li>
+        <li>To process, ship and deliver your orders, and to resolve any delivery issues.</li>
         <li>To manage your account and show your order history.</li>
         <li>To reply when you contact us.</li>
         <li>To send product news and launches, only if you have subscribed. You can unsubscribe at any time.</li>

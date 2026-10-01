@@ -26,6 +26,8 @@
 }
 
 .imgBox {
+  position: relative;
+  overflow: hidden;
   width: 96px;
   height: 110px;
   border-radius: 4px;

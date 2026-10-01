@@ -11,7 +11,7 @@ export const metadata = {
 
 const HELP = [
   { title: "Orders & delivery", body: "Track an order or check its status from your account.", href: "/account", cta: "Go to your account" },
-  { title: "Returns", body: "Unopened fragrances can be returned within 14 days of delivery.", href: "/returns", cta: "Read the returns policy" },
+  { title: "Damaged orders", body: "If your order arrives damaged, write to us within 48 hours of delivery.", href: "/returns", cta: "Read the returns policy" },
   { title: "Choosing a fragrance", body: "Not sure which one is yours? Try all three first.", href: "/fragrances/discovery-set", cta: "See the Discovery Set" },
 ];
 

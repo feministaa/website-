@@ -2,6 +2,13 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./FindYourEssence.module.css";
 
+// Collection-banner art for each fragrance; anything else falls back to its admin card image.
+const CARD_IMAGES = {
+  locken: "/images/products/locken-collection-card.webp",
+  vers: "/images/products/vers-collection-card.webp",
+  fresca: "/images/products/fresca-collection-card.webp",
+};
+
 export default function FindYourEssence({ products }) {
   const fragrances = products.filter((p) => p.family !== "set");
 
@@ -34,7 +41,7 @@ export default function FindYourEssence({ products }) {
             <Link key={product.id} href={`/fragrances/${product.slug}`} className={styles.card}>
               <div className={styles.cardImageWrap}>
                 <Image
-                  src={product.cardImage || product.images?.[0]}
+                  src={CARD_IMAGES[product.slug] || product.cardImage || product.images?.[0]}
                   alt={product.name}
                   fill
                   className={styles.cardImage}
