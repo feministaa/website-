@@ -135,6 +135,8 @@ export default function PDPClient({ product, related }) {
               </span>
             )}
             {formatINR(size.price)}
+            {/* Full bottles are 100 ml; the Discovery Set holds three 10 ml travel sprays. */}
+            <span className={styles.volume}>{product.family === "set" ? "3 × 10 ml" : size.label}</span>
           </div>
 
           <div className={styles.fieldLabel}>Quantity</div>

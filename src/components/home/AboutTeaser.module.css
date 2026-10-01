@@ -110,8 +110,8 @@
   display: grid;
   grid-template-columns: 1fr 0.8fr;
   gap: 14px;
-  width: 100%;
-  max-width: 1600px;
+  /* Laptops keep the same side margin ratio as a 1920px screen (about 8vw each side), capped at 1600px. */
+  width: min(1600px, 100% - 16.6vw);
   margin: 80px auto;
   /* No bottom padding from the global .section: the next banner's 80px margin is the only gap,
      matching the 80px below that banner. */
@@ -190,6 +190,7 @@
     display: flex;
     flex-direction: column;
     min-height: 0;
+    width: 100%;
     margin: 0;
     padding: 0;
     border-radius: 0;

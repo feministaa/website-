@@ -2,10 +2,11 @@
   display: grid;
   grid-template-columns: 42fr 24fr 34fr;
   gap: 14px;
-  width: 100%;
-  max-width: 1600px;
+  /* Laptops keep the same side margin ratio as a 1920px screen (about 8vw each side), capped at 1600px. */
+  width: min(1600px, 100% - 16.6vw);
   margin: 80px auto;
-  height: 720px;
+  /* Scales with the screen width; 720px at 1920. */
+  height: min(720px, 37.5vw);
   background: var(--bg);
 }
 
@@ -187,6 +188,7 @@
 @media (max-width: 900px) {
   .section {
     grid-template-columns: 1fr;
+    width: 100%;
     height: auto;
     padding: 0 16px;
   }

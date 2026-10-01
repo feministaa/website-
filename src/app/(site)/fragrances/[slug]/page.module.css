@@ -122,8 +122,21 @@
 }
 
 .price {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
   font-size: 22px;
   margin-bottom: 26px;
+}
+
+/* Bottle size beside the price, e.g. "100 ml". */
+.volume {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding-left: 14px;
+  border-left: 1px solid var(--line);
 }
 
 .fieldLabel {

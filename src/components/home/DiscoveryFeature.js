@@ -24,7 +24,7 @@ export default function DiscoveryFeature({ product }) {
           <span className={styles.eyebrow}>The Discovery Set</span>
           <h2 className={styles.title}>Locken, Vers and Fresca, together.</h2>
           <p className={styles.text}>
-            Three travel sprays in one leather case. Try each for a few days before choosing your bottle.
+            Three 10 ml travel sprays in one leather case. Try each for a few days before choosing your bottle.
           </p>
 
           <div className={styles.buy}>

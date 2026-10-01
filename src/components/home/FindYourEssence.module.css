@@ -99,7 +99,8 @@
   gap: 10px;
   flex: 1 1 0;
   min-width: 0;
-  max-width: 230px;
+  /* Also bounded by screen height so the tall cards and their names fit on short laptop screens. */
+  max-width: min(230px, 22vh);
 }
 
 .cardImageWrap {
