@@ -147,31 +147,35 @@
   color: var(--noir);
 }
 
-.closingCta {
-  margin-top: 64px;
-  text-align: center;
-}
-
-.cta {
-  display: inline-block;
-  padding: 18px 40px;
-  border: 1px solid var(--noir);
-  color: var(--noir);
-  font-size: 11.5px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  transition: background 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease);
-}
-
-.cta:hover {
-  background: var(--noir);
-  border-color: var(--noir);
-  color: var(--ivory);
-}
-
 @media (max-width: 900px) {
+  /* Phones: lift the hero title off the bottom edge. */
+  .hero {
+    height: calc(100svh - var(--header-h, 67px));
+    min-height: 520px;
+  }
+
+  .heroCopy {
+    padding-bottom: 120px;
+  }
+
+  /* Phones: the three fragrances stack, each card pinning to the top while the next slides over it. */
   .cards {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 0;
+  }
+
+  .cards > * {
+    position: sticky;
+    top: 0;
+    padding: 24px 0 32px;
+    background: var(--bg);
+  }
+
+  .cards > *:nth-child(2) {
+    z-index: 2;
+  }
+
+  .cards > *:nth-child(3) {
+    z-index: 3;
   }
 }

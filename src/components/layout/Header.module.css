@@ -74,8 +74,13 @@
 }
 
 @media (max-width: 900px) {
+  /* Bigger logo, less padding: the header stays the same compact height. */
   .logoImg {
     height: 44px;
+  }
+
+  .topRow {
+    padding: 11px 16px;
   }
 }
 

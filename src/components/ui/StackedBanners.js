@@ -2,7 +2,7 @@ import { Children } from "react";
 import styles from "./StackedBanners.module.css";
 
 // Full-screen banners that pin to the top in turn, each new one sliding up over the last
-// (the same stacking as the Fragrances page rows). Desktop only; phones scroll normally.
+// (the same stacking as the Fragrances page rows). Each banner must fit one screen, except the last.
 export default function StackedBanners({ children }) {
   return (
     <div className={styles.stack}>

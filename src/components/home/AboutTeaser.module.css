@@ -148,8 +148,8 @@
   min-height: 260px;
   border-radius: 14px;
   overflow: hidden;
-  /* Matches the near-black edges of the contained Locken photo. */
-  background: var(--noir);
+  /* Matches the deep wine edges of the contained Fresca photo, so the side space reads as part of it. */
+  background: linear-gradient(90deg, #580519, #480012);
 }
 
 .gridImageRow .image {
@@ -185,22 +185,31 @@
     height: auto;
   }
 
+  /* Phones: drop the stacked desktop margin + section padding above the copy, keeping one 48px gap. */
   .gridSection {
     display: flex;
     flex-direction: column;
     min-height: 0;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
   }
 
   .gridContentRow .copy {
     max-width: none;
-    padding: 40px 24px;
+    padding: 40px 24px 48px;
   }
 
+  /* Phones: only the hanging Locken image, edge to edge with square corners. */
   .gridImageRow {
-    height: 280px;
+    display: none;
   }
 
+  /* Phones: the image leads, edge to edge, with the copy beneath it. */
   .gridRight {
+    order: -1;
     width: 100%;
+    margin: 0;
+    border-radius: 0;
   }
 }

@@ -188,6 +188,7 @@
   .section {
     grid-template-columns: 1fr;
     height: auto;
+    padding: 0 16px;
   }
 
   .left {

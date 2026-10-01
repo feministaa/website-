@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "./PhaseCarousel.module.css";
 
-const AUTOPLAY_MS = 6500;
+const AUTOPLAY_MS = 4000;
 
 // The five phases as full-screen banners that crossfade. Advances on its own (paused on hover and for
 // reduced motion); the tab bar, arrows, keyboard and swipe all change phase directly.

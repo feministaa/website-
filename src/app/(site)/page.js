@@ -42,8 +42,8 @@ export default async function Home() {
             different side of her with every wear.
           </>
         }
-        image="/images/products/locken-hand-float.png"
-        image2="/images/products/fresca-hand-hold.png"
+        image="/images/products/fresca-hand-hold.png"
+        image2="/images/products/locken-hand-float.png"
       />
       <StackedBanners>
         <DiscoveryFeature product={products.find((p) => p.family === "set")} />

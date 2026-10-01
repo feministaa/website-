@@ -56,12 +56,18 @@ function Slide({ product, layerRef, priority }) {
 
       <div className={styles.heading}>
         <span className={styles.eyebrow}>{product.tagline}</span>
-        <h2 className={styles.name}>{product.name}</h2>
+        <div className={styles.nameRow}>
+          <h2 className={styles.name}>{product.name}</h2>
+          {/* Phones show Discover beside the name; desktop keeps it under the description. */}
+          <Link href={`/fragrances/${product.slug}`} className={`${styles.discoverLink} ${styles.discoverMobile}`}>
+            Discover →
+          </Link>
+        </div>
       </div>
 
       <div className={styles.description}>
         {product.shortDescription && <p className={styles.sideText}>{product.shortDescription}</p>}
-        <Link href={`/fragrances/${product.slug}`} className={styles.discoverLink}>
+        <Link href={`/fragrances/${product.slug}`} className={`${styles.discoverLink} ${styles.discoverDesktop}`}>
           Discover →
         </Link>
       </div>

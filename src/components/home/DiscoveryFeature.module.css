@@ -95,27 +95,39 @@
 }
 
 /* Phones: photo on top, copy below on a wine panel. */
+/* Phones: one full screen, product in the top half, copy over the wine floor at the bottom. */
 @media (max-width: 900px) {
   .banner {
-    flex-direction: column;
-    align-items: stretch;
-    aspect-ratio: auto;
-    height: auto;
+    align-items: flex-end;
+    height: 100svh;
     min-height: 0;
-    max-height: none;
   }
+  .banner {
+    background: #3a0a16;
+  }
+  /* Photo takes the top of the screen and fades into the wine floor where the copy sits. */
+  /* A shorter photo band shows a wider slice of the 16:9 image, so the case and all three vials
+     (its right-hand side) fit; it fades into the wine floor where the copy sits. */
   .img {
-    position: relative !important;
-    height: auto !important;
-    aspect-ratio: 16 / 9;
+    top: 8% !important;
+    height: 44% !important;
+    object-position: right center;
   }
   .scrim {
-    display: none;
+    background: linear-gradient(180deg, #3a0a16 8%, rgba(58, 10, 22, 0) 18%, rgba(58, 10, 22, 0) 42%, #3a0a16 52%);
   }
   .copy {
     width: auto;
     margin: 0;
-    padding: 36px 24px 44px;
+    padding: 0 20px 72px;
+  }
+  .title {
+    font-size: 32px;
+    margin-bottom: 14px;
+  }
+  .text {
+    font-size: 14.5px;
+    margin-bottom: 24px;
   }
   .buy {
     flex-wrap: wrap;

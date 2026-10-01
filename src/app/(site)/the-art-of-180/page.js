@@ -112,11 +112,6 @@ export default async function ArtOf180Page() {
               </AnimateIn>
             ))}
           </div>
-          <div className={styles.closingCta}>
-            <Link href="/fragrances" className={styles.cta}>
-              Discover the collection
-            </Link>
-          </div>
         </section>
       )}
     </main>

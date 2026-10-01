@@ -219,6 +219,10 @@
     gap: 28px;
     padding: 44px 0;
   }
+  /* The first row's photo sits flush under the hero video. */
+  .productRow:first-child {
+    padding-top: 0;
+  }
   .productRowReverse .productMedia,
   .productRowReverse .productContent {
     order: initial;

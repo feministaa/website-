@@ -130,6 +130,10 @@
   transition: color 0.3s var(--ease);
 }
 
+.discoverMobile {
+  display: none;
+}
+
 .discoverLink:hover,
 .discoverLink:focus-visible {
   color: #fff;
@@ -250,7 +254,25 @@
 
   .heading {
     order: 1;
+    align-self: stretch;
     text-align: left;
+  }
+
+  .nameRow {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .discoverMobile {
+    display: inline-block;
+    margin-top: 0;
+    flex-shrink: 0;
+  }
+
+  .discoverDesktop {
+    display: none;
   }
 
   .description {
@@ -273,8 +295,17 @@
     order: 4;
   }
 
+  /* Full width, aligned to the copy's edges: quantity left, Add to Cart right, both on one centre line. */
   .buyWrap {
     order: 5;
-    justify-self: auto;
+    align-self: stretch;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(241, 233, 230, 0.15);
+  }
+
+  .shopAddBtn {
+    padding: 4px 0 5px;
   }
 }
