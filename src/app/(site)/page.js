@@ -7,6 +7,7 @@ import FindYourEssence from "@/components/home/FindYourEssence";
 import HomeReels from "@/components/home/HomeReels";
 import DiscoveryFeature from "@/components/home/DiscoveryFeature";
 import Testimonials from "@/components/home/Testimonials";
+import PressStrip from "@/components/home/PressStrip";
 import StackedBanners from "@/components/ui/StackedBanners";
 import { getProducts } from "@/lib/dataStore";
 
@@ -52,6 +53,7 @@ export default async function Home() {
       </StackedBanners>
       <WorldGrid />
       <HomeReels />
+      <PressStrip />
       <Testimonials />
     </main>
   );

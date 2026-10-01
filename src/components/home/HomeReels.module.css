@@ -63,20 +63,20 @@
   display: flex;
   gap: 24px;
   width: max-content;
-  animation: reels-marquee 50s linear infinite;
+  animation: reels-marquee 32s linear infinite;
 }
 
 .marquee:hover .strip {
   animation-play-state: paused;
 }
 
-/* The strip holds two copies, so shifting by half (plus half a gap) lands exactly on the start. */
+/* The strip holds four copies; shifting by one copy (a quarter, plus a quarter gap) lands exactly on the start. */
 @keyframes reels-marquee {
   from {
     transform: translateX(0);
   }
   to {
-    transform: translateX(calc(-50% - 12px));
+    transform: translateX(calc(-25% - 6px));
   }
 }
 

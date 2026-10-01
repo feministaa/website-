@@ -1,0 +1,94 @@
+.section {
+  padding: 72px 24px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.label {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(40px, 8vw, 120px);
+}
+
+.list li + li {
+  position: relative;
+}
+
+/* Thin rule between names. */
+.list li + li::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * clamp(40px, 8vw, 120px) / 2);
+  top: 50%;
+  width: 1px;
+  height: 28px;
+  background: var(--line);
+  transform: translateY(-50%);
+}
+
+.wordmark {
+  display: block;
+  color: var(--noir);
+  opacity: 0.82;
+  transition: opacity 0.3s var(--ease);
+}
+
+.link:hover .wordmark,
+.link:hover .logo {
+  opacity: 1;
+}
+
+/* Newspaper-style blackletter-adjacent serif for the Times. */
+.times {
+  font-family: var(--font-serif);
+  font-size: clamp(18px, 2vw, 26px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* Fashion-magazine italic for Femina. */
+.femina {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(30px, 3.2vw, 44px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.logo {
+  display: block;
+  height: 32px;
+  width: auto;
+  opacity: 0.82;
+  filter: grayscale(1);
+  transition: opacity 0.3s var(--ease);
+}
+
+@media (max-width: 600px) {
+  .list {
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .list li + li::before {
+    display: none;
+  }
+}

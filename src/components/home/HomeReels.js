@@ -19,7 +19,9 @@ const FADE_UP = {
 // Heading above a slow marquee of tilted, muted, looping reel videos. The strip is rendered twice and
 // moves by exactly one copy's width, so the loop is seamless.
 export default function HomeReels() {
-  const strip = [...REELS, ...REELS];
+  // Four copies so the strip is always wider than the screen; it loops by exactly one copy.
+  const COPIES = 4;
+  const strip = Array.from({ length: COPIES }, () => REELS).flat();
 
   return (
     <section className={styles.section}>
