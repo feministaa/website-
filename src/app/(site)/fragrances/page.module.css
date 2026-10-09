@@ -187,13 +187,21 @@
   color: var(--ink);
   padding-bottom: 4px;
   border-bottom: 1px solid var(--ink);
-  transition: gap 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+/* Nudge only the arrow on hover; growing the gap widens the link and can make it wrap back and forth. */
+.discoverLink svg {
+  transition: transform 0.3s var(--ease);
 }
 
 .discoverLink:hover {
-  gap: 12px;
   color: var(--gold-deep);
   border-color: var(--gold-deep);
+}
+
+.discoverLink:hover svg {
+  transform: translateX(4px);
 }
 
 .discoverLink:disabled {
@@ -202,7 +210,6 @@
 }
 
 .discoverLink:disabled:hover {
-  gap: 8px;
   color: var(--ink);
   border-color: var(--ink);
 }
