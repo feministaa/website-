@@ -22,9 +22,9 @@ export default function DiscoveryFeature({ product }) {
 
         <div className={styles.copy}>
           <span className={styles.eyebrow}>The Discovery Set</span>
-          <h2 className={styles.title}>Locken, Vers and Fresca, together.</h2>
+          <h2 className={styles.title}>More than one way to be her.</h2>
           <p className={styles.text}>
-            Three 10 ml travel sprays in one leather case. Try each for a few days before choosing your bottle.
+            Different moods. Different moments. Three fragrances waiting to become part of your story.
           </p>
 
           <div className={styles.buy}>

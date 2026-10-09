@@ -49,13 +49,14 @@ export default function OurStoryPage() {
         <AnimateIn className={styles.introInner}>
           <h1 className={styles.introTitle}>The House of Feminista</h1>
           <p className={styles.introText}>
-            Welcome to the House of Feminista: a fragrance house built on a single conviction — that femininity is not
-            a silhouette to be perfected, but a spectrum to be expressed, composed and worn on her own terms.
+            Feminista is built on a simple belief: femininity has never belonged to a single definition. It is
+            layered, ever-changing, and beautifully individual. There is beauty in her contrasts, mystery in her
+            choices, and something unexpected in every side of her.
           </p>
           <p className={styles.introText}>
-            Founded to compose scent the way a couturier composes a garment, the House first established itself
-            around a discipline of restraint: fewer ingredients, chosen with greater care, and given the time they
-            need to become something worth remembering.
+            Our fragrances explore these many expressions through notes that unfold, contrasts that surprise, and
+            impressions that stay. Each fragrance reveals its own character, one layer at a time. Because there is
+            always more to her than the first impression.
           </p>
         </AnimateIn>
       </section>

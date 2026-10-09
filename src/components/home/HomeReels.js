@@ -36,7 +36,7 @@ export default function HomeReels() {
           For the women who <em>need no introduction</em>
         </motion.h2>
         <motion.p variants={FADE_UP} className={styles.text}>
-          Worn on stages, sets and red carpets across India.
+          Some impressions are made without a word.
         </motion.p>
         <motion.div variants={FADE_UP}>
           <Link href="/fragrances" className={styles.cta}>

@@ -20,7 +20,7 @@ export default function WorldGrid() {
             Beauty <em>in</em> every layer
           </h2>
           <p className={styles.leftText}>
-            Each fragrance is a new chapter — a reflection of your moods, your memories and your most authentic self.
+            Beneath every fragrance lies another story. Layer by layer, note by note, there&apos;s always more to discover.
           </p>
           <Link href="/fragrances" className={styles.leftLink}>
             Discover More

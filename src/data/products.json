@@ -6,8 +6,8 @@
     "name": "Locken",
     "expression": "The Magnetic",
     "family": "magnetic",
-    "tagline": "Warm. Addictive. Commanding.",
-    "shortDescription": "Warm, magnetic and unapologetically expressive. Opens with almond, coffee, bergamot and lemon before unfolding into a luminous floral heart.",
+    "tagline": "Never Just Sweet.",
+    "shortDescription": "Beneath the familiar lies something unexpected. A depth that reveals itself slowly.",
     "price": 8000,
     "compareAtPrice": null,
     "accent": "#b8792f",
@@ -61,8 +61,8 @@
     "name": "Vers",
     "expression": "The Intimate",
     "family": "intimate",
-    "tagline": "Soft. Graceful. Whispered.",
-    "shortDescription": "Soft, graceful and quietly expressive. Opens with delicate floral freshness before unfolding into a smooth, romantic heart that feels refined and intimate.",
+    "tagline": "The Beauty of Contrast.",
+    "shortDescription": "A little unexpected. A little irresistible. Never quite what it seems.",
     "price": 8000,
     "compareAtPrice": null,
     "accent": "#c98a93",
@@ -79,18 +79,18 @@
     "rating": 4.8,
     "reviews": 96,
     "notes": {
-      "top": ["Pink Pepper", "Bergamot", "Mandarin", "Neroli"],
+      "top": ["Cinnamon", "Cardamom", "Ginger"],
       "heart": ["Peony", "Rose de Mai", "Lily of the Valley", "Iris"],
       "base": ["White Musk", "Cashmere Wood", "Ambrette", "Vanilla", "Soft Suede"]
     },
     "overview": [
       {
         "title": "A Quiet Kind of Power",
-        "body": "Vers is soft, graceful and quietly expressive. It opens with delicate floral freshness before unfolding into a smooth, romantic heart that feels refined and intimate."
+        "body": "Vers is soft, graceful and quietly expressive. It opens with the subtle warmth of cinnamon, cardamom and ginger, before unfolding into a smooth heart of praline, candied fruits and white flowers."
       },
       {
         "title": "Composed Without Haste",
-        "body": "Every element of Vers is shaped with patience. The composition is given nearly 180 days to mature, allowing its freshness, florals and warmer notes to soften and find their natural balance."
+        "body": "Every element of Vers is shaped with patience. The composition is given nearly 180 days to mature, allowing its spice, softness and warmth to settle into a more balanced expression."
       },
       {
         "title": "Made to Stay Close",
@@ -110,8 +110,8 @@
     "name": "Fresca",
     "expression": "The Luminous",
     "family": "luminous",
-    "tagline": "Fresh. Radiant. Effortless.",
-    "shortDescription": "Fresh, radiant and confidently expressive. Opens with refined fruity and floral notes before unfolding into a rich, sensual heart filled with warmth and character.",
+    "tagline": "The Art of Subtlety.",
+    "shortDescription": "Delicate at first. A little more indulgent with time. Effortlessly intriguing.",
     "price": 8000,
     "compareAtPrice": null,
     "accent": "#8fa66a",
@@ -134,22 +134,22 @@
     "rating": 4.9,
     "reviews": 74,
     "notes": {
-      "top": ["Green Pear", "Yuzu", "Freesia", "Blackcurrant"],
+      "top": ["Fruits"],
       "heart": ["Magnolia", "Orange Blossom", "Jasmine", "Water Lily"],
       "base": ["Amber", "Musk", "Vetiver", "Sandalwood", "Soft Woods"]
     },
     "overview": [
       {
         "title": "A Light That Lingers",
-        "body": "Fresca is fresh, radiant and confidently expressive. It opens with refined fruity and floral notes before unfolding into a rich, sensual heart filled with warmth and character."
+        "body": "Fresca is fresh, radiant and confidently expressive. It opens with a bright fruity freshness, before unfolding into a soft apple heart and settling into a smooth base of whipped cream and vanilla."
       },
       {
         "title": "Perfected Through Time",
-        "body": "Fresca is given nearly 180 days to mature, allowing its brighter notes and deeper elements to settle into balance — becoming softer, fuller and more complete."
+        "body": "Fresca is given nearly 180 days to mature, allowing its freshness and softness to settle into balance — becoming smoother, creamier and more complete."
       },
       {
         "title": "Made to Be Remembered",
-        "body": "Fresca is created for spontaneous days, special occasions and moments that call for effortless confidence. She does not follow the moment. She transforms it."
+        "body": "Fresca is created for spontaneous days, special occasions and moments that call for effortless confidence. It does not follow the moment. She transforms it."
       }
     ],
     "howToWear": "Spray onto pulse points and hair ends for a diffused trail that moves with you through the day. Layer with the matching body lotion, when available, for a longer-lasting effect.",

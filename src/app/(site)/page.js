@@ -38,9 +38,10 @@ export default async function Home() {
         heading="Who is she"
         description={
           <>
-            Created for her. <em>Never</em> adapted to her. Feminista was born from a belief that femininity has no
-            single definition. Each fragrance is composed slowly, matured with patience, and made to reveal a
-            different side of her with every wear.
+            She is never just one thing. Neither is Feminista.
+            <br />
+            A world of fragrances for every side of her — the familiar, the unexpected, and the ones she keeps to
+            herself.
           </>
         }
         image="/images/products/fresca-hand-hold.png"
