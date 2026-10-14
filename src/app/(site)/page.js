@@ -44,8 +44,8 @@ export default async function Home() {
             herself.
           </>
         }
-        image="/images/products/fresca-hand-hold.png"
-        image2="/images/products/locken-hand-float.png"
+        image="/images/who-is-she-locken.webp"
+        image2="/images/who-is-she-legs.webp"
       />
       <StackedBanners>
         <DiscoveryFeature product={products.find((p) => p.family === "set")} />
