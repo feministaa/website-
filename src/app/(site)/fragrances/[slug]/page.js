@@ -13,13 +13,16 @@ export async function generateMetadata({ params }) {
   const product = products.find((p) => p.slug === slug);
   if (!product) return {};
   const title = `${product.name} — ${product.expression} | Feminista`;
+  // The on-page copy is short and poetic, so the search snippet adds the notes and the shipping promise.
+  const topNotes = product.family !== "set" && product.notes?.top?.length ? ` Top notes: ${product.notes.top.join(", ")}.` : "";
+  const description = `${product.name} by Feminista. ${product.shortDescription}${topNotes} Complimentary shipping across India.`;
   return {
     title,
-    description: product.shortDescription,
+    description,
     alternates: { canonical: `/fragrances/${product.slug}` },
     openGraph: {
       title,
-      description: product.shortDescription,
+      description,
       url: `/fragrances/${product.slug}`,
       type: "website",
     },

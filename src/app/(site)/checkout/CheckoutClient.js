@@ -230,6 +230,7 @@ export default function CheckoutClient({ user }) {
             <span>Total</span>
             <span>{formatINR(subtotal)}</span>
           </div>
+          <p className={styles.taxNote}>Inclusive of all taxes</p>
         </AnimateIn>
       </div>
     </main>

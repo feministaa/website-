@@ -93,6 +93,13 @@
   padding-top: 16px;
   margin-top: 6px;
   border-top: 1px solid var(--line);
+  margin-bottom: 6px;
+}
+
+.taxNote {
+  font-size: 12px;
+  color: var(--ink-faint);
+  text-align: right;
   margin-bottom: 24px;
 }
 

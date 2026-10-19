@@ -3,7 +3,7 @@ import PolicyPage from "@/components/ui/PolicyPage";
 
 export const metadata = {
   title: "Shipping & Delivery — Feminista",
-  description: "Feminista ships across India, with every order delivered within 7 days.",
+  description: "Complimentary shipping across India on every Feminista order, delivered within 7 days.",
   alternates: { canonical: "/shipping" },
 };
 
@@ -13,7 +13,8 @@ const SECTIONS = [
     title: "Delivery promise",
     body: (
       <p>
-        Every order is delivered within <strong>7 days</strong> of being placed, to any address across India.
+        Shipping is <strong>complimentary</strong> on every order, and every order is delivered within{" "}
+        <strong>7 days</strong> of being placed, to any address across India.
       </p>
     ),
   },

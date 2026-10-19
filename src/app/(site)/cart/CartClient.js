@@ -85,6 +85,7 @@ export default function CartClient() {
             <span>Total</span>
             <span>{formatINR(total)}</span>
           </div>
+          <p className={styles.taxNote}>Inclusive of all taxes</p>
           <Link href="/checkout" className="btn btn-primary btn-block">
             Proceed to Checkout
           </Link>

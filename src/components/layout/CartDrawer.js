@@ -127,7 +127,7 @@ export default function CartDrawer() {
                   <span>{formatINR(subtotal)}</span>
                 </div>
                 <p style={{ fontSize: 12, color: "var(--ink-faint)", marginBottom: 16 }}>
-                  Shipping and taxes calculated at checkout.
+                  Inclusive of all taxes. Complimentary shipping across India.
                 </p>
                 <Link href="/checkout" className="btn btn-primary btn-block" onClick={closeDrawer}>
                   Quick Checkout

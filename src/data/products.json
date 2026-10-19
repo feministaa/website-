@@ -112,7 +112,7 @@
     "family": "luminous",
     "tagline": "The Art of Subtlety.",
     "shortDescription": "Delicate at first. A little more indulgent with time. Effortlessly intriguing.",
-    "price": 8000,
+    "price": 7000,
     "compareAtPrice": null,
     "accent": "#8fa66a",
     "accentSoft": "#e2ecc9",
@@ -127,7 +127,7 @@
     ],
     "sizes": [
       { "label": "50 ml", "price": 5200 },
-      { "label": "100 ml", "price": 8000 }
+      { "label": "100 ml", "price": 7000 }
     ],
     "stock": 19,
     "featured": true,

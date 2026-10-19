@@ -7,7 +7,7 @@ import PhilosophyPillars from "./PhilosophyPillars";
 
 export const metadata = {
   title: "Our Story — Feminista",
-  description: "Created for her. Never adapted to her. The story of the House of Feminista.",
+  description: "Feminista is built on a simple belief: femininity has never belonged to a single definition. The story of the House of Feminista.",
   alternates: { canonical: "/our-story" },
   openGraph: {
     title: "Our Story — Feminista",

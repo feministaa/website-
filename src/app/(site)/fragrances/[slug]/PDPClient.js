@@ -138,6 +138,7 @@ export default function PDPClient({ product, related }) {
             {/* Full bottles are 100 ml; the Discovery Set holds three 10 ml travel sprays. */}
             <span className={styles.volume}>{product.family === "set" ? "3 × 10 ml" : size.label}</span>
           </div>
+          <p className={styles.priceNote}>Inclusive of all taxes · Complimentary shipping</p>
 
           <div className={styles.fieldLabel}>Quantity</div>
           <div className={styles.qtyRow}>
@@ -177,7 +178,7 @@ export default function PDPClient({ product, related }) {
                 <circle cx="7" cy="19" r="1.6" />
                 <circle cx="17.5" cy="19" r="1.6" />
               </svg>
-              <span>Shipping across India</span>
+              <span>Complimentary shipping</span>
             </div>
             <div className={styles.trustItem}>
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
@@ -250,7 +251,7 @@ export default function PDPClient({ product, related }) {
           { title: "Ingredients", body: product.ingredients, small: true },
           {
             title: "Shipping & Returns",
-            body: "Shipped across India and delivered within 7 days. As fragrances cannot be resold once dispatched, all sales are final; if your order arrives damaged, write to us within 48 hours for a replacement.",
+            body: "Complimentary shipping across India, delivered within 7 days. As fragrances cannot be resold once dispatched, all sales are final; if your order arrives damaged, write to us within 48 hours for a replacement.",
           },
         ]
           .filter((card) => card.body)
