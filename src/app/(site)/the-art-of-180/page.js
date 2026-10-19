@@ -35,20 +35,20 @@ const PHASES = [
     title: "Maturation",
     highlight: "180 days of rest",
     body: "The composition is left alone until the notes soften, deepen and settle into each other.",
-    image: "/images/showcase/locken-driftwood-bg.webp",
-    alt: "Locken resting on weathered driftwood among almonds and coffee",
+    image: "/images/art-of-180-maturation.webp",
+    alt: "Locken, Vers and Fresca with coffee, ginger, cardamom, vanilla and apple",
   },
   {
     title: "Evaluation",
     body: "Assessed and refined until the balance feels right. If it is not ready, it waits longer.",
-    image: "/images/art-of-180-lab.webp",
-    alt: "A gloved hand at work beside a bottle of Feminista Locken",
+    image: "/images/art-of-180-evaluation.webp",
+    alt: "A perfumer smelling three Feminista blotter strips",
   },
   {
     title: "Bottling",
     body: "Filtered, bottled and finished by hand. Only then does it leave the House.",
-    image: "/images/products/trio-light-play.webp",
-    alt: "Locken, Vers and Fresca lying in slanted light",
+    image: "/images/art-of-180-lab.webp",
+    alt: "A gloved hand at work beside a bottle of Feminista Locken",
   },
 ];
 

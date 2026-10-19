@@ -262,37 +262,6 @@ export default function PDPClient({ product, related }) {
           ))}
       </section>
 
-      <div
-        className={styles.storyBanner}
-        style={
-          product.bannerImage
-            ? { backgroundImage: `linear-gradient(0deg, rgba(9, 9, 9,0.25), rgba(9, 9, 9,0.05)), url(${product.bannerImage})` }
-            : undefined
-        }
-      >
-        {product.bannerImage ? (
-          <AnimateIn className={styles.storyBannerCta}>
-            <Link href="/the-art-of-180" className="btn btn-light">
-              Discover the Process
-            </Link>
-          </AnimateIn>
-        ) : (
-          <AnimateIn className={styles.storyBannerCopy}>
-            <span className="eyebrow" style={{ color: "var(--gold-light)" }}>
-              The Art of 180
-            </span>
-            <h2 className={styles.storyBannerTitle}>Nothing about her is rushed</h2>
-            <p className={styles.storyBannerText}>
-              Every Feminista fragrance matures for nearly 180 days before it ever reaches you — time enough for its
-              notes to settle into something worth wearing.
-            </p>
-            <Link href="/the-art-of-180" className="btn btn-light">
-              Discover the Process
-            </Link>
-          </AnimateIn>
-        )}
-      </div>
-
       {related.length > 0 && (
         <div className={styles.related}>
           <h2 className={styles.relatedTitle}>You may also like</h2>
