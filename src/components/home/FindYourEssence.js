@@ -4,9 +4,9 @@ import styles from "./FindYourEssence.module.css";
 
 // Collection-banner art for each fragrance; anything else falls back to its admin card image.
 const CARD_IMAGES = {
-  locken: "/images/products/locken-collection-card.webp",
-  vers: "/images/products/vers-collection-card.webp",
-  fresca: "/images/products/fresca-collection-card.webp",
+  locken: "/images/products/locken-essence-card.jpg",
+  vers: "/images/products/vers-essence-card.jpg",
+  fresca: "/images/products/fresca-essence-card.jpg",
 };
 
 export default function FindYourEssence({ products }) {
